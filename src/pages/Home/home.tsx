@@ -1,149 +1,164 @@
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-
-
+// import { useState } from "react";
+import Card from './cards/cards';  // Certifique-se de ajustar o caminho conforme necessário
+import foto2 from '.././../img/anos20.jpg';
+import fotosPapa from '.././../img/papa.png';
+import logo from '../../img/logo.png'
 
 function Home() {
 
-    const futureEvents = [
-        { date: '10/05/2024', title: 'Evento A', month: 'Maio', image: 'https://via.placeholder.com/150' },
-        { date: '15/05/2024', title: 'Evento B', month: 'Maio', image: 'https://via.placeholder.com/150' },
-        { date: '20/05/2024', title: 'Evento C', month: 'Maio', image: 'https://via.placeholder.com/150' },
-        { date: '10/06/2024', title: 'Evento D', month: 'Junho', image: 'https://via.placeholder.com/150' },
-        { date: '15/06/2024', title: 'Evento E', month: 'Junho', image: 'https://via.placeholder.com/150' },
-        { date: '20/06/2024', title: 'Evento F', month: 'Junho', image: 'https://via.placeholder.com/150' },
-
-    ];
-    const [activeMonth, setActiveMonth] = useState(null);
-
-    const months = [
-        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    const filteredEvents = activeMonth ? futureEvents.filter((event) => event.month === activeMonth) : [];
     return (
-
         <div className="">
 
-            <div className="mx-auto max-w-7xl py-12 sm:px-6 sm:py-20 lg:px-8">
-                <div className="bg-gradient-to-r px-6 py-16 sm:px-16 lg:px-24 lg:py-32 text-center">
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-4">Bem-vindo à Comunidade Católica Ágape</h2>
-                    <p className="text-lg sm:text-xl lg:text-2xl text-blacke leading-relaxed mb-8">Uma comunidade onde o amor, a fé e a serviço são os pilares fundamentais. Junte-se a nós e faça parte dessa jornada de devoção e amor ao próximo.</p>
-                    <a href="#" className="text-lg sm:text-xl bg-yellow-400 text-blue-600 font-semibold py-3 px-10 rounded-full inline-block hover:bg-blue-600 hover:text-white transition duration-300">Saiba Mais</a>
+            <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-600 to-indigo-700 text-white">
+                <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <img src={logo} alt="Logo da Comunidade Católica Ágape" className="h-3/4 object-contain animate__animated animate__bounceIn" />
                 </div>
-            </div>
-
-
-            {/* Seção de notícias */}
-
-            <section className="container mx-auto mt-8">
-                <h2 className="text-2xl font-bold mb-4">Notícias Recentes</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {/* Card 1 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
-                    </div>
-                    {/* Card 2 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
-                    </div>
-                    {/* Card 3 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
-                    </div>
+                <div className="relative z-10 text-center px-6">
+                    <h1 className="text-4xl lg:text-7xl font-extrabold uppercase tracking-wide text-yellow-300">Bem-vindo à nossa comunidade</h1>
+                    <p className="text-lg mt-4 max-w-2xl mx-auto">
+                        Um carisma de Amor suscitado pelo Espírito Santo, a Comunidade Católica Ágape foi criada para a evangelização e formação de jovens, crianças e casais.
+                    </p>
+                    <a href="/contato" className="mt-6 inline-block rounded-full bg-yellow-500 px-6 py-3 text-lg font-semibold text-gray-900 hover:bg-yellow-600 hover:shadow-xl transition duration-300 ease-in-out">
+                        Entre em contato
+                    </a>
                 </div>
+                <div className="absolute inset-0 bg-black opacity-50"></div>
             </section>
 
-            <section className="container mx-auto mt-8">
-                <h2 className="text-2xl font-bold mb-4">Formação</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {/* Card 1 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
+
+            <div className="container mx-auto mt-12  px-4 flex flex-wrap lg:flex-nowrap">
+                {/* Seção de Notícias */}
+                <section className="w-full lg:w-3/4 px-4">
+
+                    <div className="flex items-center mb-4">
+                        <h2 className="px-3 py-1 text-lg font-bold bg-red-500 text-white rounded-lg shadow-md mr-4">Notícias</h2>
+                        <hr className="flex-grow bg-gray-500 h-0.5 rounded-full" />
                     </div>
-                    {/* Card 2 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                        <Card
+                            image="https://via.placeholder.com/400"
+                            title="Título da Notícia"
+                            author="Autor"
+                            date="28 de Maio de 2024"
+                            description="Breve descrição da notícia. Pode conter algumas informações relevantes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut fringilla enim..."
+                            link="#"
+                        />
+                        <Card
+                            image={fotosPapa}
+                            title="Papa Francisco participa da Jornada Mundial das Crianças"
+                            author="Autor"
+                            date="20 de Maio de 2024"
+                            description="Breve descrição da notícia. Pode conter algumas informações relevantes. Sed consequat est nec justo convallis dapibus. Vestibulum et elit ut libero..."
+                            link="#"
+                        />
+                        <Card
+                            image="https://via.placeholder.com/400"
+                            title="Título da Notícia"
+                            author="Autor"
+                            date="15 de Maio de 2024"
+                            description="Breve descrição da notícia. Pode conter algumas informações relevantes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut fringilla enim..."
+                            link="#"
+                        />
                     </div>
-                    {/* Card 3 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img src="https://via.placeholder.com/400" alt="Placeholder" className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">Título da Notícia</h3>
-                            <p className="text-gray-700">Breve descrição da notícia. Pode conter algumas informações relevantes.</p>
-                            <a href="#" className="text-blue-500 mt-2 inline-block">Leia Mais</a>
-                        </div>
+                </section>
+
+                {/* Seção Lateral (Desktop) */}
+                <aside className="hidden lg:block w-full lg:w-1/4 px-4 mt-12 lg:mt-0">
+                    <div className="flex items-center mb-4">
+                        <h2 className="px-3 py-1 text-lg font-bold bg-blue-600 text-white rounded-lg shadow-md mr-4">Conecte-se e Contribua</h2>
+                        <hr className="flex-grow bg-gray-500 h-0.5 rounded-full" />
                     </div>
-                </div>
-            </section>
-            {/* EVENTOSSS */}
-            <div className="container mx-auto mt-8">
-                <h2 className="text-2xl font-bold mb-4">Próximos Eventos</h2>
-                <div className="flex overflow-x-auto mb-4">
-                    {months.map((month, index) => (
-                        <button
-                            key={index}
-                            className={`bg-white px-4 py-2 mr-4 rounded-md outline-none focus:outline-none text-base font-semibold ${activeMonth === month ? 'text-blue-500' : 'text-gray-700'
-                                }`}
-                            onClick={() => setActiveMonth(activeMonth === month ? null : month)}
-                        >
-                            {month}
-                        </button>
-                    ))}
-                </div>
-                <div className="flex overflow-x-auto mb-8">
-                    {filteredEvents.length > 0 ? (
-                        filteredEvents.map((event, index) => (
-                            <div key={index} className="bg-white p-6 shadow-md rounded-md mr-4">
-                                <img
-                                    src={event.image}
-                                    alt={event.title}
-                                    className="w-40 h-40 object-cover rounded-md mb-4"
-                                />
-                                <p className="text-xl font-semibold text-gray-800 mb-2">{event.title}</p>
-                                <p className="text-gray-500">{event.date}</p>
+
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg mb-8 transition transform ">
+                        <div className="p-4">
+                            <h3 className="text-2xl font-bold mb-2">Rádio da Comunidade</h3>
+                            <p className="text-gray-700 mb-4">Ouça a nossa rádio e fique por dentro de tudo que acontece na nossa comunidade. Programação ao vivo, músicas e muito mais.</p>
+                            <div className="text-center">
+                                <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-300">Ouvir Rádio</button>
                             </div>
-                        ))
-                    ) : (
-                        <div className="bg-white p-6 shadow-md rounded-md mr-4">
-                            <p className="text-lg font-semibold text-gray-800 mb-2">Nenhum evento para este mês</p>
                         </div>
-                    )}
-                </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition transform ">
+                        <div className="p-4">
+                            <h3 className="text-2xl font-bold mb-2">Faça uma Doação</h3>
+                            <p className="text-gray-700 mb-4">Ajude a nossa comunidade a crescer e a continuar com suas obras de evangelização e formação. Sua contribuição é muito importante para nós.</p>
+                            <div className="text-center">
+                                <button className="bg-green-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-green-600 transition duration-300">Doar Agora</button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
 
+            <div className="  container mx-auto mt-12  px-4 flex flex-wrap lg:flex-nowrap">
+                {/* Seção de Formação */}
+                <section className="w-full lg:w-3/4 px-4">
+                    <div className="flex items-center mb-4">
+                        <h2 className="px-3 py-1 text-lg font-bold bg-yellow-500 text-white rounded-lg shadow-md mr-4">Formação</h2>
+                        <hr className="flex-grow bg-gray-500 h-0.5 rounded-full" />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                        <Card
+                            image={foto2}
+                            title="Ágape: Vivendo um Carisma de Amor"
+                            author="Autor"
+                            date="10 de Maio de 2024"
+                            description="Breve descrição da formação. Pode conter algumas informações relevantes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut fringilla enim..."
+                            link="#"
+                        />
+                        <Card
+                            image="https://via.placeholder.com/400"
+                            title="Título da Formação"
+                            author="Autor"
+                            date="5 de Maio de 2024"
+                            description
+                            ="Breve descrição da formação. Pode conter algumas informações relevantes. Sed consequat est nec justo convallis dapibus. Vestibulum et elit ut libero..."
+                            link="#"
+                        />
+                        <Card
+                            image="https://via.placeholder.com/400"
+                            title="Título da Formação"
+                            author="Autor"
+                            date="1 de Maio de 2024"
+                            description="Breve descrição da formação. Pode conter algumas informações relevantes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut fringilla enim..."
+                            link="#"
+                        />
+                    </div>
+                </section>
+            </div>
+
+            {/* Seção Lateral (Mobile) */}
+            <aside className="lg:hidden container mx-auto mt-12 px-4">
+                <div className="flex items-center mb-4">
+                    <h2 className="px-3 py-1 text-lg font-bold bg-blue-600 text-white rounded-lg shadow-md mr-4">Conecte-se e Contribua</h2>
+                    <hr className="flex-grow bg-gray-500 h-0.5 rounded-full" />
+                </div>
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg mb-8 transition transform ">
+                    <div className="p-4">
+                        <h3 className="text-2xl font-bold mb-2">Rádio da Comunidade</h3>
+                        <p className="text-gray-700 mb-4">Ouça a nossa rádio e fique por dentro de tudo que acontece na nossa comunidade. Programação ao vivo, músicas e muito mais.</p>
+                        <div className="text-center">
+                            <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-300">Ouvir Rádio</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg transition transform ">
+                    <div className="p-4">
+                        <h3 className="text-2xl font-bold mb-2">Faça uma Doação</h3>
+                        <p className="text-gray-700 mb-4">Ajude a nossa comunidade a crescer e a continuar com suas obras de evangelização e formação. Sua contribuição é muito importante para nós.</p>
+                        <div className="text-center">
+
+                            <button className="bg-green-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-green-600 transition duration-300">Doar Agora</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
 
         </div>
-
-
-    )
-
+    );
 }
 
 export default Home;

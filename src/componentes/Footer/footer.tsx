@@ -1,39 +1,24 @@
-import { faInstagram, faSquareFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { FaEnvelope } from 'react-icons/fa'; 
 
 const Footer: React.FC = () => {
   return (
-    <footer className='text-base sm:text-md md:text-lg text-white bg-neutral-900'>
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '15px 0' }}>
-        <a href="link-da-rede-social" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faYoutube} style={{ width: '30px', height: '30px', marginRight: '10px', marginLeft: '10px' }} />
-        </a>
-        <i></i>
-        <a href="link-da-rede-social" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faInstagram} style={{ width: '30px', height: '30px', marginRight: '10px', marginLeft: '10px' }} />
-        </a>
-        <i></i>
-        <a href="link-da-rede-social" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faSquareFacebook} style={{ width: '30px', height: '30px', marginRight: '10px', marginLeft: '10px' }} />
-        </a>
+    <footer className="bg-red-700 text-white py-6 sm:py-8 ">
+      {/* Links */}
+      <div className="flex flex-col justify-center items-center sm:flex-row sm:justify-between px-4 sm:px-6">
+        <div className="text-center sm:text-left mb-3 sm:mb-0">
+          {/* Adicione um ícone ao link de contato */}
+          <a href="link-do-contato" className="text-sm flex items-center justify-center sm:justify-start hover:text-gray-300 transition duration-300">
+            <FaEnvelope className="mr-2" /> Fale Conosco
+          </a>
+        </div>
 
-        {/* adicionar mais links caso for necessario,OBSERVAÇÃO */}
+        {/* Copyright */}
+        <div className="text-center text-xs sm:text-sm">
+          <span>&copy; {new Date().getFullYear()} Comunidade Católica Ágape. Todos os direitos reservados.</span>
+        </div>
       </div>
-      <div style={{ textAlign: 'center' }}>
-        <a href="link-do-site" style={{ color: 'white', textDecoration: 'none' }}>Sobre nós</a>
-        <span style={{ margin: '0 10px', color: 'white' }}>|</span>
-        <a href="link-do-site" style={{ color: 'white', textDecoration: 'none' }}>Contato</a>
-        <span style={{ margin: '0 10px', color: 'white' }}>|</span>
-        <a href="link-do-site" style={{ color: 'white', textDecoration: 'none' }}>Eventos</a>
-        <span style={{ margin: '0 10px', color: 'white' }}>|</span>
-        <a href="link-do-site" style={{ color: 'white', textDecoration: 'none' }}>Doe Aqui</a>
-      </div>
-      <div style={{ textAlign: 'center', paddingTop: '20px' }}>
-        © {2024} Comunidade Católica Ágape. Todos os direitos reservados.
 
-
-      </div>
     </footer>
   );
 };

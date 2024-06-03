@@ -1,62 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import qrcodePix from '../../img/qrcode.png';
 
-const DoacoesPage: React.FC = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+const DonationPage: React.FC = () => {
+  const [showPixInfo, setShowPixInfo] = useState(false);
+  const [showBankTransferInfo, setShowBankTransferInfo] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [pixKey] = useState("chave-da-comunidade");
 
-  const handleDrawerToggle = () => {
-    setIsDrawerOpen(!isDrawerOpen);
+  const handlePixButtonClick = () => {
+    setShowPixInfo(true);
+    setShowBankTransferInfo(false); 
+  };
+
+  const handleBankTransferButtonClick = () => {
+    setShowPixInfo(false); 
+    setShowBankTransferInfo(true);
+  };
+
+  const toggleQRCode = () => {
+    setShowQRCode(!showQRCode);
+  };
+
+  const copyPixKeyToClipboard = () => {
+    navigator.clipboard.writeText(pixKey);
+    alert("Chave PIX copiada para a área de transferência!");
   };
 
   return (
-    <div className=" from-yellow-200 to-yellow-400 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto    bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="px-4 py-6 sm:px-6">
-          <h1 className="text-3xl font-bold text-center text-yellow-700 mb-4">Faça uma doação</h1>
-          <p className="text-lg text-gray-800 mb-6">
-            Sua generosidade é crucial para nós! Com sua doação, podemos continuar a servir a comunidade e promover nossas atividades. Por favor, considere fazer uma doação para apoiar nossa missão.
-          </p>
-          <div className="flex flex-col items-center mb-6">
-            <img src="caminho-para-o-seu-codigo-qr-pix" alt="PIX Code" className="w-64 h-64 mb-4" />
-            <p className="text-lg text-gray-800">Escanee o código QR para fazer sua doação através do PIX.</p>
-            <p className="text-lg text-gray-800">Chave PIX: insira-aqui-a-sua-chave-pix</p>
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-black">
+      <div className="relative z-10 text-center px-6">
+        <h1 className="text-4xl lg:text-7xl font-extrabold uppercase tracking-wide text-yellow-300">Faça sua Doação</h1>
+        <p className="text-lg mt-4 max-w-2xl mx-auto">
+          Sua doação ajuda a apoiar nossos projetos e atividades católicas. Agradecemos por sua generosidade.
+        </p>
+        <div className="mt-8">
+          <p className="text-xl">Escolha uma forma de doar:</p>
+          <div className="flex justify-center mt-8">
+            <button onClick={handlePixButtonClick} className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg text-lg font-semibold mr-4 hover:bg-yellow-600 hover:shadow-xl transition duration-300 ease-in-out focus:outline-none">
+              Doar via PIX
+            </button>
+            <button onClick={handleBankTransferButtonClick} className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 hover:shadow-xl transition duration-300 ease-in-out focus:outline-none">
+              Transferência Bancária
+            </button>
           </div>
-          <p className="text-lg text-gray-800 mb-6">
-            Se preferir, você também pode fazer sua doação através de transferência bancária para a seguinte conta:
+        </div>
+        <div className="mt-8">
+          <p className="text-2xl font-semibold">Como sua doação será usada:</p>
+          <p className="mt-4 max-w-2xl mx-auto">
+            Sua doação será usada para apoiar nossos projetos de evangelização, assistência social, educação religiosa e manutenção das instalações da comunidade. 
+            Graças à sua generosidade, podemos continuar a servir nossa comunidade e expandir nossos esforços para ajudar os necessitados.
           </p>
-          <div className="text-lg text-gray-800 mb-6">
-            <p className="mb-1">Banco: [Nome do Banco]</p>
-            <p className="mb-1">Agência: [Número da Agência]</p>
-            <p className="mb-1">Conta: [Número da Conta]</p>
-            <p className="mb-1">Nome: [Nome do Beneficiário]</p>
-            <p>CPF/CNPJ: [CPF ou CNPJ do Beneficiário]</p>
-          </div>
-          <p className="text-lg text-gray-800">Agradecemos imensamente o seu apoio!</p>
         </div>
-        <div className="bg-gray-100 p-4">
-          <button
-            onClick={handleDrawerToggle}
-            className="text-yellow-700 font-semibold hover:underline focus:outline-none"
-          >
-            Ver como sua doação é utilizada
-          </button>
-        </div>
-        {isDrawerOpen && (
-          <div className="bg-gray-100 p-4">
-            <h2 className="text-lg font-semibold mb-2">Como sua doação é utilizada:</h2>
-            <p className="text-gray-800">
-              Sua doação é essencial para sustentar nossas atividades, incluindo:
-            </p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>Manutenção dos locais utilizados para realizar acampamentos e congressos</li>
-              <li>Apoio a programas de caridade locais, especialmente aqueles que beneficiam famílias carentes</li>
-              <li>Ajuda para organização e realização de eventos, como acampamentos e congressos</li>
-              <li>Desenvolvimento de recursos educacionais para crianças, jovens e famílias, incluindo materiais catequéticos e atividades</li>
-            </ul>
+        {showPixInfo && (
+          <div className="mt-8">
+            <p className="text-xl font-semibold">Instruções para Doação via PIX:</p>
+            <p className="mt-2">1. Abra o aplicativo do seu banco.</p>
+            <p className="mt-2">2. Selecione a opção de pagamento via PIX.</p>
+            <p className="mt-2">3. Cole a chave PIX abaixo ou use a chave PIX: seu-email@exemplo.com</p>
+            
+            <div className="flex justify-center mt-4">
+              <button onClick={toggleQRCode} className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 hover:shadow-xl transition duration-300 ease-in-out focus:outline-none">
+                {showQRCode ? "Esconder QR Code" : "Mostrar QR Code"}
+              </button>
+              <button onClick={copyPixKeyToClipboard} className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 hover:shadow-xl transition duration-300 ease-in-out focus:outline-none ml-4">
+                Copiar Chave PIX
+              </button>
+            </div>
+            {showQRCode && (
+              <div className="mt-4">
+                <img src={qrcodePix} alt="QR Code PIX" className="w-32 h-32 mx-auto" />
+              </div>
+            )}
           </div>
         )}
+        {showBankTransferInfo && (
+          <div className="mt-8">
+            <p className="text-xl font-semibold">Informações para Transferência Bancária:</p>
+            <p className="mt-2">Banco: agape</p>
+            <p className="mt-2">Agência: 1234</p>
+            <p className="mt-2">Conta: 5678-9</p>
+            <p className="mt-2">Titular: aa</p>
+            <p className="mt-2">CPF/CNPJ: 123.456.789-00</p>
+          </div>
+        )}
+        <div className="mt-8 mb-4"></div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default DoacoesPage;
+export default DonationPage;

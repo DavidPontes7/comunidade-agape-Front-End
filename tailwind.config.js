@@ -7,13 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'roxinho': '#6747c7',
+        'creme': '#FFF8E7',
         'hover-roxinho': 'rgb(99 102 241)',
         'greenClean': '#00a650',
         'colorPrecos': '#393333',
         'fundoSite': '#ededed',
+        
       }
     },
   },
   plugins: [],
+  
 }
+
+
