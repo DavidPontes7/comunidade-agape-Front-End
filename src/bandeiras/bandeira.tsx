@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import { Link } from 'react-router-dom';
 
 export default function SummerCampBanner() {
   const [isBannerOpen, setIsBannerOpen] = useState(true);
@@ -20,12 +21,12 @@ export default function SummerCampBanner() {
               </svg>
               Venha participar do nosso acampamento jovem em julho! Prepare-se para uma experiência incrível de comunhão, aprendizado e diversão.
             </p>
-            <a
-              href="#"
+            <Link
+              to="/form"
               className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
             >
               Registre-se agora <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
           <div className="flex flex-1 justify-end">
             <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]" onClick={handleCloseBanner}>
