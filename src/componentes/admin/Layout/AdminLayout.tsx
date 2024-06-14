@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Sidebar from '../Sidebar/Sidebar'; // Ajuste o caminho conforme necessário
+import Sidebar from '../componentes/Sidebar/Sidebar'; // Ajuste o caminho conforme necessário
 
 interface AdminLayoutProps {
   children: ReactNode;

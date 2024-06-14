@@ -83,7 +83,9 @@ const EventosPage: React.FC = () => {
                         allowFullScreen
                         className="rounded-lg shadow-md"
                     ></iframe>
+                    
                 </div>
+                
             </div>
 
             <Tabs.Root
@@ -110,7 +112,7 @@ const EventosPage: React.FC = () => {
                 </Tabs.List>
 
                 <div className="relative text-gray-900 sm:hidden">
-                    
+
                     <p className="text-gray-700">Explore abaixo para ver mais opções:</p>
 
                     <svg
@@ -146,7 +148,7 @@ const EventosPage: React.FC = () => {
                                 <p className="text-gray-700"> As pregações e ensinamentos oferecidos nos acampamentos  são outro aspecto fundamental da experiência. Através de palestras inspiradoras, testemunhos de fé e discussões em grupo, os participantes são convidados a refletir sobre sua relação com Deus, aprofundar seu entendimento da doutrina católica e discernir o papel da fé em suas vidas diárias.</p>
                                 <p className="text-gray-700">Mas talvez uma das partes mais preciosas dos acampamentos católicos seja a vivência da fraternidade cristã. Aqui, os participantes são acolhidos em uma comunidade de amor e respeito mútuo, onde são encorajados a compartilhar suas experiências, apoiar uns aos outros e crescer juntos na fé. Este espírito de fraternidade cria laços duradouros de amizade e solidariedade, que continuam a ressoar muito além dos dias passados no acampamento.</p>
                                 <div>
-                                    <h2 className="text-2xl font-bold text-gray-900">Acampamento</h2>
+                                    <h2 className="text-2xl font-bold text-gray-900"> Explore o que aconteceu no evento!</h2>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
                                             <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/439433564_18295432381089849_4177436260022728333_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Eou4Mayv0fEQ7kNvgGZCxTI&_nc_ht=scontent.faju14-1.fna&oh=00_AYB9uraY-glzaHf5TAq8d1pjpCSFWOQ17ES5EponOxS82w&oe=666F9326" alt="Acampamento 1" className="w-full h-64 object-cover" />
@@ -175,9 +177,42 @@ const EventosPage: React.FC = () => {
                         )}
                         {item === "Setor Criança" && (
                             <div>
-                                <h2 className="text-lg font-bold text-gray-900">Congresso Kids</h2>
-                                <p className="text-gray-700">Descrição do Congresso Kids...</p>
-                                {/* Adicione mais informações sobre o Congresso Kids aqui */}
+                                <h2 className="text-2xl font-bold text-gray-900">Setor Criança</h2>
+                                <div className="text-gray-700">
+                                    <p>
+                                        No setor infantil da nossa comunidade, os tios organizam diversos eventos incríveis para as crianças, como Acampamento Kids, Congresso Kids e o Setor Criança realizado a cada 15 dias aos sábados. Nestes eventos, as crianças participam de brincadeiras animadas, ouvem histórias bíblicas para aprender e têm pregações adequadas para diferentes idades.
+                                    </p>
+                                    <p>
+                                        Durante esses momentos especiais, as crianças têm a oportunidade de se conectar com a fé de maneira divertida e significativa. Elas aprendem sobre a mensagem da Bíblia através de histórias cativantes e atividades interativas, desenvolvendo assim seu entendimento da fé cristã desde cedo.
+                                    </p>
+                                    <p>
+                                        É uma experiência gratificante estar junto delas, promovendo um crescimento espiritual e emocional enriquecedor.
+                                    </p>
+                                </div>
+                                <h2 className="text-2xl font-bold text-gray-900"> Explore o que acontece no Setor Criança</h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                                    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                        <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/299987283_3230554470517416_5384793924475128007_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=bDCLQpJN7jEQ7kNvgHjeQjv&_nc_ht=scontent.faju14-1.fna&oh=00_AYCQAK9CVh5XcCy6n-imi0pB4x8r78TgdCE0VPEz-j0qIQ&oe=66723CAC" alt="Acampamento 1" className="w-full h-64 object-cover" />
+                                        <div className="p-4">
+                                            <h3 className="text-lg font-semibold text-gray-900"> Caminhada das crianças em homenagem a Nossa Senhora Imperatriz dos Campos😊</h3>
+                                            <p className="mt-2 text-sm text-gray-600">Descrição da atividade 1...</p>
+                                        </div>
+                                    </div>
+                                    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                        <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/299802534_3230554477184082_9159078689472655417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=4bAN3DMp5ncQ7kNvgHq-wEC&_nc_ht=scontent.faju14-1.fna&oh=00_AYAX_PbkKYjrbP2AlAgZbDhOL8lnMggtXuxywrgU_YdG1g&oe=66722672" alt="Acampamento 2" className="w-full h-64 object-cover" />
+                                        <div className="p-4">
+                                            <h3 className="text-lg font-semibold text-gray-900"> Apresentação das crianças em homenagem a Nossa Senhora Imperatriz dos Campos😊</h3>
+                                            <p className="mt-2 text-sm text-gray-600">Descrição da atividade 2...</p>
+                                        </div>
+                                    </div>
+                                    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                        <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/350678837_6598122850221696_781432641907643306_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=KZbqbm21gt4Q7kNvgEzgAzu&_nc_ht=scontent.faju14-1.fna&oh=00_AYBmvmbkxDZRyNADRgsjMdcaVs0AIjJu0vrNFaoCg6DO7g&oe=66721673" alt="Acampamento 3" className="w-full h-64 object-cover" />
+                                        <div className="p-4">
+                                            <h3 className="text-lg font-semibold text-gray-900">Arraiazinho Ágape 2023😍</h3>
+                                            <p className="mt-2 text-sm text-gray-600">Descrição da atividade 3...</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         )}
                         {item === "Arraia Àgape" && (

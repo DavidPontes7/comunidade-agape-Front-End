@@ -31,6 +31,9 @@ const LeituraDiaria: React.FC = () => {
         case 'vermelho':
           setLiturgicalColorBackground('#F44336');
           break;
+        case 'branco':
+          setLiturgicalColorBackground('#8C7853');
+          break;
         default:
           setLiturgicalColorBackground('#4CAF50'); // Cor padrão
           break;
@@ -66,7 +69,7 @@ const LeituraDiaria: React.FC = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="font-serif text-center text-4xl font-bold text-gray-800 mb-8 mt-12" style={{ color: leitura && liturgicalColorBackground }}>
+      <h1 className="font-sans text-center text-4xl font-bold text-gray-800 mb-8 mt-12" style={{ color: leitura && liturgicalColorBackground }}>
         Liturgia Diária
       </h1>
       <div className="rounded-lg shadow-lg p-6 mb-8 max-w-6xl mx-auto">
@@ -113,7 +116,7 @@ const LeituraDiaria: React.FC = () => {
             <DatePicker
               selected={dataAtual}
               onChange={(date: Date) => setDataAtual(date)}
-              className="bg-white border-2 border-gray-400 rounded p-2 text-center w-full"
+              className="bg-white border-2 border-blue-400 rounded p-2 text-center w-full"
               dateFormat="yyyy-MM-dd"
               locale="pt-BR"
               inline
@@ -126,7 +129,7 @@ const LeituraDiaria: React.FC = () => {
                 {currentReading === 'primeiraLeitura' && (
                   <div className="leitura-item mb-4">
                     <h3 className="text-xl lg:text-2xl font-semibold mb-2 text-red-600">Primeira Leitura</h3>
-                    <div dangerouslySetInnerHTML={{ __html: leitura.primeiraLeitura }} style={{ textAlign: 'left', color: 'gray', fontFamily: 'arial' }} />
+                    <div dangerouslySetInnerHTML={{ __html: leitura.primeiraLeitura }} style={{ textAlign: 'left', color: 'gray-100', fontFamily: 'arial' }} />
                   </div>
                 )}
                 {currentReading === 'salmoResponsorial' && (

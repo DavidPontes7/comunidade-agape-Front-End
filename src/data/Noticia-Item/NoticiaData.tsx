@@ -1,10 +1,10 @@
 export const fakeNews = [
     {
         id: 1,
-        title: 'titulo',
+        title: 'titulo da noticia',
         image: 'https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/441580977_18298563766089849_925231857620638120_n.jpg?stp=dst-jpg_p180x540&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ldxpTwLiJEMQ7kNvgEIx2M0&_nc_ht=scontent.faju14-1.fna&oh=00_AYCamBuAUEjh2e9ZPUoae1SG8Ze5cwJJr0uhKXG0ZaELhg&oe=666E4633',
-        author: 'algum coordenador',
-        date: '12 de jungo de 2024',
+        author: 'Mauricio',
+        date: '12 de junho de 2024',
         text: 'aqui fica o texto',
         description: 'Breve descrição da formação. Pode conter algumas informações relevantes. Sed consequat est nec justo convallis dapibus. Vestibulum et elit ut libero...',
         link: '#!'

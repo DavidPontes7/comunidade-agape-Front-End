@@ -27,7 +27,7 @@ const EventosInscricaoForm: React.FC = () => {
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
                         className="form-input w-full"
-                        placeholder="Digite seu nome"
+                        placeholder="Digite seu nome completo"
                         required
                     />
                 </div>
@@ -56,7 +56,7 @@ const EventosInscricaoForm: React.FC = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="grupoOracao" className="block text-gray-700 text-sm font-bold mb-2">Grupo de Oração:</label>
+                    <label htmlFor="grupoOracao" className="block text-gray-700 text-sm font-bold mb-2">Grupo/Setor</label>
                     <input
                         type="text"
                         id="grupoOracao"
@@ -74,7 +74,7 @@ const EventosInscricaoForm: React.FC = () => {
                             checked={naoParticipaGrupo}
                             onChange={(e) => setNaoParticipaGrupo(e.target.checked)}
                         />
-                        <span className="ml-2 text-gray-700">Não participo de nenhum grupo de oração</span>
+                        <span className="ml-2 text-gray-700">Não participo de nenhum grupo</span>
                     </label>
                 </div>
                 <div className="mb-4">
@@ -90,7 +90,6 @@ const EventosInscricaoForm: React.FC = () => {
                 </div>
                 <div className="mt-6">
                     <button 
-                        
                         type="submit" 
                         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 w-full"
                     >

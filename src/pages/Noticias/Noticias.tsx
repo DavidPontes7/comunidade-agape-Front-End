@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fakeNews } from '../../data/Noticia-Item/NoticiaData'; // Importe as notícias aqui
 import Card from '../../componentes/cards/cards'; // Importe o componente Card
 
 const NewsTags = () => (
   <div className="lg:w-1/4 lg:pl-8 flex flex-col mt-12 lg:mt-0">
-    <h2 className="text-2xl font-bold mb-4">Tags</h2>
+    <h2 className="text-2xl font-bold mb-4">Categorias</h2>
     <div className="mb-8">
-      <h3 className="text-xl font-semibold mb-2">Tópicos Relacionados</h3>
+      <h3 className="text-xl font-semibold mb-2">Tópicos de Notícias</h3>
       <ul className="space-y-2">
         <li>
-          <a href="#" className="text-blue-500 hover:underline">Ágape</a>
+          <Link to='/Eventos' className="text-blue-500 hover:underline">Eventos da Comunidade</Link>
         </li>
         <li>
-          <a href="#" className="text-blue-500 hover:underline">Caridade</a>
+          <a href="#" className="text-blue-500 hover:underline">Notícias Paroquiais</a>
         </li>
         <li>
-          <a href="#" className="text-blue-500 hover:underline">História da Igreja</a>
+          <a href="#" className="text-blue-500 hover:underline">Notícias da Igreja Universal</a>
         </li>
       </ul>
     </div>

@@ -1,8 +1,7 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom'
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Link } from 'react-router-dom';
 import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faSquareFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const products = [
@@ -12,29 +11,27 @@ const products = [
   { name: 'Noticias', href: '/Noticias' },
   { name: 'Formação', href: '/Formacao' },
   { name: 'Liturgia Diaria', href: '/Liturgia-diaria' },
-
-]
+];
 
 export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
-  }
+  };
 
   return (
     <header className="shadow-md">
-
       <nav className="bg-white mx-auto flex items-center justify-between p-3 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 items-center">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center">
-            <h1 className="ml-2 text-lg lg:text-xl font-bold text-gray-800 uppercase tracking-wide">Comunidade Católica Àgape</h1>
+            <h1 className="ml-2 text-lg lg:text-xl font-bold text-gray-800 uppercase tracking-wide">Comunidade Católica Ágape</h1>
           </Link>
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="p-2 inline-flex items-center justify-center text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <FontAwesomeIcon icon={faBars} className="w-6 h-6" />
@@ -42,29 +39,28 @@ export default function Example() {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {products.map((item) => (
-            <Link key={item.name} to={item.href} className="relative text-lg font-medium leading-6 text-gray-900 hover:text-black transition-colors duration-200 after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5 after:bg-black after:transition-width after:duration-200 hover:after:w-full" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <Link
+              key={item.name}
+              to={item.href}
+              className="relative text-lg font-medium leading-6 text-gray-900 hover:text-black transition-colors duration-200"
+            >
               {item.name}
             </Link>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-4">
           <div className="relative text-gray-600">
-            <input type="search" name="search" placeholder="Buscar..." className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none border border-gray-300" />
+            <input
+              type="search"
+              name="search"
+              placeholder="Buscar..."
+              className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none border border-gray-300"
+            />
             <button type="submit" className="absolute right-0 top-0 mt-2 mr-4">
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
-          <a href="https://www.facebook.com/..." target="_blank" className="text-gray-900 hover:text-red-600">
-            <FontAwesomeIcon icon={faSquareFacebook} className="w-6 h-6" />
-          </a>
-          <a href="https://www.instagram.com/..." target="_blank" className="text-gray-900 hover:text-red-600">
-            <FontAwesomeIcon icon={faInstagram} className="w-6 h-6" />
-          </a>
-          <a href="https://www.youtube.com/..." target="_blank" className="text-gray-900 hover:text-red-600">
-            <FontAwesomeIcon icon={faYoutube} className="w-6 h-6" />
-          </a>
         </div>
-
       </nav>
 
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
@@ -89,7 +85,7 @@ export default function Example() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <div className="fixed inset-y-0 right-0 z-50 w-64 bg-white shadow-lg">
+            <div className="fixed inset-y-0 right-0 z-50 w-full bg-white shadow-lg">
               <div className="flex items-center justify-between px-6 py-4 border-b">
                 <Link to="/" className="text-lg font-bold text-gray-800 uppercase">Menu</Link>
                 <button
@@ -102,7 +98,12 @@ export default function Example() {
               </div>
               <div className="py-4">
                 {products.map((item, index) => (
-                  <Link key={index} to={item.href} className="block px-6 py-2 text-base font-medium leading-6 text-gray-900 hover:bg-gray-100" onClick={closeMobileMenu}>
+                  <Link
+                    key={index}
+                    to={item.href}
+                    className="block px-6 py-3 text-base font-medium leading-6 text-gray-900 hover:bg-gray-100"
+                    onClick={closeMobileMenu}
+                  >
                     {item.name}
                   </Link>
                 ))}
@@ -112,5 +113,5 @@ export default function Example() {
         </Dialog>
       </Transition.Root>
     </header>
-  )
+  );
 }
