@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Card from '../../componentes/cards/cards'; // Componente Card - ajuste o caminho conforme necessário
 import { formacao } from '../../data/Formacao-Item/FormacaoData';
 
@@ -28,24 +28,24 @@ const FormacaoTags = () => (
 );
 
 const Formacao: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [procurarTermo, setProcurarTermo] = useState('');
+  const [atualPagina, setAtualPagina] = useState(1);
   const formacaoPerPage = 6;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const filteredFormacao = formacao.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    item.title.toLowerCase().includes(procurarTermo.toLowerCase())
   );
 
-  const indexOfLastFormacao = currentPage * formacaoPerPage;
+  const indexOfLastFormacao = atualPagina * formacaoPerPage;
   const indexOfFirstFormacao = indexOfLastFormacao - formacaoPerPage;
   const currentFormacao = filteredFormacao.slice(indexOfFirstFormacao, indexOfLastFormacao);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setAtualPagina(pageNumber);
 
-  const handleReadMore = (id: number) => {
-    navigate(`/formacao/${id}`);
-  };
+  // const handleReadMore = (id: number) => {
+  //   navigate(`/formacao/${id}`);
+  // };
 
   return (
     <div>
@@ -60,14 +60,21 @@ const Formacao: React.FC = () => {
       <div className="container mx-auto py-8 flex flex-wrap justify-center px-4 md:px-8">
         <div className="w-full lg:w-3/4 lg:pr-8">
         
-          <div className="mb-4">
+          <div className="max-w-md ">
+          <div className="flex m-5">
+            <svg className="w-6 h text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        
             <input
               type="text"
               placeholder="Pesquisar formações"
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={procurarTermo}
+              onChange={e => setProcurarTermo(e.target.value)}
+              className="w-70 px-4 py-2 border  border-gray-300 rounded-xl mt-7 m-5 p-8 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            
             />
+            </div>
           </div>
 
           
@@ -76,11 +83,11 @@ const Formacao: React.FC = () => {
               <Card
                 key={formacaoItem.id}
                 id={formacaoItem.id}
-                image={formacaoItem.image}
-                title={formacaoItem.title}
-                author={formacaoItem.author}
-                date={formacaoItem.date}
-                description={formacaoItem.description}
+                imagem={formacaoItem.image}
+                titulo={formacaoItem.title}
+                autor={formacaoItem.author}
+                data={formacaoItem.date}
+                descricao={formacaoItem.description}
                 link={`/Formacao/${formacaoItem.id}`}
               />
             ))}
@@ -92,7 +99,7 @@ const Formacao: React.FC = () => {
                 <li key={number}>
                   <button
                     onClick={() => paginate(number + 1)}
-                    className={`px-3 py-1 rounded-md ${currentPage === number + 1 ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                    className={`px-3 py-1 rounded-md ${atualPagina === number + 1 ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
                   >
                     {number + 1}
                   </button>

@@ -1,11 +1,14 @@
-
 export default function SantaTerezinhaPage() {
   return (
     <div className="container mx-auto py-8 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Imagem de Santa Terezinha */}
         <div className="text-center mb-8">
-          <img src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/teresa.jpg?raw=true' alt="Santa Terezinha" className=" w-50 h-80 mx-auto mb-4 shadow-lg" />
+          <img
+            src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/teresa.jpg?raw=true'
+            alt="Santa Terezinha"
+            className="w-50 h-80 mx-auto mb-4 shadow-lg"
+          />
           <h1 className="text-3xl lg:text-5xl font-extrabold text-gray-800 uppercase tracking-wide mb-4">
             Santa Terezinha do Menino Jesus
           </h1>
@@ -28,19 +31,25 @@ export default function SantaTerezinhaPage() {
         {/* Devoção e Oração */}
         <div className="mt-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Devoção e Oração</h2>
+          
           <p className="text-gray-700">
-            Santa Terezinha é baluarte da comunidade para ser exemplo aos seus membros de que em tudo que fizeres, mesmo que pequeno seja a tarefa, o amor, zelo e cuidado deve ser praticado
+            Santíssima Trindade, Pai, Filho e Espírito Santo, eu vos agradeço todos os favores, todas as graças com que enriquecestes a alma de Vossa serva Santa Terezinha do Menino Jesus, durante os 24 anos que passou na terra; e pelos méritos de tão querida Santinha, concedei-me a graça que ardentemente Vos peço, se for conforme a Vossa Santíssima vontade e para salvação de minha alma (faça aqui o seu pedido).
           </p>
-          <br />
           <p className="text-gray-700">
-            Santíssima Trindade, Pai, Filho e Espirito Santo, eu vos agradeço todos os favores, todas as graças com que enriquecestes a alma de Vossa serva Santa Terezinha do Menino Jesus, durante os 24 anos que passou na terra; e pelos méritos de tão querida Santinha, concedei-me a graça que ardentemente Vos peço, se for conforme a Vossa Santíssima vontade e para salvação de minha alma (faça aqui o seu pedido). <br /> <br />Santa Terezinha, ajudai a minha fé e minha esperança, cumprindo mais uma vez vossa promessa de que ninguém Vos invocaria em vão, fazendo-me ganhar uma rosa, sinal de que alcançarei a graça solicitada. Reze 24 vezes em seguida: "Glória ao Pai, ao Filho e ao Espirito Santo. Assim como era no principio agora e sempre, por todos os séculos, amém. Santa Terezinha do Menino Jesus, rogai por nós.
-
-            Para encerrar, rezar uma Ave Maria e um Pai nosso"
+            Santa Terezinha, ajudai a minha fé e minha esperança, cumprindo mais uma vez vossa promessa de que ninguém Vos invocaria em vão, fazendo-me ganhar uma rosa, sinal de que alcançarei a graça solicitada. Reze 24 vezes em seguida: "Glória ao Pai, ao Filho e ao Espírito Santo. Assim como era no princípio, agora e sempre, por todos os séculos, amém. Santa Terezinha do Menino Jesus, rogai por nós."
+          </p>
+          <p className="text-gray-700">
+            Para encerrar, rezar uma Ave Maria e um Pai Nosso.
           </p>
         </div>
 
         {/* Importância para a Comunidade */}
-
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Importância para a Comunidade</h2>
+          <p className="text-gray-700">
+            Santa Terezinha é baluarte da comunidade para ser exemplo aos seus membros de que em tudo que fizeres, mesmo que pequeno seja a tarefa, o amor, zelo e cuidado deve ser praticado.
+          </p>
+        </div>
       </div>
     </div>
   );

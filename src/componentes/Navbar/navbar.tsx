@@ -21,7 +21,7 @@ export default function Example() {
   };
 
   return (
-    <header className="shadow-md">
+    <header className="shadow-md p-1">
       <nav className="bg-white mx-auto flex items-center justify-between p-3 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 items-center">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center">
@@ -42,7 +42,7 @@ export default function Example() {
             <Link
               key={item.name}
               to={item.href}
-              className="relative text-lg font-medium leading-6 text-gray-900 hover:text-black transition-colors duration-200"
+              className="relative text-lg font-medium leading-6 text-gray-900 hover:text-black transition-colors duration-200 after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5 after:bg-black after:transition-width after:duration-200 hover:after:w-full" 
             >
               {item.name}
             </Link>
@@ -74,7 +74,7 @@ export default function Example() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+            <Dialog.Overlay className=" fixed inset-0 bg-black opacity-30" />
           </Transition.Child>
           <Transition.Child
             as={Fragment}

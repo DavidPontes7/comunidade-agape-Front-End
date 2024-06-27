@@ -14,14 +14,14 @@ export default function Historia() {
     <div className="min-h-screen ">
       {/* Seção de destaque */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-        
+
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold uppercase tracking-wide leading-tight">Descubra Nossa História</h1>
           <p className="text-base sm:text-lg lg:text-xl mt-4">Uma jornada emocionante pelos momentos que moldaram nossa comunidade.</p>
           <button onClick={scrollToInfo} className="mt-8 bg-yellow-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-500">Explorar Agora</button>
         </div>
         <div className="absolute inset-x-0 bottom-0 z-0">
-          
+
         </div>
       </section>
 
@@ -29,18 +29,33 @@ export default function Historia() {
       <section id="infoSection" className="container mx-auto py-8 px-4 md:px-8">
         <div className="mb-8">
           <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800 mb-4">Nossa História</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Seja bem-vindo à Comunidade Católica Ágape, onde encontramos inspiração nas palavras simples e profundas de Santa Teresinha do Menino Jesus: "Eu não tenho outra coisa a oferecer senão flores. E as flores que o Bom Deus coloca em meu caminho, por mais insignificantes que pareçam, são todas destinadas a Ele."
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Aqui na nossa comunidade, buscamos a santidade e a vida eterna no céu como objetivos comuns. Seguimos as regras de vida da comunidade, destacando valores fundamentais como a fraternidade, castidade e serviço.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Ao longo da nossa história, muitos jovens foram acolhidos e encontraram no carisma do Ágape um caminho de amor e devoção. Desenvolvemos ao longo dos anos uma forma única de louvor e devoção, buscando expressar nossa fé e amor a Deus em todas as nossas atividades e celebrações.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Juntos, caminhamos na jornada da fé, fortalecendo uns aos outros e compartilhando o amor de Cristo com o mundo ao nosso redor.
-          </p>
+          
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Origens e Fundação</h2>
+        <p className="text-lg text-gray-700 leading-relaxed mb-4">
+          Quem podia imaginar que uma tarde ensolarada no dia 10 de abril de 2004, em um colégio em Tobias Barreto, SE, transformaria gerações, vidas de pessoas e famílias? Cleverson Silva, ex-missionário da Comunidade Shalom, retornou à sua cidade natal e ficou chocado ao perceber que havia poucos jovens participando da Santa Missa. Inquieto e angustiado com a situação, procurou o Monsenhor local para ajudar a resgatar a juventude da cidade.
+        </p>
+        
+        <p className="text-lg text-gray-700 leading-relaxed mb-4">
+          O Monsenhor, feliz com a disponibilidade de Cleverson, pediu-lhe para reativar o extinto grupo Água Viva, mas infelizmente o grupo precisou ser fechado novamente pouco depois. Sentindo que o Espírito Santo o guiava, Cleverson procurou novamente o Monsenhor, que deu carta branca para a criação de um novo grupo, o Projeto Nova Juventude.
+        </p>
+        
+        <p className="text-lg text-gray-700 leading-relaxed mb-4">
+          No dia 10 de abril de 2004, o Projeto Nova Juventude realizou seu primeiro encontro, reunindo jovens em uma tarde ensolarada. Nos primeiros anos, o movimento cresceu rapidamente e inflamou a juventude da cidade, transformando vidas e expandindo para mais grupos e localidades.
+        </p>
+      </section>
+      
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Expansão e Reconhecimento</h2>
+        <p className="text-lg text-gray-700 leading-relaxed mb-4">
+          Com o tempo, o Projeto Nova Juventude evoluiu para Movimento Ágape, deixando de ser apenas um projeto local em Tobias Barreto para se tornar uma força que impactou diversas comunidades, cidades e estados. Na celebração de 10 anos, o fundador Cleverson recebeu o reconhecimento de Gilberto, coordenador das Novas Comunidades Internacionais, que confirmou que o carisma do grupo era de uma Nova Comunidade.
+        </p>
+        
+        <p className="text-lg text-gray-700 leading-relaxed mb-4">
+          Hoje, após incríveis 20 anos desde sua fundação, o Movimento Ágape continua a pulsar entre seus membros, atendendo crianças, adolescentes, jovens e famílias. Como diz o fundador, "os jovens estão na UTI da fé" e, para resgatá-los, é necessário seguir "uma obra nova, um caminho novo".
+        </p>
+      </section>
+   
         </div>
 
         {/* Seção de eventos */}

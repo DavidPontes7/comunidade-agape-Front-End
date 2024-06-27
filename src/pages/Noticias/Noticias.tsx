@@ -55,31 +55,38 @@ const Noticias: React.FC = () => {
 
       <div className="container mx-auto py-8 flex flex-wrap justify-center px-4 md:px-8">
         <div className="w-full lg:w-3/4 lg:pr-8">
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Pesquisar notícias"
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          <div className="max-w-md ">
+            <div className="flex m-5">
+              <svg className="w-6 h text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+              </svg>
+
+              <input
+                type="text"
+                placeholder="Pesquisar Noticias"
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                className="w-70 px-4 py-2 border  border-gray-300 rounded-xl mt-7 m-5 p-8 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+              />
+            </div>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {currentNews.map((news) => (
               <Card
                 key={news.id}
                 id={news.id}
-                image={news.image}
-                title={news.title}
-                author={news.author}
-                date={news.date}
-                description={news.text}
+                imagem={news.image}
+                titulo={news.title}
+                autor={news.author}
+                data={news.date}
+                descricao={news.text}
                 link={`/Noticias/${news.id}`}
               />
             ))}
           </div>
 
-          
+
 
 
           <div className="mt-8 flex justify-center">
@@ -100,7 +107,7 @@ const Noticias: React.FC = () => {
         <NewsTags />
       </div>
 
-      
+
     </div>
   );
 };

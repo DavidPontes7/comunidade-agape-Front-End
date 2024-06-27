@@ -56,7 +56,7 @@ const EventosPage: React.FC = () => {
         "Acampamentos",
         "Setor Criança",
         "Arraia Àgape",
-        "",
+        "Outros Eventos",
     ];
 
 
@@ -83,9 +83,9 @@ const EventosPage: React.FC = () => {
                         allowFullScreen
                         className="rounded-lg shadow-md"
                     ></iframe>
-                    
+
                 </div>
-                
+
             </div>
 
             <Tabs.Root
@@ -153,22 +153,23 @@ const EventosPage: React.FC = () => {
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
                                             <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/439433564_18295432381089849_4177436260022728333_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Eou4Mayv0fEQ7kNvgGZCxTI&_nc_ht=scontent.faju14-1.fna&oh=00_AYB9uraY-glzaHf5TAq8d1pjpCSFWOQ17ES5EponOxS82w&oe=666F9326" alt="Acampamento 1" className="w-full h-64 object-cover" />
                                             <div className="p-4">
-                                                <h3 className="text-lg font-semibold text-gray-900">Atividade 1</h3>
-                                                <p className="mt-2 text-sm text-gray-600">Descrição da atividade 1...</p>
+                                                <h3 className="text-lg font-semibold text-gray-900">Acampamento dos 20 anos</h3>
+                                                <p className="mt-2 text-sm text-gray-600">Foram 3 dias nos retirando da cidade, para viver a paz que vem de Deus♥️</p>
                                             </div>
                                         </div>
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
                                             <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/361653308_662052329296793_5538695368607701547_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MKpcNb72x-gQ7kNvgGSO_sf&_nc_ht=scontent.faju14-1.fna&oh=00_AYAeoRz6lkUYkZZWlryvqDwMtuIYVSsn4wBSxYt9wKAI3g&oe=666F6692" alt="Acampamento 2" className="w-full h-64 object-cover" />
                                             <div className="p-4">
-                                                <h3 className="text-lg font-semibold text-gray-900">Atividade 2</h3>
-                                                <p className="mt-2 text-sm text-gray-600">Descrição da atividade 2...</p>
+                                                <h3 className="text-lg font-semibold text-gray-900">Acampamento 30°</h3>
+                                                <p className="mt-2 text-sm text-gray-600">É com grande alegria que finalizamos mais um Acampa, este , de número 30! 🎉
+                                                    Somos gratos a Deus por tudo que nos fez até aqui!</p>
                                             </div>
                                         </div>
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
                                             <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/361642294_662052335963459_1060564028020592679_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=D5xVe_7ucGsQ7kNvgEaUNTh&_nc_ht=scontent.faju14-1.fna&oh=00_AYD-He1TyxqMeJVyg2ISLcWNJY6QKZ09YXwbiDOJ2q50OQ&oe=666F8CA0" alt="Acampamento 3" className="w-full h-64 object-cover" />
                                             <div className="p-4">
-                                                <h3 className="text-lg font-semibold text-gray-900">Atividade 3</h3>
-                                                <p className="mt-2 text-sm text-gray-600">Descrição da atividade 3...</p>
+                                                <h3 className="text-lg font-semibold text-gray-900">Acampamento 30°</h3>
+                                                <p className="mt-2 text-sm text-gray-600">Missa no primeiro dia de acampamento</p>
                                             </div>
                                         </div>
                                     </div>
@@ -217,10 +218,73 @@ const EventosPage: React.FC = () => {
                         )}
                         {item === "Arraia Àgape" && (
                             <div>
-                                <h2 className="text-lg font-bold text-gray-900">Arraia</h2>
-                                <p className="text-gray-700">Descrição do Arraia...</p>
-                                {/* Adicione mais informações sobre o Arraia aqui */}
+                                <h2 className="text-lg font-bold text-gray-900">Arraiá Ágape</h2>
+                                <p className="text-gray-700">O Arraiá Ágape é um evento festivo que celebra a cultura popular brasileira e a vivência comunitária entre os membros da Comunidade Católica Ágape. É um momento de alegria, música, dança e confraternização, onde todos são convidados a participar e se divertir em um ambiente familiar e acolhedor.</p>
+                                <div>
+                                    <h2 className="text-2xl font-bold text-gray-900">Explore o que aconteceu no evento!</h2>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                                        <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/284973317_3178235952415935_795909509462081355_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=aT_j73837fEQ7kNvgF7bWxb&_nc_ht=scontent.faju14-1.fna&oh=00_AYCZfZs7yMA8SwbzGwD9bzIafEdR1O2vfCenf1h8KiejaQ&oe=6672AA3F" alt="Arraiá Ágape 1" className="w-full h-64 object-cover" />
+                                            <div className="p-4">
+                                                <h3 className="text-lg font-semibold text-gray-900">Arraiá Ágape 2023</h3>
+                                                <p className="mt-2 text-sm text-gray-600">Celebrando nossa cultura com música ao vivo, comidas típicas deliciosas e muita dança para animar a todos!</p>
+                                            </div>
+                                        </div>
+                                        <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/289467768_3187922658113931_7045151330226788873_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1TJ80MFUth8Q7kNvgHF0PSu&_nc_ht=scontent.faju14-1.fna&oh=00_AYCfhHVjYei02jp3LBJECOoiZ5Id7ltfenStCwTEDiBWRA&oe=6672BC38" alt="Arraiá Ágape 2" className="w-full h-64 object-cover" />
+                                            <div className="p-4">
+                                                <h3 className="text-lg font-semibold text-gray-900">Arraiá Ágape 2022</h3>
+                                                <p className="mt-2 text-sm text-gray-600">Momento de união e festividade, celebrando a cultura local.</p>
+                                            </div>
+                                        </div>
+                                        <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/289481097_3187922674780596_8453870559690270331_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=uF-ifUz3spQQ7kNvgF8DnT3&_nc_ht=scontent.faju14-1.fna&oh=00_AYD4aTYIIF5c_OLk1OpOXBEbHAsBGNdcswUMkwi0ZONnEA&oe=6672A624" alt="Arraiá Ágape 3" className="w-full h-64 object-cover" />
+                                            <div className="p-4">
+                                                <h3 className="text-lg font-semibold text-gray-900">Arraiá Ágape 2021</h3>
+                                                <p className="mt-2 text-sm text-gray-600">Tradição e alegria em uma noite especial de festa comunitária.</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
+                        )}
+                        {item === "Outros Eventos" && (
+                           <div>
+                           <h2 className="text-lg font-bold text-gray-900">Outros Eventos</h2>
+                           <p className="text-gray-700">Nossos eventos são momentos especiais de encontro, celebração e crescimento espiritual. Aqui, os participantes têm a oportunidade de vivenciar a presença de Deus de maneiras profundas e significativas.</p>
+                           <div>
+                               <h2 className="text-2xl font-bold text-gray-900">Explore o que aconteceu nos eventos!</h2>
+                               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                                   <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                       <img src="https://via.placeholder.com/400" alt="Evento 1" className="w-full h-64 object-cover" />
+                                       <div className="p-4">
+                                           <h3 className="text-lg font-semibold text-gray-900">Nome do Evento 1</h3>
+                                           <p className="mt-2 text-sm text-gray-600">Descrição do Evento 1.</p>
+                                       </div>
+                                   </div>
+                                   <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                       <img src="https://via.placeholder.com/400" alt="Evento 2" className="w-full h-64 object-cover" />
+                                       <div className="p-4">
+                                           <h3 className="text-lg font-semibold text-gray-900">Nome do Evento 2</h3>
+                                           <p className="mt-2 text-sm text-gray-600">Descrição do Evento 2.</p>
+                                       </div>
+                                   </div>
+                                   <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                                       <img src="https://via.placeholder.com/400" alt="Evento 3" className="w-full h-64 object-cover" />
+                                       <div className="p-4">
+                                           <h3 className="text-lg font-semibold text-gray-900">Nome do Evento 3</h3>
+                                           <p className="mt-2 text-sm text-gray-600">Descrição do Evento 3.</p>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
                         )}
                     </Tabs.Content>
                 ))}
@@ -249,7 +313,7 @@ const EventosPage: React.FC = () => {
                                 <p className="mt-2 text-base leading-6 text-gray-500">Data: 12 de Julho, 2024</p>
                                 <p className="mt-2 text-base leading-6 text-gray-500">Local: Chácara Àgape</p>
                                 <div className="mt-4">
-                                    <Link to='/form'>
+                                    <Link to='/formulario'>
                                         <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Inscreva-se</button>
                                     </Link>
                                 </div>

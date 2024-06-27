@@ -12,12 +12,13 @@ export default {
         'greenClean': '#00a650',
         'colorPrecos': '#393333',
         'fundoSite': '#ededed',
-        
+
       }
     },
   },
+
   plugins: [],
-  
+
 }
 
 

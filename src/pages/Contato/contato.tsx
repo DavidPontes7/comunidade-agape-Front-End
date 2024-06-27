@@ -39,7 +39,6 @@ const ContactPage = () => {
     return (
         <div className=" min-h-screen">
             <section className="relative bg-gradient-to-b from-blue-500 to-indigo-600 text-white h-96 flex items-center justify-center">
-                <div className="absolute inset-0 bg-opacity-50 bg-black"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
                     <h1 className="text-5xl lg:text-7xl font-extrabold uppercase tracking-wide">Entre em Contato</h1>
                     <p className="text-lg mt-4">Estamos aqui para ouvir você</p>

@@ -13,13 +13,13 @@ const Footer: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6">Siga-nos nas Redes Sociais!</h2>
           <p className="text-lg mb-6">Fique conectado e acompanhe nossas últimas novidades e eventos.</p>
           <div className="flex justify-center space-x-6">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
+            <a href="https://www.facebook.com/?locale=pt_BR" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
+            <a href="https://www.youtube.com/@comunidadecatolicaagape7242" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
               <FontAwesomeIcon icon={faYoutube} />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
+            <a href="https://www.instagram.com/comunidadecatolicaagape?igshid=YmMyMTA2M2Y%3D" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-300 transition-colors duration-300">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
           </div>
@@ -31,8 +31,7 @@ const Footer: React.FC = () => {
 
       <div className="flex flex-col justify-center items-center sm:flex-row sm:justify-between px-4 sm:px-6">
         <div className="text-center sm:text-left mb-3 sm:mb-0">
-          {/* Adicione um ícone ao link de contato */}
-          <Link to="/contato" className="text-sm flex items-center justify-center sm:justify-start hover:text-gray-300 transition duration-300">
+          <Link to="/Contato" className="text-sm flex items-center justify-center sm:justify-start hover:text-gray-300 transition duration-300">
             <FaEnvelope className="mr-2" /> Fale Conosco
           </Link>
         </div>

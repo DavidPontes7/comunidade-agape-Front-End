@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FaHandHoldingUsd } from 'react-icons/fa';
 import { faDonate, faEnvelope, faHeadphones } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../componentes/cards/cards';
 import { fakeNews } from '../../data/Noticia-Item/NoticiaData';
@@ -71,15 +70,15 @@ const Home = () => {
         <div className="bg-white">
 
             <section
-                className="relative h-screen flex flex-col items-center justify-center overflow-hidden"
+                className="hidden lg:block relative h-screen flex-col items-center justify-center overflow-hidden"
                 style={{
-                    backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=j39ymT_oE7AQ7kNvgFUZAKd&_nc_ht=scontent.faju14-1.fna&oh=00_AYAxrydK2l2Ge5KEv6tf21CyCIXC701AfWUatJzC0RYejw&oe=66723478')`, // Substitua pelo caminho da sua imagem
+                    backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MFXT7idvvZcQ7kNvgGIIu6Q&_nc_ht=scontent.faju14-1.fna&oh=00_AYD4bO9MiGJtIsGJENXa_MT9MGZeZD1iVA4tss_mjaZ5Nw&oe=6680ED38')`, // Substitua pelo caminho da sua imagem
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}
             >
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 bg-opacity-80 bg-black">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 bg-opacity-60 bg-black">
                     <motion.h1
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold uppercase tracking-wide leading-tight mt-24 text-white"
                         initial={{ opacity: 0, y: -20 }}
@@ -103,13 +102,50 @@ const Home = () => {
                         className="mt-8 bg-yellow-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-500"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.5, duration: 1.5, ease: "easeInOut" }}
+                        transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
                     >
                         Entrar
                     </motion.button>
                 </div>
             </section>
 
+            {/* Mobile Section */}
+            <section
+                className="lg:hidden relative h-80 flex flex-col items-center justify-center"
+                style={{
+                    backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MFXT7idvvZcQ7kNvgGIIu6Q&_nc_ht=scontent.faju14-1.fna&oh=00_AYD4bO9MiGJtIsGJENXa_MT9MGZeZD1iVA4tss_mjaZ5Nw&oe=6680ED38')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            >
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 bg-opacity-40 bg-black">
+                    <motion.h1
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold uppercase tracking-wide leading-tight text-white"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 1.0, ease: "easeInOut" }}
+                    >
+                        Bem-vindo
+                    </motion.h1>
+                    <motion.p
+                        className="text-base sm:text-lg lg:text-xl mt-4 text-white"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
+                    >
+                        Um carisma de Amor suscitado pelo Espírito Santo, a Comunidade Católica Ágape foi criada para a evangelização e formação de jovens, crianças e casais.
+                    </motion.p>
+                    <motion.button
+                        onClick={scrollToInfo}
+                        className="mt-8 bg-yellow-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-500"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.5, duration: 1.5, ease: "easeInOut" }}
+                    >
+                        Entrar
+                    </motion.button>
+                </div>
+            </section>
 
             <div id='infoSection' className="container mx-auto mt-12 px-4 flex flex-wrap lg:flex-nowrap">
                 {/* Seção de Notícias */}
@@ -126,16 +162,16 @@ const Home = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {fakeNews.slice(0, newsLimit).map((news) => (
-                            <Link key={news.id} to={`/Noticias/${news.id}`}>
+                            // <Link key={news.id} to={`/Noticias/${news.id}`}>
                                 <Card
-                                    image={news.image}
-                                    title={news.title}
-                                    author={news.author}
-                                    date={news.date}
-                                    description={news.description}
+                                    imagem={news.image}
+                                    titulo={news.title}
+                                    autor={news.author}
+                                    data={news.date}
+                                    descricao={news.description}
                                     link={`/Noticias/${news.id}`}
                                 />
-                            </Link>
+                            // </Link>
                         ))}
                     </div>
                     {!showMore && fakeNews.length > 6 && (
@@ -167,7 +203,7 @@ const Home = () => {
                                 <div className="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
                                     <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
                                 </div>
-                                <a href="https://www.yourcontactlink.com" className="text-blue-600 hover:underline">Contato</a>
+                                <a href="/Contato" target='_blank' className="text-blue-600 hover:underline">Contato</a>
                             </div>
                         </div>
                         <hr className="border-t border-gray-300 my-2" />
@@ -176,7 +212,7 @@ const Home = () => {
                                 <div className="bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
                                     <FontAwesomeIcon icon={faYoutube} className="text-lg" />
                                 </div>
-                                <a href="https://www.youtube.com/user/agapecomunidade" className="text-red-500 hover:underline">Canal do Youtube</a>
+                                <a href="https://www.youtube.com/@comunidadecatolicaagape7242" target='_blank' className="text-red-500 hover:underline">Canal do Youtube</a>
                             </div>
                         </div>
                         <hr className="border-t border-gray-300 my-2" />
@@ -213,11 +249,11 @@ const Home = () => {
                             <Card
                                 key={formacaoItem.id}
                                 id={formacaoItem.id}
-                                image={formacaoItem.image}
-                                title={formacaoItem.title}
-                                author={formacaoItem.author}
-                                date={formacaoItem.date}
-                                description={formacaoItem.description}
+                                imagem={formacaoItem.image}
+                                titulo={formacaoItem.title}
+                                autor={formacaoItem.author}
+                                data={formacaoItem.date}
+                                descricao={formacaoItem.description}
                                 link={`/Formacao/${formacaoItem.id}`}
                             />
                         ))}
@@ -252,7 +288,7 @@ const Home = () => {
                             <div className="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
                                 <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
                             </div>
-                            <a href="https://www.yourcontactlink.com" className="text-blue-600 hover:underline">Contato</a>
+                            <a href="/Contato" target='_blank' className="text-blue-600 hover:underline">Contato</a>
                         </div>
                     </div>
                     <hr className="border-t border-gray-300 my-2" />
@@ -261,7 +297,7 @@ const Home = () => {
                             <div className="bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
                                 <FontAwesomeIcon icon={faYoutube} className="text-lg" />
                             </div>
-                            <a href="https://www.youtube.com/user/agapecomunidade" className="text-red-500 hover:underline">Canal do Youtube</a>
+                            <a href="https://www.youtube.com/@comunidadecatolicaagape7242" target='_blank' className="text-red-500 hover:underline">Canal do Youtube</a>
                         </div>
                     </div>
                     <hr className="border-t border-gray-300 my-2" />

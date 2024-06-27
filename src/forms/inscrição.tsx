@@ -1,18 +1,23 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const EventosInscricaoForm: React.FC = () => {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [grupoOracao, setGrupoOracao] = useState('');
-    const [naoParticipaGrupo, setNaoParticipaGrupo] = useState(false);
-    const [dataNascimento, setDataNascimento] = useState('');
+    const [grupo, setGrupo] = useState('');
+    const [idade, setIdade] = useState('');
+    const [sector, setSector] = useState('');
+    const [eventId, setEventId] = useState('');
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('Dados do formulário:', { nome, email, telefone, grupoOracao, naoParticipaGrupo, dataNascimento });
-        // Aqui você pode implementar a lógica para enviar os dados do formulário para o backend
-        // Exemplo: fetch('/api/inscricao-evento', { method: 'POST', body: JSON.stringify({ nome, email, telefone, grupoOracao, naoParticipaGrupo, dataNascimento }) })
+        await axios.post('http://localhost:3333/inscricao',{name,email,telefone,sector,grupo,eventId,idade})
+        .then(response => {
+
+        })
+        
+        
     };
 
     return (
