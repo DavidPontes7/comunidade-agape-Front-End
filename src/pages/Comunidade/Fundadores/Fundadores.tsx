@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 const PersonSection = ({ imgSrc, name, description }: any) => (
-  <div className="md:flex items-center mb-12">
-    <div className="md:w-1/2">
+  <div className="grid md:grid-cols-2 md:gap-8 items-center mb-12">
+    <div>
       <img src={imgSrc} alt={name} className="rounded-lg shadow-xl mb-4 md:mb-0 md:w-full transform transition duration-300 hover:scale-105" />
     </div>
-    <div className="md:w-1/2 md:ml-8">
+    <div className="md:ml-8">
       <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-800 mb-4">{name}</h2>
       <p className="text-lg text-gray-700 leading-relaxed mb-8">{description}</p>
     </div>
@@ -19,38 +19,10 @@ const QuoteSection = ({ quote, author }: any) => (
   </div>
 );
 
-
 export const Fundadores = () => {
-  // const videos = [
-  //   {
-  //     id: 'video_id_1',
-  //     title: 'Nosso Fundador: Ensinamentos Profundos sobre Pentecostes',
-  //     thumbnail: 'https://images.squarespace-cdn.com/content/v1/63e64be0831faf1c806eacdb/a1c30e22-5094-46c4-913c-3355d274543d/Pentecostes.jpg',
-  //     link: 'https://youtu.be/PN9E2CSq_RA?si=2GkJEbyNdJP-KPaE'
-  //   },
-  //   {
-  //     id: 'video_id_2',
-  //     title: 'A Conversão de Mateus: Reflexões a Partir do Evangelho de Mateus (Mt 9,9-13)',
-  //     thumbnail: 'https://www.aves.org.br/wp-content/uploads/2021/07/Jesus-e-Mateus.jpg',
-  //     link: 'https://youtu.be/v6q-nnNKpGc?si=2qsFcB8UTUUW4G7S'
-  //   },
-  //   {
-  //     id: 'video_id_3',
-  //     title: 'Nosso Fundador: Reflexões Inspiradoras sobre Nossa Senhora',
-  //     thumbnail: 'https://www.paieterno.com.br/wp-content/uploads/2023/05/suplica-a-nossa-senhora-das-gracas.jpg',
-  //     link: 'https://youtu.be/vsBHQqeFwmM?si=bM86MPSMs4xmO66T'
-  //   },
-  //   // Adicione mais vídeos conforme necessário
-  // ];
 
   return (
-    <div className=" min-h-screen">
-      <section className="relative bg-gradient-to-b from-blue-500 to-indigo-600 text-white h-96 flex items-center justify-center">
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <h1 className="text-5xl lg:text-7xl font-extrabold uppercase tracking-wide">Fundadores</h1>
-          <p className="text-lg mt-4">Saiba mais sobre a inspiradora jornada de Cleverson Silva Santos e Maria Ivone Paiva Soares</p>
-        </div>
-      </section>
+    <div className="bg-white mx-auto">
 
       <section className="container mx-auto py-16 px-4 md:px-8">
         <PersonSection
@@ -82,26 +54,9 @@ export const Fundadores = () => {
         />
 
         <QuoteSection
-          quote="O Ágape é a misericordia de Deus em minha vida."
+          quote="O Ágape é a misericórdia de Deus em minha vida."
           author="Cleverson Silva Santos"
         />
-
-        {/* <div className="container mx-auto py-16 px-4 md:px-8">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-800 mb-8 text-center">Pregações do Fundador</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {videos.map((video, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <Link to={video.link} target="_blank" rel="noopener noreferrer">
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-auto" />
-                </Link>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-2">{video.title}</h3>
-                  <p className="text-gray-700">Descrição ou informações adicionais sobre o vídeo.</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
 
         <div className="text-center mt-16">
           <h2 className="text-3xl text-gray-800 font-semibold mb-4">Faça Parte da Nossa Missão</h2>
@@ -112,5 +67,3 @@ export const Fundadores = () => {
     </div>
   );
 }
-
-

@@ -50,7 +50,7 @@ export default function Login() {
 
   return (
 
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className=" bg-slate-200 flex items-center justify-center min-h-screen"> 
       <button className='text-black'>{logout}</button>
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Faça seu login</h2>
@@ -63,7 +63,8 @@ export default function Login() {
             className="mb-4 p-2 w-full border rounded"
             placeholder="Digite seu email"
             autoComplete='email'
-            type="text"
+            type="email"
+            required
           />
 
           <input
@@ -73,12 +74,15 @@ export default function Login() {
             placeholder="Digite sua senha"
             autoComplete='password'
             type="password"
+            required
           />
 
           <button
+
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
             type="submit"
           >
+
             Acessar
           </button>
         </form>

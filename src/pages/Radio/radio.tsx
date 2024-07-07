@@ -45,6 +45,7 @@ const RadioPlayer: React.FC = () => {
 
   return (
     <div className="bg-white">
+      
       {/* Seção de Introdução */}
       <section className="py-16">
         <div className="container mx-auto px-4">

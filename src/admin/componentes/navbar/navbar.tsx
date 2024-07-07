@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const adminLinks = [
   { name: 'Administrador', href: '/Dashboard' },
-  { name: 'Home', href: '/' },
+  { name: 'Conteudo', href: '/GerenciarConteudo' },
   { name: 'Noticias', href: '/Noticias' },
   { name: 'Formação', href: '/Formacao' },
 

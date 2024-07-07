@@ -6,7 +6,7 @@ import ListarAdministradores from '../componentes/tabelas/TabelaAdmin';
 
 const AdminDashboard: React.FC = () => {
   return (
-    <div className="">
+    <div className="mx-auto">
       <AdminNavbar />
       
       <ListarAdministradores />

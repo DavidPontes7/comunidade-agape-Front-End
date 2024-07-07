@@ -1,376 +1,321 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { motion } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faDonate, faEnvelope, faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faHandsHelping, faHeadphones, faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import Card from '../../componentes/cards/cards';
-import { fakeNews } from '../../data/Noticia-Item/NoticiaData';
-import { formacao } from '../../data/Formacao-Item/FormacaoData';
-import { videos } from '../../data/Videos-item/VideosData';
+import LateralCards from './lateralCards';
+import BemVindoSecao from './SlideHome';
+import ConteudoGridAgape from './ConteudoGridAgape';
+import { FaFacebook, FaFacebookF, FaFacebookSquare, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Home = () => {
+    interface Conteudo {
+        id: string;
+        titulo: string;
+        corpo: string;
+        autor: string;
+        banner: string;
+        publicadoEm: string;
+        categoriaId: string;
+        categoria: {
+            name: string;
+        };
+    }
+
+    const [conteudos, setConteudos] = useState<Conteudo[]>([]);
+
+    useEffect(() => {
+        const fetchConteudo = async () => {
+            try {
+                const response = await axios.get('http://localhost:3333/conteudo');
+                const conteudos = response.data.map((conteudo: any) => ({
+                    id: conteudo.id,
+                    titulo: conteudo.titulo,
+                    corpo: conteudo.corpo,
+                    autor: conteudo.autor,
+                    banner: conteudo.banner,
+                    publicadoEm: conteudo.publicadoEm,
+                    categoriaId: conteudo.categoriaId,
+                    categoria: {
+                        name: conteudo.categoria.name,
+                    },
+                }));
+                setConteudos(conteudos);
+            } catch (error) {
+                console.error("Houve um erro ao buscar os conteúdos", error);
+            }
+        };
+
+        fetchConteudo();
+    }, []);
+
     const [showMore, setShowMore] = useState(false);
     const [newsLimit, setNewsLimit] = useState(6);
 
     const handleShowMore = () => {
         setShowMore(true);
-        setNewsLimit(fakeNews.length);
+        setNewsLimit(prevLimit => prevLimit + 6);
     };
 
-    const [showMoreFormacao, setShowMoreFormacao] = useState(false);
-    const [formacaoLimit, setFormacaoLimit] = useState(6);
-
-    const handleShowMoreFormacao = () => {
-        setShowMoreFormacao(true);
-        setFormacaoLimit(formacao.length);
-    };
-
-    const [showVideo, setShowVideo] = useState(false);
-    const [videoLimit, setVideoLimit] = useState(3);
-
-    const handleShowMoreVideos = () => {
-        setShowVideo(true);
-        setVideoLimit(videos.length);
-    };
-
-    const scrollToInfo = () => {
-        const infoSection = document.getElementById('infoSection');
-        if (infoSection) {
-            infoSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const RadioSection = () => (
-        <section className="mt-5 bg-gradient-to-b from-blue-600 to-indigo-600 text-white py-8">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-center justify-between">
-                    <div className="w-full md:w-2/3 text-center md:text-left">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                            Ouça a Rádio da Comunidade
-                        </h2>
-                        <p className="text-lg sm:text-xl">
-                            Sintonize na nossa rádio e fique por dentro de tudo que acontece na comunidade. Programação ao vivo, músicas, notícias e muito mais!
-                        </p>
-                    </div>
-                    <div className="w-full md:w-1/3 flex justify-center md:justify-end mt-4 ">
-                        <FontAwesomeIcon icon={faHeadphones} className='text-white text-8xl' />
-                    </div>
-                </div>
-                <div className="flex justify-center mt-8">
-                    <Link to="/radio" className="bg-yellow-400 text-gray-800 py-2 px-4 rounded-full font-semibold uppercase tracking-wide animate-pulse">
-                        Ouvir Agora
-                    </Link>
-                </div>
-            </div>
-        </section>
+    const filteredConteudos = conteudos.filter(
+        (conteudo) => conteudo.categoria.name
     );
 
     return (
-        <div className="bg-white">
+        <div className="bg-white mx-auto">
+            {/* Seção de Boas-vindas */}
+            <BemVindoSecao />
 
-            <section
-                className="hidden lg:block relative h-screen flex-col items-center justify-center overflow-hidden"
-                style={{
-                    backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MFXT7idvvZcQ7kNvgGIIu6Q&_nc_ht=scontent.faju14-1.fna&oh=00_AYD4bO9MiGJtIsGJENXa_MT9MGZeZD1iVA4tss_mjaZ5Nw&oe=6680ED38')`, // Substitua pelo caminho da sua imagem
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            >
+            {/* Conteúdo Principal e Lateral */}
+            <div className="container mx-auto lg:px-4 lg:mt-8" style={{ maxWidth: '1200px' }}>
+                <ConteudoGridAgape />
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 bg-opacity-60 bg-black">
-                    <motion.h1
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold uppercase tracking-wide leading-tight mt-24 text-white"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
-                    >
-                        Bem-vindo
-                    </motion.h1>
-                    <motion.p
-                        className="text-base sm:text-lg lg:text-xl mt-4 text-white"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
-                    >
-                        Um carisma de Amor suscitado pelo Espírito Santo, a Comunidade
-                        Católica Ágape foi criada para a evangelização e formação de jovens,
-                        crianças e casais.
-                    </motion.p>
-                    <motion.button
-                        onClick={scrollToInfo}
-                        className="mt-8 bg-yellow-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-500"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
-                    >
-                        Entrar
-                    </motion.button>
+                <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Conteúdo Principal */}
+                    <div className="flex-1">
+                        {/* Seção de Notícias */}
+                        <section className="mt-6 lg:mt-24">
+                            {filteredConteudos
+                                .filter(conteudo => conteudo.categoria.name === "oracao")
+                                .slice(0, 1)
+                                .map((conteudo) => (
+
+
+                                    <div key={conteudo.id} className="block">
+                                        <img
+                                            alt=""
+                                            src={`http://localhost:3333/files/${conteudo.banner}`}
+                                            className="h-64 w-full object-cover sm:h-80 lg:h-96"
+                                        />
+                                        <Link to={`/conteudo/${conteudo.id}`}>
+                                            <h3 className="mt-4 text-lg font-bold text-gray-900 hover:text-red-700 sm:text-xl">{conteudo.titulo}</h3>
+                                            <div
+                                                className="line-clamp-2 overflow-hidden text-ellipsis"
+                                                dangerouslySetInnerHTML={{ __html: conteudo.corpo }}
+                                            />
+                                        </Link>
+                                    </div>
+
+                                ))}
+
+
+                            <div className="py-8">
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2"></h2>
+                                <span className="relative flex justify-center">
+                                    <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+                                    <span className="relative z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                                        Artigos e Notícias
+                                    </span>
+
+                                </span>
+
+                                <div className="gap-4">
+                                    {filteredConteudos.slice(0, showMore ? filteredConteudos.length : newsLimit)
+                                        .filter(conteudo => conteudo.categoria.name != "acampamento" && conteudo.categoria.name != "eventos")
+                                        .map((conteudo) => (
+                                            <Card key={conteudo.id} conteudo={conteudo} />
+                                        ))}
+
+                                    {filteredConteudos
+                                        .filter(conteudo => conteudo.categoria.name === "espiritualidade")
+                                        .slice(0, 1)
+                                        .map((conteudo) => (
+                                            <Link to={`/conteudo/${conteudo.id}`} className="group relative block bg-black" key={conteudo.id}>
+                                                <img
+                                                    alt=""
+                                                    src={`http://localhost:3333/files/${conteudo.banner}`}
+                                                    className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+                                                />
+                                                <div className="relative p-4 sm:p-6 lg:p-8">
+                                                    <p className="text-sm font-medium uppercase tracking-widest text-red-600">{conteudo.categoria.name}</p>
+                                                    <p className="text-xl font-bold text-white sm:text-2xl">{conteudo.autor}</p>
+                                                    <div className="mt-32 sm:mt-48 lg:mt-64">
+                                                        <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                                                            <div
+                                                                className="text-white line-clamp-2 overflow-hidden text-ellipsis"
+                                                                dangerouslySetInnerHTML={{ __html: conteudo.corpo }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                </div>
+
+                                {!showMore && conteudos.length > newsLimit && (
+                                    <div className="flex justify-center mt-4">
+                                        <button
+                                            onClick={handleShowMore}
+                                            className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                                        >
+                                            Mostrar Mais
+                                        </button>
+                                    </div>
+                                )}
+
+                                {showMore && (
+                                    <div className="flex justify-center mt-8">
+                                        <Link to="/noticias" className="text-blue-500 hover:underline">Mais Notícias e Artigos</Link>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+
+                        {/* explore */}
+
+                        <div className="container mx-auto px-4 py-8">
+
+                            <div className="mb-8">
+                                <span className="relative flex justify-center">
+                                    <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+                                    <span className="relative z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                                        Explore
+                                    </span>
+
+                                </span>
+                                <iframe
+                                    width="100%"
+                                    height="400"
+                                    src="https://www.youtube.com/embed/ZeOVn5QaaG8"
+                                    title="Vídeo de Apresentação"
+                                    frameBorder="0"
+                                    allowFullScreen
+                                    className="rounded-lg shadow-md"
+                                ></iframe>
+
+                            </div>
+                            <div className='mx-auto'>
+                                {filteredConteudos
+                                    .filter(conteudo => conteudo.categoria.name.toLowerCase() === 'acampamento')
+                                    .slice(0, 1)
+                                    .map((conteudo) => (
+                                        <Card key={conteudo.id} conteudo={conteudo} />
+                                    ))}
+                            </div>
+                            <div className='mx-auto'>
+                                {filteredConteudos
+                                    .filter(conteudo => conteudo.categoria.name.toLowerCase() === 'eventos')
+                                    .slice(0, 1)
+                                    .map((conteudo) => (
+                                        <Card key={conteudo.id} conteudo={conteudo} />
+                                    ))}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    {/* Lateral */}
+                    <aside className="lg:w-1/3 lg:mt-24">
+                        <LateralCards />
+
+                        <div className="mt-8">
+                            {/* Eventos especiais ou campanhas */}
+                            <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Próximos Eventos</h3>
+                                <p className="text-gray-700 mb-3">Participe dos nossos eventos especiais este mês.</p>
+                                <a href="/eventos" className="text-blue-600 hover:underline">Ver Eventos</a>
+                            </div>
+
+                            {/* Redes Sociais */}
+                            <div className="bg-white rounded-lg shadow-lg p-6 mb-8 items-center">
+                                <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center uppercase">Siga-nos</h3>
+                                <div className="flex space-x-6 items-center justify-center">
+                                    <a
+                                        href="https://www.facebook.com/comunidadecatolicaagape"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:text-blue-800 transition duration-300"
+                                    >
+                                        <FaFacebookSquare className="w-6 h-6" />
+                                    </a>
+                                    <a
+                                        href="https://www.instagram.com/comunidadecatolicaagape"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-pink-600 hover:text-pink-800 transition duration-300"
+                                    >
+                                        <FaInstagram className="w-6 h-6" />
+                                    </a>
+                                    <a
+                                        href="https://www.youtube.com/comunidadecatolicaagape"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-red-600 hover:text-red-800 transition duration-300"
+                                    >
+                                        <FaYoutube className="w-6 h-6" />
+                                    </a>
+                                </div>
+                            </div>
+                            {/* Seção de Chamada */}
+                            <section className="mt-12 py-12 ">
+                                <div className="container mx-auto px-4" style={{ maxWidth: '1200px' }}>
+                                    <div className="flex items-center mb-6">
+
+                                        <h2 className="text-2xl md:text-3xl lg:text-2xl font-bold text-gray-800 mb-4">
+                                            Conecte-se e Contribua
+                                        </h2>
+                                        <div className="flex-grow border-t-2 border-amber-500 ml-4" />
+                                    </div>
+
+                                    <div className="grid grid-cols-1  gap-6">
+                                        <div className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg">
+                                            <FontAwesomeIcon icon={faYoutube} className="text-red-600 text-5xl mb-4" />
+                                            <h3 className="text-xl font-semibold mb-2 text-gray-900">Assista no YouTube</h3>
+                                            <p className="text-gray-700 mb-4">Acompanhe nossos vídeos em nosso canal do YouTube.</p>
+                                            <a
+                                                href="https://www.youtube.com/@comunidadecatolicaagape7242"
+                                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-all duration-200"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Acesse o Canal
+                                            </a>
+                                        </div>
+
+                                        <div className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg">
+                                            <FontAwesomeIcon icon={faHeart} className="text-green-600 text-5xl mb-4" />
+                                            <h3 className="text-xl font-semibold mb-2 text-gray-900">Contribua com Doações</h3>
+                                            <p className="text-gray-700 mb-4">Ajude-nos a continuar nossa missão com sua doação</p>
+                                            <Link
+                                                to="/Doacao"
+                                                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-all duration-200"
+                                            >
+                                                Faça uma Doação
+                                            </Link>
+                                        </div>
+
+                                        <div className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg">
+                                            <FontAwesomeIcon icon={faHeadphones} className="text-gray-600 text-5xl mb-4" />
+                                            <h3 className="text-xl font-semibold mb-2 text-gray-900">Participe da Nossa Rádio</h3>
+                                            <p className="text-gray-700 mb-4">Ouça nossa programação ao vivo na Rádio Ágape</p>
+                                            <Link
+                                                to="/Radio"
+                                                className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-all duration-200"
+                                            >
+                                                Ouça Agora
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+                        </div>
+                    </aside>
                 </div>
-            </section>
-
-            {/* Mobile Section */}
-            <section
-                className="lg:hidden relative h-80 flex flex-col items-center justify-center"
-                style={{
-                    backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MFXT7idvvZcQ7kNvgGIIu6Q&_nc_ht=scontent.faju14-1.fna&oh=00_AYD4bO9MiGJtIsGJENXa_MT9MGZeZD1iVA4tss_mjaZ5Nw&oe=6680ED38')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                }}
-            >
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 bg-opacity-40 bg-black">
-                    <motion.h1
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold uppercase tracking-wide leading-tight text-white"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 1.0, ease: "easeInOut" }}
-                    >
-                        Bem-vindo
-                    </motion.h1>
-                    <motion.p
-                        className="text-base sm:text-lg lg:text-xl mt-4 text-white"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
-                    >
-                        Um carisma de Amor suscitado pelo Espírito Santo, a Comunidade Católica Ágape foi criada para a evangelização e formação de jovens, crianças e casais.
-                    </motion.p>
-                    <motion.button
-                        onClick={scrollToInfo}
-                        className="mt-8 bg-yellow-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-500"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.5, duration: 1.5, ease: "easeInOut" }}
-                    >
-                        Entrar
-                    </motion.button>
-                </div>
-            </section>
-
-            <div id='infoSection' className="container mx-auto mt-12 px-4 flex flex-wrap lg:flex-nowrap">
-                {/* Seção de Notícias */}
-                <section className="w-full lg:w-3/4 px-4">
-                    <div className="flex items-center mb-4">
-
-                        <h2 className="text-lg font-bold py-2 px-4 bg-red-500 text-white rounded-lg shadow-md">
-                            Notícias
-                        </h2>
-
-                    </div>
-                    <hr className="border-t-2 border-gray-300 my-4" />
-
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        {fakeNews.slice(0, newsLimit).map((news) => (
-                            // <Link key={news.id} to={`/Noticias/${news.id}`}>
-                                <Card
-                                    imagem={news.image}
-                                    titulo={news.title}
-                                    autor={news.author}
-                                    data={news.date}
-                                    descricao={news.description}
-                                    link={`/Noticias/${news.id}`}
-                                />
-                            // </Link>
-                        ))}
-                    </div>
-                    {!showMore && fakeNews.length > 6 && (
-                        <div className="justify-center mt-4">
-                            <button
-                                onClick={handleShowMore}
-                                className="px-4 py-2 bg-yellow-500 text-gray-800 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-600 transition duration-300"
-                            >
-                                Mostrar Mais
-                            </button>
-                        </div>
-                    )}
-                    {showMore && (
-                        <div className="flex justify-center mt-8">
-                            <Link to="/Noticias" className="text-blue-500 hover:underline">Ir para mais notícias</Link>
-                        </div>
-                    )}
-                </section>
-
-                {/* SEÇÃO SIDEBAR LATERAL */}
-                <aside className="hidden lg:block w-full lg:w-1/4 px-4 mt-12 py-12 lg:mt-0">
-                    <div className="bg-white p-4 rounded-lg shadow-lg">
-                        <div className="mb-6">
-                            <h2 className="text-lg font-bold text-gray-800 mb-4">Conecte-se e Contribua</h2>
-                            <hr className="border-t border-gray-300 my-2" />
-                        </div>
-                        <div className="mb-4">
-                            <div className="flex items-center mb-2">
-                                <div className="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                    <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
-                                </div>
-                                <a href="/Contato" target='_blank' className="text-blue-600 hover:underline">Contato</a>
-                            </div>
-                        </div>
-                        <hr className="border-t border-gray-300 my-2" />
-                        <div className="mb-4">
-                            <div className="flex items-center mb-2">
-                                <div className="bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                    <FontAwesomeIcon icon={faYoutube} className="text-lg" />
-                                </div>
-                                <a href="https://www.youtube.com/@comunidadecatolicaagape7242" target='_blank' className="text-red-500 hover:underline">Canal do Youtube</a>
-                            </div>
-                        </div>
-                        <hr className="border-t border-gray-300 my-2" />
-                        <div className="mb-4">
-                            <div className="flex items-center mb-2">
-                                <div className="bg-green-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                    <FontAwesomeIcon icon={faDonate} className="text-lg" />
-                                </div>
-                                <Link to="/Doacao" className="text-green-500 hover:underline">Faça uma doação</Link>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-
             </div>
 
-            {/* Seção de Radio */}
-            <RadioSection />
 
-            <div className="container mx-auto mt-12 px-4 flex flex-wrap lg:flex-nowrap">
-                {/* Seção de Formação */}
-                <section className="w-full lg:w-3/4 px-4">
-                    <div className="flex items-center mb-4">
-
-                        <h2 className="text-lg font-bold py-2 px-4 bg-green-500 text-white rounded-lg shadow-md">
-                            Formações
-                        </h2>
-
-                    </div>
-                    <hr className="border-t-2 border-gray-300 my-4" />
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        {formacao.slice(0, formacaoLimit).map((formacaoItem) => (
-                            <Card
-                                key={formacaoItem.id}
-                                id={formacaoItem.id}
-                                imagem={formacaoItem.image}
-                                titulo={formacaoItem.title}
-                                autor={formacaoItem.author}
-                                data={formacaoItem.date}
-                                descricao={formacaoItem.description}
-                                link={`/Formacao/${formacaoItem.id}`}
-                            />
-                        ))}
-                    </div>
-                    {!showMoreFormacao && formacao.length > 6 && (
-                        <div className="justify-center mt-4">
-                            <button
-                                onClick={handleShowMoreFormacao}
-                                className="px-4 py-2 bg-yellow-500 text-gray-800 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-600 transition duration-300"
-                            >
-                                Mostrar Mais
-                            </button>
-                        </div>
-                    )}
-                    {showMoreFormacao && (
-                        <div className="flex justify-center mt-8">
-                            <Link to="/formacao" className="text-blue-500 hover:underline">Ir para mais Formações</Link>
-                        </div>
-                    )}
-                </section>
-            </div>
-
-            {/* Seção Lateral (Mobile) */}
-            <aside className="lg:hidden container mx-auto mt-12 px-4">
-                <div className="bg-white p-4 rounded-lg shadow-lg">
-                    <div className="mb-6">
-                        <h2 className="text-lg font-bold text-gray-800 mb-4">Conecte-se e Contribua</h2>
-                        <hr className="border-t border-gray-300 my-2" />
-                    </div>
-                    <div className="mb-4">
-                        <div className="flex items-center mb-2">
-                            <div className="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
-                            </div>
-                            <a href="/Contato" target='_blank' className="text-blue-600 hover:underline">Contato</a>
-                        </div>
-                    </div>
-                    <hr className="border-t border-gray-300 my-2" />
-                    <div className="mb-4">
-                        <div className="flex items-center mb-2">
-                            <div className="bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                <FontAwesomeIcon icon={faYoutube} className="text-lg" />
-                            </div>
-                            <a href="https://www.youtube.com/@comunidadecatolicaagape7242" target='_blank' className="text-red-500 hover:underline">Canal do Youtube</a>
-                        </div>
-                    </div>
-                    <hr className="border-t border-gray-300 my-2" />
-                    <div className="mb-4">
-                        <div className="flex items-center mb-2">
-                            <div className="bg-green-500 text-white rounded-full h-8 w-8 flex items-center justify-center mr-2">
-                                <FontAwesomeIcon icon={faDonate} className="text-lg" />
-                            </div>
-                            <Link to="/Doacao" className="text-green-500 hover:underline">Faça uma doação</Link>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            {/* Seção de Vídeos e Comemorações */}
-            <section className="bg-gradient-to-b from-blue-500 to-indigo-60000 mt-2 py-12">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-bold mb-6 text-gray-800">Comemorando 20 Anos de Comunidade</h2>
-                    <p className="text-lg mb-6 text-gray-600">
-                        Acompanhe nossa jornada e celebre conosco este marco especial. Assista ao vídeo abaixo para saber mais sobre nossa história e conquistas.
-                    </p>
-                    <div className="flex justify-center">
-                        <iframe
-                            width="560"
-                            height="315"
-                            src="https://www.youtube.com/embed/CBAW7OtdREI?si=d5bo-GY3y6EDQFkX"
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                </div>
-            </section>
-
-            <div className="container mx-auto py-16 px-4 md:px-8">
-                <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-800 mb-8 text-center">Cortes do Fundador</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {videos.slice(0, videoLimit).map((video, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                            <Link to={video.link} target="_blank" rel="noopener noreferrer">
-                                <img
-                                    src={video.thumbnail}
-                                    alt={video.title}
-                                    className="w-full h-64 object-cover object-center"
-                                />
-                            </Link>
-                            <div className="p-4">
-                                <h3 className="text-lg font-semibold mb-2">{video.title}</h3>
-                                <p className="text-gray-700">{video.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                    {videos.length > videoLimit && (
-                        <div className=" justify-center mt-4">
-                            <button
-                                onClick={handleShowMoreVideos}
-                                className="px-4 py-2 bg-yellow-500 text-gray-800 rounded-full font-semibold uppercase tracking-wide hover:bg-yellow-600 transition duration-300"
-                            >
-                                Carregar Mais
-                            </button>
-                        </div>
-                    )}
-                </div>
-                <div className="flex justify-center mt-8">
-                    <Link to="Formacao" className="text-blue-500 hover:underline">Outros Cortes e Conteúdos</Link>
-                </div>
-            </div>
 
         </div>
     );
-}
+};
 
 export default Home;
+
+
+
 

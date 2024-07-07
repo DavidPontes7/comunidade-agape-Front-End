@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import AdminModal from "../modal/AdminModal";
 
 const ListarAdministradores: React.FC = () => {
-   
+
     const [data, setData] = useState<{ id: string; name: string; email: string }[]>([]);
 
     const fetchAdmins = async () => {
@@ -19,7 +19,7 @@ const ListarAdministradores: React.FC = () => {
                     Authorization: `Bearer ${JSON.parse(token)}`, // Send JWT token in Authorization header
                 },
             });
-            setData(response.data); 
+            setData(response.data);
         } catch (error) {
             console.error("Houve um erro ao buscar os administradores", error);
         }
@@ -40,12 +40,12 @@ const ListarAdministradores: React.FC = () => {
                                 <h3 className="font-semibold text-base text-blueGray-700">Administradores Cadastrados</h3>
                             </div>
                             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                                
-                                <button onClick={() => setIsModalOpen(true)} className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+
+                                <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                                     Cadastrar
                                 </button>
                                 <AdminModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-                               
+
                             </div>
                         </div>
                     </div>
@@ -63,6 +63,9 @@ const ListarAdministradores: React.FC = () => {
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Email
                                     </th>
+                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                        Ações
+                                    </th>
                                 </tr>
                             </thead>
 
@@ -78,6 +81,20 @@ const ListarAdministradores: React.FC = () => {
                                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             {item.email}
                                         </td>
+                                        <div className='flex  items-center mb-2 py-2'>
+                                            <button
+
+                                                className="bg-red-500 text-white p-2 rounded mr-2" // Adiciona margem à direita para espaçamento entre os botões
+                                            >
+                                                Excluir
+                                            </button>
+
+                                            <button
+                                                className="bg-green-500 text-white p-2 rounded" // Botão de editar sem margem extra
+                                            >
+                                                Editar
+                                            </button>
+                                        </div>
                                     </tr>
                                 ))}
                             </tbody>

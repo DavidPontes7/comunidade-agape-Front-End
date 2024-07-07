@@ -1,23 +1,62 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+
+
+interface Category {
+    id: string;
+    title: string;
+  }
 
 const EventosInscricaoForm: React.FC = () => {
-    const [nome, setNome] = useState('');
+    
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [grupo, setGrupo] = useState('');
-    const [idade, setIdade] = useState('');
+    const [group, setGroup] = useState('');
+    const [idade, setIdade] = useState<number | undefined>(undefined);
     const [sector, setSector] = useState('');
     const [eventId, setEventId] = useState('');
+    const [events, setEvents] = useState<Category[]>([]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const response = await axios.get('http://localhost:3333/evento');
+                setEvents(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar eventos:', error);
+            }
+        };
+
+
+        fetchEvents();
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        await axios.post('http://localhost:3333/inscricao',{name,email,telefone,sector,grupo,eventId,idade})
-        .then(response => {
+        
 
-        })
-        
-        
+        try {
+            const formData = new FormData();
+            formData.append('eventId', eventId);
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('telefone', telefone);
+            formData.append('sector', sector);
+            formData.append('group', group);
+            if (idade) {
+                formData.append('idade', idade.toString());
+            }
+
+            const response = await axios.post('http://localhost:3333/inscricao', formData);
+
+            console.log('Resposta da inscrição:', response.data);
+            toast.success('Sua inscrição foi realizada com sucesso!');
+        } catch (error) {
+            console.error('Erro ao enviar inscrição:', error);
+            toast.error('Houve um erro ao realizar sua inscrição. Por favor, tente novamente.');
+        }
     };
 
     return (
@@ -29,12 +68,29 @@ const EventosInscricaoForm: React.FC = () => {
                     <input
                         type="text"
                         id="nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="form-input w-full"
                         placeholder="Digite seu nome completo"
                         required
                     />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="evento" className="block text-gray-700 text-sm font-bold mb-2">Selecione o Evento:</label>
+                    <select
+                        id="evento"
+                        value={eventId}
+                        onChange={(e) => setEventId(e.target.value)}
+                        className="form-select w-full"
+                        required
+                    >
+                        <option value="">Selecione um evento</option>
+                        {events.map(event => (
+                            <option key={event.id} value={event.id}>
+                                {event.title}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">E-mail:</label>
@@ -61,41 +117,42 @@ const EventosInscricaoForm: React.FC = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="grupoOracao" className="block text-gray-700 text-sm font-bold mb-2">Grupo/Setor</label>
+                    <label htmlFor="grupo" className="block text-gray-700 text-sm font-bold mb-2">Qual grupo você participa?</label>
                     <input
                         type="text"
-                        id="grupoOracao"
-                        value={grupoOracao}
-                        onChange={(e) => setGrupoOracao(e.target.value)}
+                        id="grupo"
+                        value={group}
+                        onChange={(e) => setGroup(e.target.value)}
                         className="form-input w-full"
                         placeholder="Digite o nome do seu grupo de oração (opcional)"
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="flex items-center">
-                        <input
-                            type="checkbox"
-                            className="form-checkbox"
-                            checked={naoParticipaGrupo}
-                            onChange={(e) => setNaoParticipaGrupo(e.target.checked)}
-                        />
-                        <span className="ml-2 text-gray-700">Não participo de nenhum grupo</span>
-                    </label>
+                    <label htmlFor="setor" className="block text-gray-700 text-sm font-bold mb-2">Qual Setor você participa?</label>
+                    <input
+                        type="text"
+                        id="setor"
+                        value={sector}
+                        onChange={(e) => setSector(e.target.value)}
+                        className="form-input w-full"
+                        placeholder="Digite o nome do seu setor (opcional)"
+                    />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="dataNascimento" className="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento:</label>
+                    <label htmlFor="idade" className="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento:</label>
                     <input
-                        type="date"
-                        id="dataNascimento"
-                        value={dataNascimento}
-                        onChange={(e) => setDataNascimento(e.target.value)}
+                        type="number"
+                        id="idade"
+                        value={idade !== undefined ? idade : ''}
+                        onChange={(e) => setIdade(Number(e.target.value))}
                         className="form-input w-full"
+                        placeholder="Digite sua data de nascimento"
                         required
                     />
                 </div>
                 <div className="mt-6">
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 w-full"
                     >
                         Inscrever-se

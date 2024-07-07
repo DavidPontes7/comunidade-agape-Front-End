@@ -1,37 +1,125 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-type PropsCard = {
-  id?: string | number;
-  imagem: string;
+interface Conteudo {
+  id: string;
   titulo: string;
+  corpo: string;
   autor: string;
-  data: string;
-  descricao?: string; // tornando a descrição opcional
-  link: string;
-};
+  banner: string;
+  publicadoEm: string;
+  categoria: {
+    name: string;
+  };
+}
 
-const Card: React.FC<PropsCard> = ({ id, imagem, titulo, autor, data, descricao, link }) => {
+const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
+  const getCategoryColor = (name: string) => {
+    switch (name) {
+      case 'santos':
+        return 'text-purple-500'; // Roxo para categoria 'santos'
+
+      case 'noticia':
+        return 'text-red-500'; // Vermelho para categoria 'noticia'
+
+      case 'formacao':
+        return 'text-green-500'; // Verde para categoria 'formacao'
+
+      case 'oracao':
+      case 'agape':
+        return 'text-yellow-500'; // Amarelo para categorias 'oracao' e 'agape'
+
+      case 'martires':
+      case 'agape':
+        return 'text-sky-400';
+
+      case 'acampamento':
+      case 'eventos':
+        return 'text-orange-600';
+
+
+      default: // Amarelo para categorias 'oracao' e 'agape'
+        return 'text-gray-500'; // Cinza para categorias não especificadas
+    }
+  };
+
+  const truncatedContent = conteudo.corpo.length > 200
+    ? `${conteudo.corpo.substring(0, 150)}...`
+    : conteudo.corpo || 'Descrição não disponível';
+
+  const categoryColor = getCategoryColor(conteudo.categoria.name);
+
   return (
-    <article className="flex flex-col shadow max-w-[400px] rounded-md overflow-hidden">
-      {/* Imagem do artigo */}
+    <div className="bg-transparent max-w-4xl mx-auto overflow-hidden border-gray-300 pb-6">
+      {/* Exibição em desktop */}
+      <div className="hidden md:flex">
+        <div className="md:w-1/3 flex-shrink-0">
+          <img
+            src={`http://localhost:3333/files/${conteudo.banner}`}
+            alt={conteudo.titulo}
+            className="w-full object-cover h-full"
+            style={{ minHeight: '200px', maxHeight: '200px' }}
+          />
+        </div>
 
-      <img src={imagem} alt={titulo} className="object-cover h-60 sm:h-72 md:h-80 w-full" />
+        <div className="md:w-2/3 bg-white p-4 lg:ml-3">
+          <div className="flex items-center mb-2">
+            <span className={`bg-white ${categoryColor} text-xs uppercase font-bold`}>
+              #{conteudo.categoria.name}
+            </span>
+            <span className="text-gray-600 text-xs ml-2">
+              {new Date(conteudo.publicadoEm).toLocaleString()}
+            </span>
+          </div>
 
-      <div className="bg-white flex flex-col justify-start p-6">
-        <h4 className="text-blue-700 text-sm font-bold uppercase pb-4">{autor}</h4>
-        <h3 className="text-3xl font-bold hover:text-gray-700 pb-4">
-          <Link to={link} className="hover:underline">{titulo}</Link>
-        </h3>
-        <p className="text-sm pb-3">
-          Por <span className="font-semibold hover:text-gray-800">{autor}</span>, publicado em {data}
-        </p>
-        <p className="pb-6">{descricao || 'Descrição não disponível'}</p>
-        <Link to={link} className="uppercase text-gray-800 hover:text-black">
-          Continue Lendo
-        </Link>
+          <Link to={`/conteudo/${conteudo.id}`}>
+            <h3 className="text-xl font-bold text-gray-900 font-display mt-2 mb-4 hover:text-red-700 font-lora"
+            >
+              {`${conteudo.titulo.charAt(0).toUpperCase()}${conteudo.titulo.slice(1)}`}
+            </h3>
+          </Link>
+
+          <h4 className="text-gray-800 font-semibold text-sm pb-2">
+            {conteudo.autor}
+          </h4>
+
+          <div
+            className="line-clamp-2 overflow-hidden text-ellipsis"
+            dangerouslySetInnerHTML={{ __html: truncatedContent }}
+          />
+        </div>
       </div>
-    </article>
+
+      {/* Linha separadora */}
+      <div className="border-b border-gray-300 mt-4"></div>
+
+
+      {/* dispositivos moveis */}
+      <div className="sm:hidden">
+        <a href="#">
+          <img
+            className="w-full h-auto object-cover "
+            src={`http://localhost:3333/files/${conteudo.banner}`}
+            alt={conteudo.titulo}
+            style={{ minHeight: '250px', maxHeight: '200px' }}
+          />
+        </a>
+        <div className="relative rounded-md grid grid-cols-1 -mt-14 px-10 pt-5 bg-white m-3 my-1">
+          <span className={`bg-white ${categoryColor} text-xs uppercase font-bold`}>
+            #{conteudo.categoria.name}
+          </span>
+          <Link to={`/conteudo/${conteudo.id}`} className="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-2" style={{ fontFamily: 'aktiv-grotesk, sans-serif' }}>
+            {conteudo.titulo}
+          </Link>
+          <div
+            className="line-clamp-3 overflow-hidden text-ellipsis"
+            dangerouslySetInnerHTML={{ __html: truncatedContent }}
+          />
+        </div>
+      </div>
+    </div>
+
+
   );
 };
 

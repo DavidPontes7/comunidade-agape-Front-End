@@ -151,14 +151,14 @@ const EventosPage: React.FC = () => {
                                     <h2 className="text-2xl font-bold text-gray-900"> Explore o que aconteceu no evento!</h2>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
-                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/439433564_18295432381089849_4177436260022728333_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Eou4Mayv0fEQ7kNvgGZCxTI&_nc_ht=scontent.faju14-1.fna&oh=00_AYB9uraY-glzaHf5TAq8d1pjpCSFWOQ17ES5EponOxS82w&oe=666F9326" alt="Acampamento 1" className="w-full h-64 object-cover" />
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/363439612_667474695421223_6143776876990295439_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8dBXVqoTLYAQ7kNvgEtt7aF&_nc_ht=scontent.faju14-1.fna&oh=00_AYAWg84S3HLB_9HVgtbsmJ3bz07abvI_j5RTnqqcVNKnJQ&oe=66879C53" alt="Acampamento 1" className="w-full h-64 object-cover" />
                                             <div className="p-4">
                                                 <h3 className="text-lg font-semibold text-gray-900">Acampamento dos 20 anos</h3>
                                                 <p className="mt-2 text-sm text-gray-600">Foram 3 dias nos retirando da cidade, para viver a paz que vem de Deus♥️</p>
                                             </div>
                                         </div>
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
-                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/361653308_662052329296793_5538695368607701547_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MKpcNb72x-gQ7kNvgGSO_sf&_nc_ht=scontent.faju14-1.fna&oh=00_AYAeoRz6lkUYkZZWlryvqDwMtuIYVSsn4wBSxYt9wKAI3g&oe=666F6692" alt="Acampamento 2" className="w-full h-64 object-cover" />
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/363407686_667474705421222_7711533015299247446_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eYqVqHr6vlAQ7kNvgHHMryQ&_nc_ht=scontent.faju14-1.fna&oh=00_AYDiNttzCMk2qqe_Dhfk44k4r-vpZs4xA4J0uZcejaj-nw&oe=6687C2B2" alt="Acampamento 2" className="w-full h-64 object-cover" />
                                             <div className="p-4">
                                                 <h3 className="text-lg font-semibold text-gray-900">Acampamento 30°</h3>
                                                 <p className="mt-2 text-sm text-gray-600">É com grande alegria que finalizamos mais um Acampa, este , de número 30! 🎉
@@ -166,7 +166,7 @@ const EventosPage: React.FC = () => {
                                             </div>
                                         </div>
                                         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md">
-                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/361642294_662052335963459_1060564028020592679_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=D5xVe_7ucGsQ7kNvgEaUNTh&_nc_ht=scontent.faju14-1.fna&oh=00_AYD-He1TyxqMeJVyg2ISLcWNJY6QKZ09YXwbiDOJ2q50OQ&oe=666F8CA0" alt="Acampamento 3" className="w-full h-64 object-cover" />
+                                            <img src="https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/363933075_667474688754557_7984115384016041209_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PtV2Zd_gSpYQ7kNvgHjIpiR&_nc_ht=scontent.faju14-1.fna&gid=A36rv73SwbqutJsTrVW_nQj&oh=00_AYAMSXXxnDW8o41I9ni7wPnSwUvE-qT_Sj-bjSO0aIXCUw&oe=6687B517" alt="Acampamento 3" className="w-full h-64 object-cover" />
                                             <div className="p-4">
                                                 <h3 className="text-lg font-semibold text-gray-900">Acampamento 30°</h3>
                                                 <p className="mt-2 text-sm text-gray-600">Missa no primeiro dia de acampamento</p>
@@ -313,7 +313,7 @@ const EventosPage: React.FC = () => {
                                 <p className="mt-2 text-base leading-6 text-gray-500">Data: 12 de Julho, 2024</p>
                                 <p className="mt-2 text-base leading-6 text-gray-500">Local: Chácara Àgape</p>
                                 <div className="mt-4">
-                                    <Link to='/formulario'>
+                                    <Link to='/inscricao'>
                                         <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Inscreva-se</button>
                                     </Link>
                                 </div>

@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import Footer from '../Footer/footer';
 import Navbar from '../navbar/Navbar';
-import Example from '../../bandeiras/bandeira'; // Importe o componente Example
 interface LayoutProps {
   children: ReactNode;
 }
@@ -9,8 +8,8 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
-      <Example></Example>
-      <Navbar/>
+
+      <Navbar />
       {children}
       <Footer />
     </div>

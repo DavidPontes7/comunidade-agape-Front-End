@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -25,7 +25,7 @@ const CadastrarAdministrador: React.FC = () => {
     };
 
     return (
-        
+
         <div className="flex items-center justify-center">
 
             <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">

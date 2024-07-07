@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const ListarInscricao: React.FC = () => {
-
+    
     const [data, setData] = useState<{
         eventId: string;
         name: string;
@@ -10,6 +10,7 @@ const ListarInscricao: React.FC = () => {
         telefone: string;
         sector: string;
         group: string;
+        title: string;
     }[]>([]);
 
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -17,19 +18,31 @@ const ListarInscricao: React.FC = () => {
 
     const fetchInscricao = async () => {
         try {
-            const token = sessionStorage.getItem('@AuthUser:token'); // Retrieve JWT token from sessionStorage
+            const token = sessionStorage.getItem('@AuthUser:token');
             if (!token) {
                 throw new Error('Token não encontrado');
             }
 
             const response = await axios.get('http://localhost:3333/inscricao', {
                 headers: {
-                    Authorization: `Bearer ${JSON.parse(token)}`, // Send JWT token in Authorization header
+                    Authorization: `Bearer ${JSON.parse(token)}`,
                 },
             });
-            setData(response.data);
+
+            // Mapeando os dados recebidos para incluir o campo `title` do evento
+            const inscricoes = response.data.map((inscricao: any) => ({
+                eventId: inscricao.eventId,
+                name: inscricao.name,
+                email: inscricao.email,
+                telefone: inscricao.telefone,
+                sector: inscricao.sector,
+                group: inscricao.group,
+                title: inscricao.event.title, // Incluindo o campo `title` do evento
+            }));
+
+            setData(inscricoes);
         } catch (error) {
-            console.error("Houve um erro ao buscar os administradores", error);
+            console.error("Houve um erro ao buscar as inscrições", error);
         }
     };
 
@@ -79,7 +92,10 @@ const ListarInscricao: React.FC = () => {
                             <thead>
                                 <tr>
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                        Evento
+                                        ID Evento
+                                    </th>
+                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                        evento
                                     </th>
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Name
@@ -107,6 +123,9 @@ const ListarInscricao: React.FC = () => {
                                     <tr key={user.eventId}>
                                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
                                             {user.eventId}
+                                        </td>
+                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                            {user.title}
                                         </td>
                                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             {user.name}
@@ -138,8 +157,6 @@ const ListarInscricao: React.FC = () => {
                                                     Editar
                                                 </button>
                                             </div>
-
-
                                         </td>
                                     </tr>
                                 ))}
