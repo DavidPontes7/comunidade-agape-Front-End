@@ -30,10 +30,12 @@ export default function AdminNavbar() {
   useEffect(() => {
     const handleScroll = () => {
       const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.classList.add('fixed', 'top-0', 'w-full', 'z-50');
-      } else {
-        header.classList.remove('fixed', 'top-0', 'w-full', 'z-50');
+      if (header) {
+        if (window.scrollY > 50) {
+          header.classList.add('fixed', 'top-0', 'w-full', 'z-50');
+        } else {
+          header.classList.remove('fixed', 'top-0', 'w-full', 'z-50');
+        }
       }
     };
 

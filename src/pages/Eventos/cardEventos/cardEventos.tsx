@@ -10,21 +10,6 @@ interface Evento {
 }
 
 const CardEvento: React.FC<{ evento: Evento }> = ({ evento }) => {
-  const getCategoryColor = (categoria: string) => {
-    switch (categoria.toLowerCase()) {
-      case 'acampamentos':
-      case 'eventos':
-        return 'text-orange-600'; // Laranja para categoria 'acampamentos' e 'eventos'
-
-      // Adicione mais casos conforme necessário para outras categorias específicas
-
-      default:
-        return 'text-gray-500'; // Cinza para outras categorias não especificadas
-    }
-  };
-
-  const categoryColor = getCategoryColor(evento.titulo);
-
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
       <Link to={`/eventos/${evento.id}`}>
@@ -35,7 +20,6 @@ const CardEvento: React.FC<{ evento: Evento }> = ({ evento }) => {
         />
       </Link>
       <div className="p-4">
-      
         <h3 className="mt-2 mb-4 text-xl font-bold leading-tight">
           <Link to={`/eventos/${evento.id}`} className="hover:text-red-700">
             {evento.titulo}
