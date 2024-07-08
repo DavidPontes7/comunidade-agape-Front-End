@@ -20,7 +20,7 @@ const NavbarMobile = [
   { name: 'Liturgia Diaria', href: '/liturgia-diaria' },
 
 ];
-export default function AdminNavbar() {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => {
