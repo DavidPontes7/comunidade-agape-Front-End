@@ -16,11 +16,11 @@ interface Conteudo {
     };
 }
 
-const maxTituloLength = 18;
+const maxTituloLength = 100;
 
 const ConteudoGridAgape: React.FC = () => {
     const [data, setData] = useState<Conteudo[]>([]);
-
+    //chamada conteudos api
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
@@ -37,7 +37,11 @@ const ConteudoGridAgape: React.FC = () => {
                         name: conteudo.categoria.name,
                     },
                 }));
-                const filteredConteudos = conteudos.filter(conteudo => conteudo.categoria.name === 'agape');
+                const filteredConteudos = conteudos.filter(conteudo => conteudo.categoria.name == 'agape'
+                    || conteudo.categoria.name == 'santos'
+                    || conteudo.categoria.name == 'opinião'
+                    || conteudo.categoria.name == 'martires'
+                );
                 setData(filteredConteudos);
             } catch (error) {
                 console.error("Houve um erro ao buscar os conteúdos", error);
@@ -51,13 +55,9 @@ const ConteudoGridAgape: React.FC = () => {
         if (data.length === 0) return null;
         const firstContent = data[0];
 
-        const truncatedContent = firstContent.corpo.length > 180
-            ? `${firstContent.corpo.substring(0, 150)}...`
-            : firstContent.corpo || 'Descrição não disponível';
-
         return (
             <motion.div
-                className="sm:col-span-12 md:col-span-6 lg:col-span-5"
+                className="sm:col-span-12 md:col-span-6 lg:col-span-5 "
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -130,7 +130,7 @@ const ConteudoGridAgape: React.FC = () => {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-12">
+        <div className=" mx-auto lg:p-5  md:p-10 l">
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
                 {renderFirstContent()}
                 {renderContentCards()}

@@ -50,7 +50,7 @@ export default function Login() {
 
   return (
 
-    <div className=" bg-slate-200 flex items-center justify-center min-h-screen"> 
+    <div className=" bg-amber-200 flex items-center justify-center min-h-screen"> 
       <button className='text-black'>{logout}</button>
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Faça seu login</h2>

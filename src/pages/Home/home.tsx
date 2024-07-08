@@ -3,13 +3,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faHandsHelping, faHeadphones, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeadphones, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import Card from '../../componentes/cards/cards';
 import LateralCards from './lateralCards';
 import BemVindoSecao from './SlideHome';
 import ConteudoGridAgape from './ConteudoGridAgape';
-import { FaFacebook, FaFacebookF, FaFacebookSquare, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaFacebookSquare, FaInstagram, FaYoutube } from 'react-icons/fa';
+import CountdownTimer from './timer';
+import { CalendarIcon } from '@heroicons/react/20/solid';
+
+const eventDate = '2024-07-12T00:00:00';
 
 const Home = () => {
     interface Conteudo {
@@ -53,7 +57,7 @@ const Home = () => {
     }, []);
 
     const [showMore, setShowMore] = useState(false);
-    const [newsLimit, setNewsLimit] = useState(6);
+    const [newsLimit, setNewsLimit] = useState(12);
 
     const handleShowMore = () => {
         setShowMore(true);
@@ -63,6 +67,12 @@ const Home = () => {
     const filteredConteudos = conteudos.filter(
         (conteudo) => conteudo.categoria.name
     );
+
+    interface CountdownTimerProps {
+        eventDate: string;
+    }
+
+
 
     return (
         <div className="bg-white mx-auto">
@@ -82,7 +92,6 @@ const Home = () => {
                                 .filter(conteudo => conteudo.categoria.name === "oracao")
                                 .slice(0, 1)
                                 .map((conteudo) => (
-
 
                                     <div key={conteudo.id} className="block">
                                         <img
@@ -106,7 +115,7 @@ const Home = () => {
                                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2"></h2>
                                 <span className="relative flex justify-center">
                                     <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                                    <span className="relative z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                                    <span className="relative lg:text-lg z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
                                         Artigos e Notícias
                                     </span>
 
@@ -114,7 +123,9 @@ const Home = () => {
 
                                 <div className="gap-4">
                                     {filteredConteudos.slice(0, showMore ? filteredConteudos.length : newsLimit)
-                                        .filter(conteudo => conteudo.categoria.name != "acampamento" && conteudo.categoria.name != "eventos")
+                                        .filter(conteudo => conteudo.categoria.name != "acampamento"
+                                            && conteudo.categoria.name != "eventos"
+                                            && conteudo.categoria.name != "agape")
                                         .map((conteudo) => (
                                             <Card key={conteudo.id} conteudo={conteudo} />
                                         ))}
@@ -166,12 +177,12 @@ const Home = () => {
 
                         {/* explore */}
 
-                        <div className="container mx-auto px-4 py-8">
+                        <div className="container mx-auto lg:px-4 lg:py-8">
 
                             <div className="mb-8">
                                 <span className="relative flex justify-center">
                                     <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                                    <span className="relative z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                                    <span className="relative lg:text-lg z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
                                         Explore
                                     </span>
 
@@ -187,7 +198,7 @@ const Home = () => {
                                 ></iframe>
 
                             </div>
-                            <div className='mx-auto'>
+                            <div className='mx-auto '>
                                 {filteredConteudos
                                     .filter(conteudo => conteudo.categoria.name.toLowerCase() === 'acampamento')
                                     .slice(0, 1)
@@ -214,11 +225,21 @@ const Home = () => {
 
                         <div className="mt-8">
                             {/* Eventos especiais ou campanhas */}
-                            <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
-                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Próximos Eventos</h3>
-                                <p className="text-gray-700 mb-3">Participe dos nossos eventos especiais este mês.</p>
-                                <a href="/eventos" className="text-blue-600 hover:underline">Ver Eventos</a>
+                            <div className="bg-white rounded-lg shadow-lg p-6 mb-4 ">
+                                <div className="flex items-center mb-2">
+                                    <CalendarIcon className="h-6 w-6 text-stone-600 mr-2" />
+                                    <h3 className="text-xl font-semibold text-gray-900">Próximos Eventos</h3>
+                                </div>
+                                <p className="text-stone-600 text-lg mb-3">Acampamento</p>
+                                <div className="bg-stone-50  rounded-lg p-4 mb-4">
+                                    <CountdownTimer eventDate={eventDate} />
+                                </div>
+                                <a href="/eventos" className="text-stone-600 hover:underline font-semibold">
+                                    Ver Eventos
+                                </a>
+
                             </div>
+
 
                             {/* Redes Sociais */}
                             <div className="bg-white rounded-lg shadow-lg p-6 mb-8 items-center">

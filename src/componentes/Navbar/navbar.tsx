@@ -72,7 +72,7 @@ export default function AdminNavbar() {
           <Popover className="relative">
             {({ open }) => (
               <>
-                <Popover.Button className="uppercase flex items-center text-xl font-bold text-gray-900 hover:text-yellow-500 transition-colors duration-200">
+                <Popover.Button className="uppercase flex items-center text-xl font-bold text-gray-900 hover:text-white transition-colors duration-200">
                   Sobre nós
                   <FontAwesomeIcon icon={faChevronDown} className="ml-2 w-4 h-4" />
                 </Popover.Button>
@@ -102,16 +102,16 @@ export default function AdminNavbar() {
               </>
             )}
           </Popover>
-          <Link to="/Noticias" className="text-xl font-bold text-white uppercase " >
-            Notícia
+          <Link to="/noticias" className="text-xl font-bold text-white uppercase " >
+            Notícias
           </Link>
-          <Link to="/Formacao" className="text-xl font-bold text-white uppercase " >
+          <Link to="/formacao" className="text-xl font-bold text-white uppercase " >
             Formação
           </Link>
-          <Link to="/Eventos" className="text-xl font-bold text-white uppercase ">
+          <Link to="/eventos" className="text-xl font-bold text-white uppercase ">
             Eventos
           </Link>
-          <Link to="/Liturgia-diaria" className="text-xl font-bold text-white uppercase ">
+          <Link to="/liturgia-diaria" className="text-xl font-bold text-white uppercase ">
             Liturgia Diária
           </Link>
         </div>

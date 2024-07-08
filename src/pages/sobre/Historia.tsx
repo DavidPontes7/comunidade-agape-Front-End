@@ -1,12 +1,5 @@
 import { Link } from 'react-router-dom';
 
-const scrollToInfo = () => {
-  const infoSection = document.getElementById('infoSection');
-  if (infoSection) {
-    infoSection.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 export default function Historia() {
 
   return (
@@ -17,7 +10,7 @@ export default function Historia() {
 
       <span className="relative w-full flex justify-center">
         <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-        <span className="relative z-10 my-5 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+        <span className="relative lg:text-lg my-5 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
           Nossa História
         </span>
       </span>

@@ -53,12 +53,12 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
     <div className="bg-transparent max-w-4xl mx-auto overflow-hidden border-gray-300 pb-6">
       {/* Exibição em desktop */}
       <div className="hidden md:flex">
-        <div className="md:w-1/3 flex-shrink-0">
+        <div className="flex-shrink-0">
           <img
             src={`http://localhost:3333/files/${conteudo.banner}`}
             alt={conteudo.titulo}
             className="w-full object-cover h-full"
-            style={{ minHeight: '200px', maxHeight: '200px' }}
+            style={{ minHeight: '180px', maxHeight: '150px',maxWidth:'300px ',minWidth:'300px',backgroundSize:'cover',backgroundPosition:'center' }}
           />
         </div>
 

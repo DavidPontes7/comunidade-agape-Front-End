@@ -9,7 +9,7 @@ const Formacoes: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const itemsPerPage = 6;
+    const itemsPerPage = 12;
 
     interface Category {
         id: string;
@@ -28,33 +28,26 @@ const Formacoes: React.FC = () => {
             name: string;
         };
     }
-    //Cards Lateral
-    const NewsCard = ({ date, title, imageUrl, link }: any) => {
-        return (
-            <div className="flex items-start mb-6 pb-6 border-b border-gray-200">
-                <Link to={link} className="inline-block mr-5">
-                    <div
-                        className="w-20 h-20 bg-cover bg-center "
-                        style={{ backgroundImage: `url(${imageUrl})` }}
-                    ></div>
-                </Link>
-                <div className="text-base">
-                    <p className="text-gray-600 text-sm mb-2">{date}</p>
-                    <a href={link} className="text-gray-900 font-semibold hover:text-red-600 leading-tight" target="_blank" rel="noopener noreferrer">
-                        {title}
-                    </a>
-                </div>
-            </div>
-        );
-    };
 
-    // Fetch categorias from API
+    const NewsCard = ({ date, title, imageUrl, link }: any) => (
+        <div className="col items-start lg:mb-6 lg:pb-6 border-b border-gray-200">
+            <Link to={link} className="inline-block mr-">
+                <div className="w-15 h-15 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }}></div>
+            </Link>
+            <div className="text-base">
+                <p className="text-gray-600 text-sm mb-2">{date}</p>
+                <a href={link} className="text-gray-900 font-semibold hover:text-red-600 leading-tight" target="_blank" rel="noopener noreferrer">
+                    {title}
+                </a>
+            </div>
+        </div>
+    );
+
+    // Fetch categories from API
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get<Category[]>('http://localhost:3333/category', {
-                    headers: {},
-                });
+                const response = await axios.get<Category[]>('http://localhost:3333/category');
                 setCategories(response.data);
             } catch (error) {
                 console.error('Houve erro ao buscar Categorias', error);
@@ -64,7 +57,7 @@ const Formacoes: React.FC = () => {
         fetchCategories();
     }, []);
 
-    // Fetch conteudo from API
+    // Fetch content from API
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
@@ -100,14 +93,17 @@ const Formacoes: React.FC = () => {
     };
 
     // Display single content if available
-    const singleConteudo = conteudos.length > 1 ? conteudos[0] : null;
+    const singleConteudo = filteredData.slice(indexOfFirstItem, indexOfLastItem)
+        .find(conteudo =>
+            ["formacao", "espiritualidade", "martires", "santos", "oracao"].includes(conteudo.categoria.name)
+        );
 
     return (
         <div className="bg-white mx-auto py-4 lg:px-4">
             <section className="relative text-black h-20 flex items-center justify-center">
                 <span className="relative w-full flex justify-center">
                     <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                    <span className="relative z-10 my-1 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                    <span className="relative  my-1 lg:text-lg bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
                         Formações e Ensinamentos
                     </span>
                 </span>
@@ -120,11 +116,11 @@ const Formacoes: React.FC = () => {
                                 <div className="max-w-screen-lg mx-auto">
                                     <div className="rounded overflow-hidden flex flex-col mx-auto mb-4">
                                         <Link to={`/conteudo/${singleConteudo.id}`} className="text-3xl font-semibold hover:text-red-700 transition duration-500 ease-in-out mb-2 block">
-                                            {singleConteudo.titulo}
+                                            {`${singleConteudo.titulo.charAt(0).toUpperCase()}${singleConteudo.titulo.slice(1)}`}
                                         </Link>
                                         <div className="relative mb-4">
                                             <Link to={`/conteudo/${singleConteudo.id}`}>
-                                                <img className="w-full" src={`http://localhost:3333/files/${singleConteudo.banner}`} alt={singleConteudo.titulo} />
+                                                <img className="w-full" src={`http://localhost:3333/files/${singleConteudo.banner}`}  alt={singleConteudo.titulo} />
                                             </Link>
                                         </div>
                                         <div className="line-clamp-3 overflow-hidden text-ellipsis mb-4" dangerouslySetInnerHTML={{ __html: singleConteudo.corpo }} />
@@ -148,14 +144,11 @@ const Formacoes: React.FC = () => {
                             </section>
                         )}
 
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className=" container grid grid-cols-1 gap-2">
                             {filteredData.slice(indexOfFirstItem, indexOfLastItem)
-                                .filter(conteudo => conteudo.categoria.name == "formacao"
-                                    || conteudo.categoria.name == "espiritualidade"
-                                    || conteudo.categoria.name == "martires"
-                                    || conteudo.categoria.name == "santos"
-                                    || conteudo.categoria.name == "oracao")
-
+                                .filter(conteudo =>
+                                    ["formacao", "espiritualidade", "martires", "santos", "oracao"].includes(conteudo.categoria.name)
+                                )
                                 .map((conteudo) => (
                                     <Card key={conteudo.id} conteudo={conteudo} />
                                 ))}
@@ -167,7 +160,7 @@ const Formacoes: React.FC = () => {
                                     <li key={number}>
                                         <button
                                             onClick={() => paginate(number + 1)}
-                                            className={`px-3 py-1 rounded-md ${currentPage === number + 1 ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                                            className={`px-3 py-1 rounded-md ${currentPage === number + 1 ? 'bg-amber-600 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
                                         >
                                             {number + 1}
                                         </button>
@@ -177,8 +170,7 @@ const Formacoes: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Sidebar with categories */}
-                    <div className="w-full lg:w-1/4 lg:mt-8">
+                    <div className="w-full lg:w-1/4 lg:mt-20">
                         <div className="flex flex-col items-center lg:items-start">
                             <h2 className="text-xl font-bold text-gray-700 mb-4" style={{ fontFamily: 'Arial' }}>Categorias</h2>
                             <ul className="space-y-2 text-center lg:text-left">
@@ -190,58 +182,34 @@ const Formacoes: React.FC = () => {
                                     Todas
                                 </li>
                                 {categories
-                                    .filter(category => category.name === "formacao" || category.name === "espiritualidade" || category.name === "martires" || category.name === "oracao")
+                                    .filter(category => ["formacao", "espiritualidade", "martires", "oracao"].includes(category.name))
                                     .map((category) => (
                                         <li
                                             key={category.id}
                                             className={`cursor-pointer hover:text-red-600 font-serif ${selectedCategory === category.id ? 'font-semibold text-indigo-600' : ''}`}
                                             onClick={() => handleCategorySelect(category.id)}
                                         >
-                                            {category.name}
+                                            #{category.name}
                                         </li>
                                     ))}
                             </ul>
-
                         </div>
 
-                        <div className="w-full lg:mt-96 lg:py-24 lg:w-flex ">
-                            <div className="mb-6">
-                                <h2 className="text-2xl font-bold text-red-700" style={{ fontFamily: 'aktiv-grotesk, sans-serif', fontWeight: 500 }}>
-                                    Formações Especiais do Fundador
-                                </h2>
-                                <hr className="border-t-2 border-red-700 my-4 w-28" />
-                            </div>
-                            <NewsCard
-                                date="Formação"
-                                title="Nosso Fundador: Ensinamentos Profundos sobre Pentecostes."
-                                imageUrl="https://images.squarespace-cdn.com/content/v1/63e64be0831faf1c806eacdb/a1c30e22-5094-46c4-913c-3355d274543d/Pentecostes.jpg"
-                                link="https://youtu.be/PN9E2CSq_RA?si=2GkJEbyNdJP-KPaE"
-                            />
-                            <NewsCard
-                                date="Formação"
-                                title="A Conversão de Mateus: Reflexões a Partir do Evangelho de Mateus (Mt 9,9-13)"
-                                imageUrl="https://www.aves.org.br/wp-content/uploads/2021/07/Jesus-e-Mateus.jpg"
-                                link="https://youtu.be/v6q-nnNKpGc?si=2qsFcB8UTUUW4G7S"
-                            />
-                            <NewsCard
-                                date="Formação"
-                                title="Nosso Fundador: Reflexões Inspiradoras sobre Nossa Senhora"
-                                imageUrl="https://www.paieterno.com.br/wp-content/uploads/2023/05/suplica-a-nossa-senhora-das-gracas.jpg"
-                                link="https://youtu.be/vsBHQqeFwmM?si=bM86MPSMs4xmO66T"
-                            />
-                            <NewsCard
-                                date="Formação"
-                                title="A moeda, a Ovelha e o Filho Pródigo"
-                                imageUrl="https://img.freepik.com/fotos-premium/imagem-xaa-capturando-a-cena-da-ovelha-perdida-sendo-carinhosamente-levada-de-volta-pelo-pastor_958297-9562.jpg"
-                                link="https://youtu.be/xI-4-aYb3Ws?si=4AudBydwLkfIroUh"
-                            />
+                        <div className="grid grid-cols-1 gap-2 lg:mt-72">
+                            <h2 className=" text-xl text lg:mt-44 font-bold text-gray-700 mt-5" style={{ fontFamily: 'aktiv-grotesk' }}>Mais Lidas</h2>
+                            {conteudos.slice(-4).map(news => (
+                                <NewsCard
+                                    key={news.id}
+                                    date={news.publicadoEm}
+                                    title={news.titulo}
+                                    imageUrl={`http://localhost:3333/files/${news.banner}`}
+                                    link={`/conteudo/${news.id}`}
+                                />
+                            ))}
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     );
 };

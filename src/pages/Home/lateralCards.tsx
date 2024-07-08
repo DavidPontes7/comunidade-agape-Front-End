@@ -36,7 +36,7 @@ const LateralCards = () => {
       />
       <NewsCard
         date="Formação"
-        title="A Conversão de Mateus: Reflexões a Partir do Evangelho de Mateus (Mt 9,9-13)"
+        title="A Conversão de Mateus: Reflexões a Partir do Evangelho (Mt 9,9-13)"
         imageUrl="https://www.aves.org.br/wp-content/uploads/2021/07/Jesus-e-Mateus.jpg"
         link="https://youtu.be/v6q-nnNKpGc?si=2qsFcB8UTUUW4G7S"
       />

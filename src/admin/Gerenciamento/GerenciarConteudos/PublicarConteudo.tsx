@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import DOMPurify from 'dompurify';
 import 'react-quill/dist/quill.snow.css'; // Estilo do tema "snow"
 import ReactQuill from 'react-quill';
 
@@ -157,6 +156,18 @@ const PublicarConteudo: React.FC = () => {
               onChange={setCorpo}
               className="block w-full border rounded"
               placeholder="Digite a descrição"
+              modules={{
+                toolbar: [
+                    [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+                    [{size: []}],
+                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                    [{'list': 'ordered'}, {'list': 'bullet'},
+                    {'indent': '-1'}, {'indent': '+1'}],
+                    ['link', 'image', 'video'],
+                    ['clean'],
+                    ['formula']
+                ]
+            }}
             />
           </div>
 
