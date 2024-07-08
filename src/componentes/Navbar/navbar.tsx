@@ -45,6 +45,7 @@ export default function AdminNavbar() {
     };
   }, []);
 
+
   return (
     <header className="shadow-md bg-amber-500 p-1">
       <nav className="mx-auto flex items-center justify-between p-3 lg:px-8" aria-label="Global">
@@ -72,7 +73,8 @@ export default function AdminNavbar() {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            {({ open }) => (
+            {({ }) => (
+
               <>
                 <Popover.Button className="uppercase flex items-center text-xl font-bold text-gray-900 hover:text-white transition-colors duration-200">
                   Sobre nós

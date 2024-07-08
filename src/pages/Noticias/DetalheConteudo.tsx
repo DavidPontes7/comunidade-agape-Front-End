@@ -41,7 +41,7 @@ const DetalheConteudo: React.FC = () => {
     return <div>Carregando...</div>;
   }
 
-
+// @ts-ignore
   const formattedDate = format(new Date(conteudo.publicadoEm), "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
 
   return (

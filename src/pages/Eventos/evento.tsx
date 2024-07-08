@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Tabs from "@radix-ui/react-tabs";
 import axios from 'axios';
-import { Evento } from '../../types/interfaces'; // Importe a interface Evento
+import { Evento } from '../../types/interfaces'; 
 const EventosPage: React.FC = () => {
     const [evento, setEvento] = useState<Evento[]>([]);
 
