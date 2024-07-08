@@ -68,12 +68,6 @@ const Home = () => {
         (conteudo) => conteudo.categoria.name
     );
 
-    interface CountdownTimerProps {
-        eventDate: string;
-    }
-
-
-
     return (
         <div className="bg-white mx-auto">
             {/* Seção de Boas-vindas */}

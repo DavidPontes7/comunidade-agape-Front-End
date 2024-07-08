@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 const CadastrarAdministrador: React.FC = () => {
@@ -14,24 +12,39 @@ const CadastrarAdministrador: React.FC = () => {
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Obter o token do sessionStorage
+        const token = sessionStorage.getItem('@AuthUser:token');
+        if (!token) {
+            toast.error('Token de autenticação não encontrado.');
+            return;
+        }
+
         try {
-            await axios.post('http://localhost:3333/users', { name, email, password });
+            await axios.post(
+                'http://localhost:3333/users',
+                { name, email, password },
+                {
+                    headers: {
+                        Authorization: `Bearer ${JSON.parse(token)}`,
+                    },
+                }
+            );
+
             toast.success('Administrador cadastrado com sucesso!', {
                 onClose: () => navigate('/Dashboard'),
             });
         } catch (error) {
             toast.error('Erro ao cadastrar administrador.');
+            console.error('Erro ao cadastrar administrador:', error);
         }
     };
 
     return (
-
         <div className="flex items-center justify-center">
-
             <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-                <h2 className="text-3xl font-bold mb-8 text-center text-blue-600">Cadrastar Administrador</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center text-blue-600">Cadastrar Administrador</h2>
                 <form onSubmit={handleRegister}>
-
                     <div className="mb-6">
                         <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
                         <input
@@ -78,11 +91,8 @@ const CadastrarAdministrador: React.FC = () => {
                     </button>
                 </form>
             </div>
-
         </div>
     );
 };
 
-
 export default CadastrarAdministrador;
-

@@ -34,18 +34,21 @@ const GerenciarLiturgia: React.FC = () => {
                 throw new Error('Token não encontrado');
             }
 
-            const formData = new FormData();
-            formData.append('titulo', titulo);
-            formData.append('primeiraLeitura', primeiraLeitura);
-            formData.append('segundaLeitura', segundaLeitura);
-            formData.append('salmoResponsorial', salmoResponsorial);
-            formData.append('evangelho', evangelho);
-            formData.append('corLiturgica', corLiturgica);
+            const liturgia: Liturgia = {
+                titulo,
+                primeiraLeitura,
+                segundaLeitura,
+                salmoResponsorial,
+                evangelho,
+                corLiturgica,
+            };
 
-            await axios.post('http://localhost:3333/liturgia', formData, {
+            console.log('Enviando dados da liturgia:', liturgia);
+
+            await axios.post('http://localhost:3333/liturgia', liturgia, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 },
             });
 

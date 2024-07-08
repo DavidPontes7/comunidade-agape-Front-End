@@ -64,7 +64,30 @@ const LeituraDiaria: React.FC = () => {
 
   return (
     <div className="container mx-auto p-6">
+      
       <h1 className="text-3xl font-bold text-center mb-6">Liturgia Diária</h1>
+      <div className="flex justify-center mt-4">
+            <button className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarPrimeiraLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleMostrarPrimeiraLeitura}
+              disabled={mostrarPrimeiraLeitura}>
+              Primeira Leitura
+            </button>
+            <button className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSegundaLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleMostrarSegundaLeitura}
+              disabled={mostrarSegundaLeitura}>
+              Segunda Leitura
+            </button>
+            <button className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSalmo ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleMostrarSalmo}
+              disabled={mostrarSalmo}>
+              Salmo Responsorial
+            </button>
+            <button className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarEvangelho ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleMostrarEvangelho}
+              disabled={mostrarEvangelho}>
+              Evangelho
+            </button>
+          </div>
       {liturgia ? (
         <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
           <h2 className="text-xl font-bold mb-4">{liturgia.titulo}</h2>
@@ -92,28 +115,7 @@ const LeituraDiaria: React.FC = () => {
               <p>{liturgia.evangelho}</p>
             </div>
           )}
-          <div className="flex justify-center mt-4">
-            <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 ${mostrarPrimeiraLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleMostrarPrimeiraLeitura}
-              disabled={mostrarPrimeiraLeitura}>
-              Primeira Leitura
-            </button>
-            <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 ${mostrarSegundaLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleMostrarSegundaLeitura}
-              disabled={mostrarSegundaLeitura}>
-              Segunda Leitura
-            </button>
-            <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 ${mostrarSalmo ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleMostrarSalmo}
-              disabled={mostrarSalmo}>
-              Salmo Responsorial
-            </button>
-            <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ${mostrarEvangelho ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleMostrarEvangelho}
-              disabled={mostrarEvangelho}>
-              Evangelho
-            </button>
-          </div>
+          
           <div className="mb-4">
             <h3 className="text-lg font-semibold">Cor Litúrgica</h3>
             <p>{liturgia.corLiturgica}</p>

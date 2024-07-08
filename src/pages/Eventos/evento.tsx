@@ -3,27 +3,10 @@ import { Link } from 'react-router-dom';
 import * as Tabs from "@radix-ui/react-tabs";
 import axios from 'axios';
 
-const calculateTimeLeft = () => {
-    const eventDate = new Date('2024-07-12T00:00:00');
-    const difference = +eventDate - +new Date();
-    let timeLeft = {};
-
-    if (difference > 0) {
-        timeLeft = {
-            Dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            Horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
-            Minutos: Math.floor((difference / 1000 / 60) % 60),
-            Segundos: Math.floor((difference / 1000) % 60)
-        };
-    }
-
-    return timeLeft;
-};
-
 const EventosPage: React.FC = () => {
     const [evento, setEvento] = useState<Evento[]>([]);
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-    const [showDetails, setShowDetails] = useState(false);
+
+    const [showDetails] = useState(false);
     const [selectedTab, setSelectedTab] = useState("Acampamentos");
 
     const tabItems = [
@@ -54,31 +37,7 @@ const EventosPage: React.FC = () => {
         fetchEventos();
     }, []);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
 
-        return () => clearTimeout(timer);
-    });
-
-    const timerComponents: JSX.Element[] = [];
-
-    Object.keys(timeLeft).forEach((interval) => {
-        if (!timeLeft[interval]) {
-            return;
-        }
-
-        timerComponents.push(
-            <span key={interval}>
-                {timeLeft[interval]} {interval}{" "}
-            </span>
-        );
-    });
-
-    const toggleDetails = () => {
-        setShowDetails(!showDetails);
-    };
 
     return (
         <div className="bg-white mx-auto">
@@ -186,15 +145,6 @@ const EventosPage: React.FC = () => {
                 ))}
             </Tabs.Root>
 
-            {/* Countdown Timer */}
-            <div className="mt-8 px-4 sm:px-0">
-                {timerComponents.length ? (
-                    <div className="flex gap-x-2 text-amber-600">
-                        <p className="font-bold">Tempo restante para o evento:</p>
-                        {timerComponents.length ? timerComponents : <span>Evento Expirado!</span>}
-                    </div>
-                ) : <span>Carregando contagem regressiva...</span>}
-            </div>
 
             {/* Botão Inscreva-se */}
             <div className="flex justify-center mt-8 mb-20">
@@ -220,7 +170,7 @@ const EventosPage: React.FC = () => {
 
 const CardEvento: React.FC<{ evento: Evento }> = ({ evento }) => (
     <div className="rounded-lg bg-white shadow-md overflow-hidden">
-        <img src={evento.banner} alt={evento.title} className="w-full h-40 object-cover object-center" />
+        <img src={`http://localhost:3333/files/${evento.banner}`} alt={evento.title} className="w-full h-40 object-cover object-center" />
         <div className="p-4">
             <h3 className="text-lg font-bold text-gray-900 mb-2">{evento.title}</h3>
             <p className="text-gray-700">{evento.description}</p>

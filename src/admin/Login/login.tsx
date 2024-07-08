@@ -7,10 +7,10 @@ import { toast } from 'react-toastify'
 
 export default function Login() {
 
-  const { user, setUser, logout, sessionToken } = useContext(AuthContext);
+  const { setUser, logout} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const signIn = async (e: any) => {

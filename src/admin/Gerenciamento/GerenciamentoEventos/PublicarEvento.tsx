@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-interface EventoRequest {
-  title: string;
-  description: string;
-  banner: string;
-  date: string;
-}
+import { formatISO } from 'date-fns'; 
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
 const PublicarEvento: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [banner, setBanner] = useState<File | null>(null);
   const [date, setDate] = useState('');
+  const [banner, setBanner] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Se houver alguma inicialização assíncrona necessária, coloque aqui
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,13 +26,17 @@ const PublicarEvento: React.FC = () => {
         throw new Error('Token não encontrado');
       }
 
+      // Converta a data para ISO-8601 usando formatISO
+      const isoDate = formatISO(new Date(date));
+
+      // Construir o FormData com os dados a enviar
       const formData = new FormData();
       formData.append('title', title);
       formData.append('description', description);
-      formData.append('date', date);
-      
+      formData.append('date', isoDate); // Use a data formatada em ISO-8601
+
       if (banner) {
-        formData.append('banner', banner);
+        formData.append('file', banner);
       }
 
       await axios.post('http://localhost:3333/evento', formData, {
@@ -52,14 +48,16 @@ const PublicarEvento: React.FC = () => {
 
       setTitle('');
       setDescription('');
-      setBanner(null);
       setDate('');
+      setBanner(null);
       setIsLoading(false);
       toast.success('Evento publicado com sucesso!');
       navigate('/GerenciarEventos');
     } catch (error) {
       setIsLoading(false);
-      setError('Houve um erro ao publicar o evento. Por favor, tente novamente.');
+      setError(
+        'Houve um erro ao publicar o evento. Por favor, tente novamente.'
+      );
       console.error('Erro ao publicar evento:', error);
     }
   };
@@ -73,7 +71,9 @@ const PublicarEvento: React.FC = () => {
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Publicar Evento</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Publicar Evento
+        </h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit}>
@@ -86,7 +86,7 @@ const PublicarEvento: React.FC = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="block w-full p-2 border rounded"
-              placeholder="Digite o título do evento"
+              placeholder="Digite o título"
               type="text"
               required
             />
@@ -96,26 +96,47 @@ const PublicarEvento: React.FC = () => {
             <label htmlFor="description" className="block mb-2">
               Descrição
             </label>
-            <textarea
+            <ReactQuill
               id="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="block w-full p-2 border rounded"
-              placeholder="Digite a descrição do evento"
-              rows={4}
-              required
+              onChange={setDescription}
+              className="block w-full border rounded"
+              placeholder="Digite a descrição"
+              modules={{
+                toolbar: [
+                  [{ header: '1' }, { header: '2' }, { font: [] }],
+                  [{ size: [] }],
+                  [
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    'blockquote',
+                  ],
+                  [
+                    { list: 'ordered' },
+                    { list: 'bullet' },
+                    { indent: '-1' },
+                    { indent: '+1' },
+                  ],
+                  ['link', 'image', 'video'],
+                  ['clean'],
+                  ['formula'],
+                ],
+              }}
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="date" className="block mb-2">
-              Data do Evento
+              Data
             </label>
             <input
               id="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="block w-full p-2 border rounded"
+              placeholder="Digite a data do evento"
               type="date"
               required
             />
@@ -123,14 +144,14 @@ const PublicarEvento: React.FC = () => {
 
           <div className="mb-4">
             <label htmlFor="banner" className="block mb-2">
-              Banner (imagem)
+              Banner (imagem ou vídeo)
             </label>
             <input
               id="banner"
               onChange={handleFileChange}
               className="block w-full p-2 border rounded"
               type="file"
-              accept="image/*"
+              accept="image/*,video/*"
               required
             />
             {banner && (
