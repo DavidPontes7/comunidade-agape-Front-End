@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { api } from '../../../services/api';
 
 interface Liturgia {
     primeiraLeitura: string;
@@ -45,7 +45,7 @@ const GerenciarLiturgia: React.FC = () => {
 
             console.log('Enviando dados da liturgia:', liturgia);
 
-            await axios.post('http://localhost:3333/liturgia', liturgia, {
+            await api.post('/liturgia', liturgia, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                     'Content-Type': 'application/json',

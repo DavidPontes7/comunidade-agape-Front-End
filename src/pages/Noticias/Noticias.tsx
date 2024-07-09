@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Card from '../../componentes/cards/cards';
+import { api } from '../../services/api';
 
 const Noticias: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -33,7 +33,7 @@ const Noticias: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get<Category[]>('http://localhost:3333/category', {
+        const response = await api.get<Category[]>('/category', {
           headers: {},
         });
         setCategories(response.data);
@@ -49,7 +49,7 @@ const Noticias: React.FC = () => {
   useEffect(() => {
     const fetchConteudo = async () => {
       try {
-        const response = await axios.get<Conteudo[]>('http://localhost:3333/conteudo');
+        const response = await api.get<Conteudo[]>('/conteudo');
         setConteudos(response.data);
       } catch (error) {
         console.error('Houve um erro ao buscar os conteúdos', error);
@@ -58,6 +58,8 @@ const Noticias: React.FC = () => {
 
     fetchConteudo();
   }, []);
+
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   // Filtered data based on search term and selected category
   const filteredData = conteudos.filter(noticia => {
@@ -111,7 +113,9 @@ const Noticias: React.FC = () => {
                     </Link>
                     <div className="relative mb-4">
                       <Link to={`/conteudo/${singleConteudo.id}`}>
-                        <img className="w-full" src={`http://localhost:3333/files/${singleConteudo.banner}`} style={{ maxHeight: '500px', maxWidth: '1200px', backgroundSize: 'cover' }} alt={singleConteudo.titulo} />
+                        <img className="w-full"
+                            src={`${baseUrl}/files/${singleConteudo.banner}`} 
+                           style={{ maxHeight: '500px', maxWidth: '1200px', backgroundSize: 'cover' }} alt={singleConteudo.titulo} />
 
                       </Link>
                     </div>

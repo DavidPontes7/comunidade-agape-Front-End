@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Card from '../../componentes/cards/cards';
+import { api } from '../../services/api';
 
 const Formacoes: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -47,7 +47,7 @@ const Formacoes: React.FC = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get<Category[]>('http://localhost:3333/category');
+                const response = await api.get<Category[]>('/category');
                 setCategories(response.data);
             } catch (error) {
                 console.error('Houve erro ao buscar Categorias', error);
@@ -61,7 +61,7 @@ const Formacoes: React.FC = () => {
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
-                const response = await axios.get<Conteudo[]>('http://localhost:3333/conteudo');
+                const response = await api.get<Conteudo[]>('/conteudo');
                 setConteudos(response.data);
             } catch (error) {
                 console.error('Houve um erro ao buscar os conteúdos', error);
@@ -98,6 +98,8 @@ const Formacoes: React.FC = () => {
             ["formacao", "espiritualidade", "martires", "santos", "oracao"].includes(conteudo.categoria.name)
         );
 
+        const baseUrl = import.meta.env.VITE_BASE_URL;
+
     return (
         <div className="bg-white mx-auto py-4 lg:px-4">
             <section className="relative text-black h-20 flex items-center justify-center">
@@ -120,7 +122,9 @@ const Formacoes: React.FC = () => {
                                         </Link>
                                         <div className="relative mb-4">
                                             <Link to={`/conteudo/${singleConteudo.id}`}>
-                                                <img className="w-full" src={`http://localhost:3333/files/${singleConteudo.banner}`}  alt={singleConteudo.titulo} />
+                                                <img className="w-full"
+                                                 src={`${baseUrl}/files/${singleConteudo.banner}`}  
+                                                 alt={singleConteudo.titulo} />
                                             </Link>
                                         </div>
                                         <div className="line-clamp-3 overflow-hidden text-ellipsis mb-4" dangerouslySetInnerHTML={{ __html: singleConteudo.corpo }} />
@@ -202,7 +206,7 @@ const Formacoes: React.FC = () => {
                                     key={news.id}
                                     date={news.publicadoEm}
                                     title={news.titulo}
-                                    imageUrl={`http://localhost:3333/files/${news.banner}`}
+                                    imageUrl={`${baseUrl}/files/${news.banner}`}
                                     link={`/conteudo/${news.id}`}
                                 />
                             ))}

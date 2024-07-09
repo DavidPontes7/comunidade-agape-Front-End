@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
+import { api } from '../../services/api';
 
 export default function Login() {
 
@@ -22,7 +22,7 @@ export default function Login() {
         return;
       }
 
-      const response = await axios.post('http://localhost:3333/session', { email, password });
+      const response = await api.post('/session', { email, password });
       const { token } = response.data;
 
       if (!token) {

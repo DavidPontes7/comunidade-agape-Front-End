@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import AdminNavbar from '../../componentes/navbar/navbar';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../../../services/api';
 
 const GerenciarConteudos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +29,7 @@ const GerenciarConteudos = () => {
         throw new Error('Token não encontrado');
       }
 
-      const response = await axios.get('http://localhost:3333/conteudo', {
+      const response = await api.get('/conteudo', {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
@@ -70,7 +70,7 @@ const GerenciarConteudos = () => {
         throw new Error('Token não encontrado');
       }
 
-      await axios.delete(`http://localhost:3333/conteudo/${deleteId}`, {
+      await api.delete(`/conteudo/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },

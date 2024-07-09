@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -12,6 +11,7 @@ import ConteudoGridAgape from './ConteudoGridAgape';
 import { FaFacebookSquare, FaInstagram, FaYoutube } from 'react-icons/fa';
 import CountdownTimer from './timer';
 import { CalendarIcon } from '@heroicons/react/20/solid';
+import { api } from '../../services/api';
 
 const eventDate = '2024-07-12T00:00:00';
 
@@ -34,7 +34,7 @@ const Home = () => {
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
-                const response = await axios.get('http://localhost:3333/conteudo');
+                const response = await api.get('/conteudo');
                 const conteudos = response.data.map((conteudo: any) => ({
                     id: conteudo.id,
                     titulo: conteudo.titulo,
@@ -68,6 +68,7 @@ const Home = () => {
         (conteudo) => conteudo.categoria.name
     );
 
+    const baseUrl = import.meta.env.VITE_BASE_URL;
     return (
         <div className="bg-white mx-auto">
             {/* Seção de Boas-vindas */}
@@ -90,7 +91,7 @@ const Home = () => {
                                     <div key={conteudo.id} className="block">
                                         <img
                                             alt=""
-                                            src={`http://localhost:3333/files/${conteudo.banner}`}
+                                            src={`${baseUrl}/files/${conteudo.banner}`}
                                             className="h-64 w-full object-cover sm:h-80 lg:h-96"
                                         />
                                         <Link to={`/conteudo/${conteudo.id}`}>
@@ -131,7 +132,7 @@ const Home = () => {
                                             <Link to={`/conteudo/${conteudo.id}`} className="group relative block bg-black" key={conteudo.id}>
                                                 <img
                                                     alt=""
-                                                    src={`http://localhost:3333/files/${conteudo.banner}`}
+                                                    src={`${baseUrl}/files/${conteudo.banner}`}
                                                     className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
                                                 />
                                                 <div className="relative p-4 sm:p-6 lg:p-8">

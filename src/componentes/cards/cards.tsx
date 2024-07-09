@@ -14,6 +14,8 @@ interface Conteudo {
 }
 
 const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+
   const getCategoryColor = (name: string) => {
     switch (name) {
       case 'santos':
@@ -55,7 +57,7 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
       <div className="hidden md:flex">
         <div className="flex-shrink-0">
           <img
-            src={`http://localhost:3333/files/${conteudo.banner}`}
+            src={`${baseUrl}/files/${conteudo.banner}`}
             alt={conteudo.titulo}
             className="w-full object-cover h-full"
             style={{ minHeight: '180px', maxHeight: '150px',maxWidth:'300px ',minWidth:'300px',backgroundSize:'cover',backgroundPosition:'center' }}

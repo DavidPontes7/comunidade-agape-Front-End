@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../../../services/api';
 
 const CadastrarAdministrador: React.FC = () => {
     const [name, setUsername] = useState('');
@@ -21,8 +21,8 @@ const CadastrarAdministrador: React.FC = () => {
         }
 
         try {
-            await axios.post(
-                'http://localhost:3333/users',
+            await api.post(
+                '/users',
                 { name, email, password },
                 {
                     headers: {

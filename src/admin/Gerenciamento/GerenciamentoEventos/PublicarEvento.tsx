@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { formatISO } from 'date-fns'; 
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
+import { api } from '../../../services/api';
 
 const PublicarEvento: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -39,7 +39,7 @@ const PublicarEvento: React.FC = () => {
         formData.append('file', banner);
       }
 
-      await axios.post('http://localhost:3333/evento', formData, {
+      await api.post('/evento', formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
           'Content-Type': 'multipart/form-data',

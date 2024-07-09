@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="./output.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://p.stmip.net/player/player-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>.texto_padrao {color: #e8e8e8;font-family: Calibri, Arial, Helvetica, sans-serif;font-size: 10;font-weight: normal;}body {margin: 0px;background-color: #151515;}a{color: #fff;}</style>
+</head>
+
+<body>
+<div class="container mx-auto" style="margin-top: 5px;">
+    <div class="grid grid-cols-3 gap-2 items-center">
+        <div class="text-white flex lg:flex-row-reverse">
+        <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+
+        <script type="text/javascript">
+            MRP.insert({
+            'url':'https://08.stmip.net:8668/;',
+            'lang':'pt',
+            'codec':"mp3",
+            'volume':100,
+            'autoplay':true,
+            'forceHTML5':true,
+            'jsevents':true,
+            'buffering':0,
+            'title':"",
+            'wmode':'transparent',
+            'skin':'substream',
+            'width':180,
+            'height':30
+            });
+        </script>
+        </div>
+     
+        <div class="text-white text-center">
+            <div id="servertitle">...</div>
+            <div id="songtitle">...</div>
+        </div>
+                                  
+        <div class="text-white text-right lg:text-left" style="display:inline-block;">
+            <!-- URL-FACEBOOK -->
+
+            <!-- URL-INSTAGRAM -->
+
+            <!-- URL-TWITTER -->
+
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://p.stmip.net/player/shoutcastInfo.js"></script>
+<script>
+    $.SHOUTcast({
+        host : '08.stmip.net',
+        port : 8668,
+        interval : 12000,
+        stats : function(){
+            $('#songtitle').text(this.get('songtitle'));
+            $('#servertitle').text(this.get('servertitle'));
+        }
+     }).startStats();
+</script>
+
+
+</html>

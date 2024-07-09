@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css'; // Estilo do tema "snow"
 import ReactQuill from 'react-quill';
+import { api } from '../../../services/api';
 
 
 
@@ -31,7 +31,7 @@ const PublicarConteudo: React.FC = () => {
           throw new Error('Token não encontrado');
         }
 
-        const response = await axios.get('http://localhost:3333/category', {
+        const response = await api.get('/category', {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`, 
           },
@@ -68,7 +68,7 @@ const PublicarConteudo: React.FC = () => {
         formData.append('file', banner);
       }
 
-      await axios.post('http://localhost:3333/conteudo', formData, {
+      await api.post('/conteudo', formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
           'Content-Type': 'multipart/form-data',

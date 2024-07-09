@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { api } from '../services/api';
 
 
 interface Category {
     id: string;
     title: string;
-  }
+}
 
 const EventosInscricaoForm: React.FC = () => {
-    
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -22,7 +22,7 @@ const EventosInscricaoForm: React.FC = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get('http://localhost:3333/evento');
+                const response = await api.get('/evento')
                 setEvents(response.data);
             } catch (error) {
                 console.error('Erro ao buscar eventos:', error);
@@ -35,7 +35,7 @@ const EventosInscricaoForm: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        
+
 
         try {
             const formData = new FormData();
@@ -49,7 +49,7 @@ const EventosInscricaoForm: React.FC = () => {
                 formData.append('idade', idade.toString());
             }
 
-            const response = await axios.post('http://localhost:3333/inscricao', formData);
+            const response = await api.post('/inscricao', formData);
 
             console.log('Resposta da inscrição:', response.data);
             toast.success('Sua inscrição foi realizada com sucesso!');

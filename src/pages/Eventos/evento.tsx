@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Tabs from "@radix-ui/react-tabs";
-import axios from 'axios';
+
 import { Evento } from '../../types/interfaces'; 
+import { api } from '../../services/api';
+
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const EventosPage: React.FC = () => {
     const [evento, setEvento] = useState<Evento[]>([]);
 
@@ -27,7 +32,7 @@ const EventosPage: React.FC = () => {
     useEffect(() => {
         const fetchEventos = async () => {
             try {
-                const response = await axios.get<[Evento]>('http://localhost:3333/evento');
+                const response = await api.get<[Evento]>('http://localhost:3333/evento');
                 setEvento(response.data);
             } catch (error) {
                 console.error('Houve erro ao buscar eventos', error);
@@ -36,6 +41,8 @@ const EventosPage: React.FC = () => {
 
         fetchEventos();
     }, []);
+
+    
 
 
 
@@ -170,7 +177,7 @@ const EventosPage: React.FC = () => {
 
 const CardEvento: React.FC<{ evento: Evento }> = ({ evento }) => (
     <div className="rounded-lg bg-white shadow-md overflow-hidden">
-        <img src={`http://localhost:3333/files/${evento.banner}`} alt={evento.title} className="w-full h-40 object-cover object-center" />
+        <img src={`${baseUrl}/files/${evento.banner}`} alt={evento.title} className="w-full h-40 object-cover object-center" />
         <div className="p-4">
             <h3 className="text-lg font-bold text-gray-900 mb-2">{evento.title}</h3>
             <p className="text-gray-700">{evento.description}</p>

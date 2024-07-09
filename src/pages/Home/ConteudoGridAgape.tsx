@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { api } from '../../services/api';
 
 interface Conteudo {
     id: string;
@@ -18,13 +18,15 @@ interface Conteudo {
 
 const maxTituloLength = 100;
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const ConteudoGridAgape: React.FC = () => {
     const [data, setData] = useState<Conteudo[]>([]);
     //chamada conteudos api
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
-                const response = await axios.get('http://localhost:3333/conteudo');
+                const response = await api.get('/conteudo');
                 const conteudos: Conteudo[] = response.data.map((conteudo: any) => ({
                     id: conteudo.id,
                     titulo: conteudo.titulo,
@@ -57,24 +59,24 @@ const ConteudoGridAgape: React.FC = () => {
 
         return (
             <motion.div
-                className="sm:col-span-12 md:col-span-6 lg:col-span-5 "
+                className="container  sm:col-span-12 md:col-span-6 lg:col-span-5 sm:grid columns-1"
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <Link to={`/conteudo/${firstContent.id}`}>
                     <div
-                        className="relative h-96 bg-cover bg-center overflow-hidden shadow"
+                        className="relative md:h-full h-96 bg-cover bg-center overflow-hidden shadow"
                         style={{
-                            backgroundImage: `url(http://localhost:3333/files/${firstContent.banner})`,
+                            backgroundImage: `url(${baseUrl}/files/${firstContent.banner})`,
                             backgroundSize: 'cover',
                         }}
                         title={firstContent.titulo}
                     >
-                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-3 px-4">
+                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75  text-white py-3 px-4">
                             <Link
                                 to={`/conteudo/${firstContent.id}`}
-                                className="text-xs uppercase font-medium hover:text-gray-300 transition duration-300 ease-in-out"
+                                className="text-xs uppercase font-medium  hover:text-gray-300 transition duration-300 ease-in-out"
                             >
                                 {firstContent.categoria.name}
                             </Link>
@@ -109,7 +111,7 @@ const ConteudoGridAgape: React.FC = () => {
                         <Link to={`/conteudo/${conteudo.id}`}>
                             <div
                                 style={{
-                                    backgroundImage: `url(http://localhost:3333/files/${conteudo.banner})`,
+                                    backgroundImage: `url(${baseUrl}/files/${conteudo.banner})`,
                                     backgroundPosition: 'center'
                                 }}
                                 className="absolute top-0 left-0 right-0 bg-cover bottom-0 bg-black bg-opacity-50 flex flex-col justify-end py-3 px-4"
@@ -130,8 +132,8 @@ const ConteudoGridAgape: React.FC = () => {
     };
 
     return (
-        <div className=" mx-auto lg:p-5  md:p-10 l">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+        <div className=" mx-auto lg:p-5 lg:pl-0 md:p-10 l">
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
                 {renderFirstContent()}
                 {renderContentCards()}
             </div>

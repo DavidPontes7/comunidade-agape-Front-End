@@ -45,7 +45,7 @@ const RadioPlayer: React.FC = () => {
 
   return (
     <div className="bg-white">
-      
+
       {/* Seção de Introdução */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -80,6 +80,7 @@ const RadioPlayer: React.FC = () => {
         className="rounded-lg"
 
       ></iframe>
+
       {/* Container principal */}
       <div className="container mx-auto py-8 px-4">
 
@@ -103,7 +104,7 @@ const RadioPlayer: React.FC = () => {
         {/* Adicione outros links para redes sociais aqui */}
       </div>
       {/* Links para Redes Sociais */}
-     
+
     </div>
 
   );
