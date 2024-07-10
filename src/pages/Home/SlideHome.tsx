@@ -8,9 +8,9 @@ const BemVindoSecao = () => {
         backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Vm4QIJSCxRYQ7kNvgEP0Tn-&_nc_ht=scontent.faju14-1.fna&oh=00_AYAulxw3o8eCY5aV4LdECOp45dZOAymC1wqRVwzRWstgkg&oe=668D02F8')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: '60vh', 
-        maxHeight: '80vh', 
-        width: '100%', 
+        minHeight: '60vh',
+        maxHeight: '80vh',
+        width: '100%',
       }}
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-opacity-40 bg-black">

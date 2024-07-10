@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import * as Tabs from "@radix-ui/react-tabs";
-
-import { Evento } from '../../types/interfaces'; 
+import { Evento } from '../../types/interfaces';
 import { api } from '../../services/api';
-
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const EventosPage: React.FC = () => {
-    const [evento, setEvento] = useState<Evento[]>([]);
-
-    const [showDetails] = useState(false);
-    const [selectedTab, setSelectedTab] = useState("Acampamentos");
-
-    const tabItems = [
-        "Acampamentos",
-        "Setor Criança",
-        "Arraia Àgape",
-        "Outros Eventos",
-    ];
+    const [eventos, setEventos] = useState<Evento[]>([]);
 
     interface Evento {
         id: string;
@@ -32,8 +19,8 @@ const EventosPage: React.FC = () => {
     useEffect(() => {
         const fetchEventos = async () => {
             try {
-                const response = await api.get<[Evento]>('http://localhost:3333/evento');
-                setEvento(response.data);
+                const response = await api.get<[Evento]>('/evento');
+                setEventos(response.data);
             } catch (error) {
                 console.error('Houve erro ao buscar eventos', error);
             }
@@ -42,116 +29,54 @@ const EventosPage: React.FC = () => {
         fetchEventos();
     }, []);
 
-    
-
-
-
     return (
         <div className="bg-white mx-auto">
             {/* Seção de Introdução */}
-            <span className="relative w-full mt-5  flex justify-center">
-                <div className="absolute  w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                <span className="relative lg:text-lg  my-1 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-                    Eventos
+            <span className="relative w-full mt-5 flex justify-center">
+                <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+                <span className="relative lg:text-lg my-1 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                    Acampamentos
                 </span>
             </span>
 
-            {/* Seção de Vídeo de Apresentação */}
+            {/* Video de Introdução */}
             <div className="container mx-auto px-4 py-8">
-                <div className="mb-8">
-                    <iframe
-                        width="100%"
-                        height="400"
-                        src="https://www.youtube.com/embed/ZeOVn5QaaG8"
-                        title="Vídeo de Apresentação"
-                        frameBorder="0"
-                        allowFullScreen
-                        className="rounded-lg shadow-md"
-                    ></iframe>
+                <iframe
+                    src="https://www.youtube.com/embed/your-video-id"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-64 md:h-96 rounded-lg shadow-md"
+                    title="Video de Introdução ao Acampamento"
+                ></iframe>
+            </div>
+
+            {/* Seção de Informações sobre o Acampamento */}
+            <div className="container mx-auto px-4 py-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Sobre o Acampamento</h2>
+                <p className="text-gray-700 mb-8">
+                    O acampamento oferece uma experiência única de imersão espiritual, com atividades que promovem a união, o crescimento pessoal e a conexão com a natureza. Participe de momentos de oração, palestras, e atividades recreativas que fortalecem a fé e a amizade.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <img src={`${baseUrl}/images/acampamento1.jpg`} alt="Acampamento 1" className="rounded-lg shadow-md" />
+                    <img src={`${baseUrl}/images/acampamento2.jpg`} alt="Acampamento 2" className="rounded-lg shadow-md" />
+                    <img src={`${baseUrl}/images/acampamento3.jpg`} alt="Acampamento 3" className="rounded-lg shadow-md" />
                 </div>
             </div>
 
-            {/* Tabs Component */}
-            <Tabs.Root
-                className="max-w-screen-xl mx-auto mt-4 px-4 md:px-8"
-                value={selectedTab}
-                onValueChange={(val) => setSelectedTab(val)}
-                orientation="vertical"
-            >
-                <Tabs.List
-                    className="hidden border-l flex-col justify-start items-start gap-y-3 text-sm sm:flex"
-                    aria-label="Manage your account"
-                >
-                    {tabItems.map((item, idx) => (
-                        <Tabs.Trigger
-                            key={idx}
-                            className={`group outline-none px-1.5 border-l-2 border-white text-gray-500 ${selectedTab === item ? 'border-gray-600 text-amber-600' : ''}`}
-                            value={item}
-                        >
-                            <div className="py-1.5 px-3 rounded-lg duration-150 group-hover:text-amber-600 group-hover:bg-gray-100 font-medium">
-                                {item}
-                            </div>
-                        </Tabs.Trigger>
-                    ))}
-                </Tabs.List>
-
-                <div className="relative text-gray-900 sm:hidden">
-                    <p className="text-gray-700">Explore abaixo para ver mais opções:</p>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="pointer-events-none w-5 h-5 absolute right-2 inset-y-0 my-auto"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
-                    <select
-                        value={selectedTab}
-                        className="py-2 px-3 w-full bg-transparent appearance-none outline-none border rounded-lg shadow-sm focus:border-indigo-600 text-sm"
-                        onChange={(e) => setSelectedTab(e.target.value)}
-                    >
-                        {tabItems.map((item, idx) => (
-                            <option key={idx} value={item}>
-                                {item}
-                            </option>
-                        ))}
-                    </select>
+            {/* Seção de Próximos Eventos */}
+            <div className="container mx-auto px-4 py-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Próximos Acampamentos</h2>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {eventos.length === 0 ? (
+                        <div className="text-center text-gray-600">Carregando eventos...</div>
+                    ) : (
+                        eventos.map((evento) => (
+                            <CardEvento key={evento.id} evento={evento} />
+                        ))
+                    )}
                 </div>
-
-                {/* Content based on selected tab */}
-                {tabItems.map((item, idx) => (
-                    <Tabs.Content key={idx} className="py-6" value={item}>
-                        {item === "Acampamentos" && (
-                            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                {evento.map((evento) => (
-                                    <CardEvento key={evento.id} evento={evento} />
-                                ))}
-                            </div>
-                        )}
-
-                        {item === "Setor Criança" && (
-                            <p>Conteúdo para Setor Criança</p>
-                        )}
-
-                        {item === "Arraia Àgape" && (
-                            <div>
-                                <h2 className="text-lg font-bold text-gray-900">Arraiá Ágape</h2>
-                                <p className="text-gray-700">O Arraiá Ágape é um evento festivo que celebra a cultura popular brasileira e a vivência comunitária entre os membros da Comunidade Católica Ágape. É um momento de alegria, música, dança e confraternização, onde todos são convidados a participar e se divertir em um ambiente familiar e acolhedor.</p>
-                                <p className="text-gray-700">Venha se divertir conosco!</p>
-                            </div>
-                        )}
-
-                        {item === "Outros Eventos" && (
-                            <p>Conteúdo para Outros Eventos</p>
-                        )}
-                    </Tabs.Content>
-                ))}
-            </Tabs.Root>
-
+            </div>
 
             {/* Botão Inscreva-se */}
             <div className="flex justify-center mt-8 mb-20">
@@ -162,21 +87,33 @@ const EventosPage: React.FC = () => {
                 </Link>
             </div>
 
-            {/* Detalhes do Evento */}
-            {showDetails && (
-                <div className="container mx-auto px-4 py-8">
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Detalhes do Evento</h2>
-                        <p className="text-gray-700">Insira aqui os detalhes adicionais do evento.</p>
-                    </div>
+            {/* Seção de FAQ */}
+            <div className="container mx-auto px-4 py-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Perguntas Frequentes</h2>
+                <div className="mb-4">
+                    <h3 className="text-lg font-semibold">Quem pode participar do acampamento?</h3>
+                    <p className="text-gray-700">O acampamento é aberto a todas as idades e todos são bem-vindos para participar.</p>
                 </div>
-            )}
+                <div className="mb-4">
+                    <h3 className="text-lg font-semibold">O que devo levar para o acampamento?</h3>
+                    <p className="text-gray-700">Recomendamos que você leve roupas confortáveis, itens de higiene pessoal, uma bíblia e muita disposição para participar das atividades.</p>
+                </div>
+                <div className="mb-4">
+                    <h3 className="text-lg font-semibold">Como faço para me inscrever?</h3>
+                    <p className="text-gray-700">Você pode se inscrever clicando no botão "Inscreva-se" acima e preenchendo o formulário de inscrição.</p>
+                </div>
+            </div>
+
+            {/* Aviso de Construção */}
+            <div className="fixed bottom-0 left-0 right-0 bg-red-600 text-white text-center py-2">
+                Esta página está em construção.
+            </div>
         </div>
     );
 };
 
 const CardEvento: React.FC<{ evento: Evento }> = ({ evento }) => (
-    <div className="rounded-lg bg-white shadow-md overflow-hidden">
+    <div className="rounded-lg bg-white shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
         <img src={`${baseUrl}/files/${evento.banner}`} alt={evento.title} className="w-full h-40 object-cover object-center" />
         <div className="p-4">
             <h3 className="text-lg font-bold text-gray-900 mb-2">{evento.title}</h3>

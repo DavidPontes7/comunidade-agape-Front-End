@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
 
-
 interface Category {
     id: string;
     title: string;
 }
 
 const EventosInscricaoForm: React.FC = () => {
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -22,13 +20,13 @@ const EventosInscricaoForm: React.FC = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await api.get('/evento')
+                const response = await api.get('/evento');
                 setEvents(response.data);
             } catch (error) {
                 console.error('Erro ao buscar eventos:', error);
+                toast.error('Erro ao buscar eventos. Por favor, tente novamente.');
             }
         };
-
 
         fetchEvents();
     }, []);
@@ -36,6 +34,10 @@ const EventosInscricaoForm: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
+        if (!name || !email || !telefone || !eventId || idade === undefined) {
+            toast.error('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
 
         try {
             const formData = new FormData();
@@ -53,6 +55,13 @@ const EventosInscricaoForm: React.FC = () => {
 
             console.log('Resposta da inscrição:', response.data);
             toast.success('Sua inscrição foi realizada com sucesso!');
+            setName('');
+            setEmail('');
+            setTelefone('');
+            setGroup('');
+            setIdade(undefined);
+            setSector('');
+            setEventId('');
         } catch (error) {
             console.error('Erro ao enviar inscrição:', error);
             toast.error('Houve um erro ao realizar sua inscrição. Por favor, tente novamente.');
@@ -139,25 +148,18 @@ const EventosInscricaoForm: React.FC = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="idade" className="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento:</label>
+                    <label htmlFor="idade" className="block text-gray-700 text-sm font-bold mb-2">Idade:</label>
                     <input
                         type="number"
                         id="idade"
                         value={idade !== undefined ? idade : ''}
                         onChange={(e) => setIdade(Number(e.target.value))}
                         className="form-input w-full"
-                        placeholder="Digite sua data de nascimento"
+                        placeholder="Digite sua idade"
                         required
                     />
                 </div>
-                <div className="mt-6">
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 w-full"
-                    >
-                        Inscrever-se
-                    </button>
-                </div>
+                
             </form>
         </div>
     );

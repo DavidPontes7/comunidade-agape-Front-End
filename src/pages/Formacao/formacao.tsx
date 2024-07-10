@@ -164,7 +164,7 @@ const Formacoes: React.FC = () => {
                                     <li key={number}>
                                         <button
                                             onClick={() => paginate(number + 1)}
-                                            className={`px-3 py-1 rounded-md ${currentPage === number + 1 ? 'bg-amber-600 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                                            className={`px-3 py-1 rounded-md ${currentPage === number + 1 ? 'bg-amber-600 text-white' : 'bg-amber-500 text-white hover:bg-amber-600'}`}
                                         >
                                             {number + 1}
                                         </button>

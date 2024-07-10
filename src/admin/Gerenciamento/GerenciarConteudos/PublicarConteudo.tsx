@@ -100,7 +100,8 @@ const PublicarConteudo: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
+      
+      <div className="bg-white p-8 rounded justify shadow-md w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Publicar Conteúdo</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
