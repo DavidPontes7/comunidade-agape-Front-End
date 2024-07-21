@@ -5,7 +5,7 @@ const BemVindoSecao = () => {
     <section
       className="hidden lg:block relative h-screen flex-col items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: `url('https://scontent.faju14-1.fna.fbcdn.net/v/t39.30808-6/425706909_18283376221089849_5292852547166539092_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Vm4QIJSCxRYQ7kNvgEP0Tn-&_nc_ht=scontent.faju14-1.fna&oh=00_AYAulxw3o8eCY5aV4LdECOp45dZOAymC1wqRVwzRWstgkg&oe=668D02F8')`,
+        backgroundImage: `url('https://github.com/AdsonVicente/ImagensUrlDados/blob/main/slide.jpg?raw=true')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '60vh',

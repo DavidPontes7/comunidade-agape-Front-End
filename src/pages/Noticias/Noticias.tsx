@@ -85,7 +85,7 @@ const Noticias: React.FC = () => {
   // Display single content if available
   const singleConteudo = filteredData.slice(indexOfFirstItem, indexOfLastItem)
     .find(conteudo =>
-      ["noticia", "opinião", "igreja", "papa", "eventos","acampamentos"].includes(conteudo.categoria.name)
+      ["noticia", "opinião", "igreja", "papa", "eventos", "acampamentos"].includes(conteudo.categoria.name)
     );
 
   return (
@@ -114,8 +114,8 @@ const Noticias: React.FC = () => {
                     <div className="relative mb-4">
                       <Link to={`/conteudo/${singleConteudo.id}`}>
                         <img className="w-full"
-                            src={`${baseUrl}/files/${singleConteudo.banner}`} 
-                           style={{ maxHeight: '500px', maxWidth: '1200px', backgroundSize: 'cover' }} alt={singleConteudo.titulo} />
+                          src={`${baseUrl}/files/${singleConteudo.banner}`}
+                          style={{ maxHeight: '500px', maxWidth: '1200px', backgroundSize: 'cover' }} alt={singleConteudo.titulo} />
 
                       </Link>
                     </div>
@@ -140,7 +140,7 @@ const Noticias: React.FC = () => {
               </section>
             )}
 
-            <div className="grid grid-cols-1 gap-4">
+            <div className="container ">
               {filteredData.slice(indexOfFirstItem, indexOfLastItem)
                 .filter(conteudo => conteudo.categoria.name == "noticia"
                   || conteudo.categoria.name == "agape"

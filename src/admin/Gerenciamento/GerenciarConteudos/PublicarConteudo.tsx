@@ -5,8 +5,6 @@ import 'react-quill/dist/quill.snow.css'; // Estilo do tema "snow"
 import ReactQuill from 'react-quill';
 import { api } from '../../../services/api';
 
-
-
 interface Category {
   id: string;
   name: string;
@@ -99,22 +97,21 @@ const PublicarConteudo: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full h-full bg-gray-100">
-      
-      <div className="bg-white p-8 rounded justify shadow-md w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Publicar Conteúdo</h2>
+    <div className="flex items-center justify-center min-h-screen bg-white p-6">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-2xl">
+        <h2 className="text-3xl font-bold mb-6 text-center">Publicar Conteúdo</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="categoria" className="block mb-2">
+          <div className="mb-6">
+            <label htmlFor="categoria" className="block mb-2 text-lg font-medium text-gray-700">
               Categoria
             </label>
             <select
               id="categoria"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="block w-full p-2 border rounded"
+              className="block w-full p-3 border rounded-lg text-lg"
               required
             >
               <option value="">Selecione uma categoria</option>
@@ -132,68 +129,68 @@ const PublicarConteudo: React.FC = () => {
             </select>
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="titulo" className="block mb-2">
+          <div className="mb-6">
+            <label htmlFor="titulo" className="block mb-2 text-lg font-medium text-gray-700">
               Título
             </label>
             <input
               id="titulo"
               value={titulo}
               onChange={(e) => setTitulo(e.target.value)}
-              className="block w-full p-2 border rounded"
+              className="block w-full p-3 border rounded-lg text-lg"
               placeholder="Digite o título"
               type="text"
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="corpo" className="block mb-2">
+          <div className="mb-6">
+            <label htmlFor="corpo" className="block mb-2 text-lg font-medium text-gray-700">
               Descrição
             </label>
             <ReactQuill
               id="corpo"
               value={corpo}
               onChange={setCorpo}
-              className="block w-full border rounded"
+              className="block w-full border rounded-lg"
               placeholder="Digite a descrição"
               modules={{
                 toolbar: [
-                    [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-                    [{size: []}],
-                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                    [{'list': 'ordered'}, {'list': 'bullet'},
-                    {'indent': '-1'}, {'indent': '+1'}],
-                    ['link', 'image', 'video'],
-                    ['clean'],
-                    ['formula']
+                  [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+                  [{size: []}],
+                  ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                  [{'list': 'ordered'}, {'list': 'bullet'},
+                  {'indent': '-1'}, {'indent': '+1'}],
+                  ['link', 'image', 'video'],
+                  ['clean'],
+                  ['formula']
                 ]
-            }}
+              }}
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="autor" className="block mb-2">
+          <div className="mb-6">
+            <label htmlFor="autor" className="block mb-2 text-lg font-medium text-gray-700">
               Autor
             </label>
             <input
               id="autor"
               value={autor}
               onChange={(e) => setAutor(e.target.value)}
-              className="block w-full p-2 border rounded"
+              className="block w-full p-3 border rounded-lg text-lg"
               placeholder="Digite o nome do autor"
               type="text"
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="banner" className="block mb-2">
+          <div className="mb-6">
+            <label htmlFor="banner" className="block mb-2 text-lg font-medium text-gray-700">
               Banner (imagem ou vídeo)
             </label>
             <input
               id="banner"
               onChange={handleFileChange}
-              className="block w-full p-2 border rounded"
+              className="block w-full p-3 border rounded-lg text-lg"
               type="file"
               accept="image/*,video/*"
               required
@@ -206,7 +203,7 @@ const PublicarConteudo: React.FC = () => {
           </div>
 
           <button
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex justify-center items-center"
+            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-lg"
             type="submit"
             disabled={isLoading}
           >
@@ -238,7 +235,6 @@ const PublicarConteudo: React.FC = () => {
         </form>
       </div>
     </div>
-
   );
 };
 

@@ -28,8 +28,7 @@ import Formacao from './pages/Formacao/formacao';
 import PublicarConteudo from './admin/Gerenciamento/GerenciarConteudos/PublicarConteudo';
 import GerenciarLiturgia from './admin/Gerenciamento/GerenciarLiturgia/GerenciarLiturgia';
 import PublicarEvento from './admin/Gerenciamento/GerenciamentoEventos/PublicarEvento';
-
-
+import EditarConteudo from './admin/Gerenciamento/GerenciarConteudos/EditarConteudos';
 
 
 const App = () => {
@@ -57,7 +56,7 @@ const App = () => {
             <Route path="/radio" element={<Layout> <RadioPlayer /></Layout>} />
 
             {/* administrativas */}
-
+            <Route path="/editar-conteudo/:id" element={<ProtectLayout><EditarConteudo /></ProtectLayout>} />
             <Route path="/login" element={<Login />} />
             <Route path="/conteudo" element={<ProtectLayout><PublicarConteudo /></ProtectLayout>} />
             <Route path="/publicarEvento" element={<ProtectLayout><PublicarEvento /></ProtectLayout>} />

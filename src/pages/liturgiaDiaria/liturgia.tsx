@@ -8,6 +8,7 @@ interface Liturgia {
   salmoResponsorial: string;
   corLiturgica: string;
   evangelho: string;
+  dia: Date;
 }
 
 const LeituraDiaria: React.FC = () => {
@@ -20,9 +21,10 @@ const LeituraDiaria: React.FC = () => {
   useEffect(() => {
     const fetchLeituraDiaria = async () => {
       try {
-        const response = await api.get<Liturgia[]>('/liturgia');
-        if (response.data && response.data.length > 0) {
-          setLiturgia(response.data[0]);
+        const today = new Date().toISOString().split('T')[0]; // formato YYYY-MM-DD
+        const response = await api.get<Liturgia>(`/liturgia?date=${today}`);
+        if (response.data) {
+          setLiturgia(response.data);
         } else {
           console.error('Dados da liturgia não encontrados.');
         }
@@ -67,33 +69,38 @@ const LeituraDiaria: React.FC = () => {
       <div className="text-center mb-6">
         <h1 className="text-4xl font-light mb-2">Liturgia Diária</h1>
         {liturgia && (
-          <p className="text-lg font-medium text-gray-600 mb-4">{liturgia.corLiturgica}</p>
+          <div>
+            <p className="flex justify-center m-2 text-lg font-medium text-gray-600 mb-4">
+              Cor Liturgica: <span dangerouslySetInnerHTML={{ __html: liturgia.corLiturgica }} />
+            </p>
+          </div>
         )}
       </div>
       <div className="flex flex-wrap justify-center mb-6">
         <button
-          className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarPrimeiraLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`border border-gray-700 bg-stone-900 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarPrimeiraLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={handleMostrarPrimeiraLeitura}
           disabled={mostrarPrimeiraLeitura}
         >
-          Primeira Leitura
+          1° Leitura
         </button>
         <button
-          className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSegundaLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
-          onClick={handleMostrarSegundaLeitura}
-          disabled={mostrarSegundaLeitura}
-        >
-          Segunda Leitura
-        </button>
-        <button
-          className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSalmo ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`border border-gray-700 bg-stone-900 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSalmo ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={handleMostrarSalmo}
           disabled={mostrarSalmo}
         >
-          Salmo Responsorial
+          Salmo
         </button>
         <button
-          className={`border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarEvangelho ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`border border-gray-700 bg-stone-900 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarSegundaLeitura ? 'opacity-50 cursor-not-allowed' : ''}`}
+          onClick={handleMostrarSegundaLeitura}
+          disabled={mostrarSegundaLeitura}
+        >
+          2° Leitura
+        </button>
+
+        <button
+          className={`border border-gray-700 bg-stone-900 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease-in-out hover:bg-gray-800 focus:outline-none focus:shadow-outline ${mostrarEvangelho ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={handleMostrarEvangelho}
           disabled={mostrarEvangelho}
         >
@@ -102,7 +109,7 @@ const LeituraDiaria: React.FC = () => {
       </div>
       {liturgia ? (
         <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-4 text-center">{liturgia.titulo}</h2>
+          <h2 className="text-xl font-bold mb-4 text-center" dangerouslySetInnerHTML={{ __html: liturgia.titulo }}></h2>
           {mostrarPrimeiraLeitura && (
             <div className="mb-4">
               <h3 className="text-lg font-semibold">Primeira Leitura</h3>

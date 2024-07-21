@@ -148,7 +148,7 @@ const Formacoes: React.FC = () => {
                             </section>
                         )}
 
-                        <div className=" container grid grid-cols-1 gap-2">
+                        <div className=" ">
                             {filteredData.slice(indexOfFirstItem, indexOfLastItem)
                                 .filter(conteudo =>
                                     ["formacao", "espiritualidade", "martires", "santos", "oracao"].includes(conteudo.categoria.name)

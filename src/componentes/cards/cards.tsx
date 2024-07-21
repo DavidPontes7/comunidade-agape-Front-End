@@ -60,11 +60,11 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
             src={`${baseUrl}/files/${conteudo.banner}`}
             alt={conteudo.titulo}
             className="w-full object-cover h-full"
-            style={{ minHeight: '180px', maxHeight: '150px',maxWidth:'300px ',minWidth:'300px',backgroundSize:'cover',backgroundPosition:'center' }}
+            style={{ minHeight: '180px', maxHeight: '150px', maxWidth: '300px ', minWidth: '300px', backgroundSize: 'cover', backgroundPosition: 'center' }}
           />
         </div>
 
-        <div className="md:w-2/3 bg-white p-4 lg:ml-3">
+        <div className="md:w-2/3 bg-white p-2 lg:ml-3">
           <div className="flex items-center mb-2">
             <span className={`bg-white ${categoryColor} text-xs uppercase font-bold`}>
               #{conteudo.categoria.name}
@@ -101,7 +101,7 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
         <a href="#">
           <img
             className="w-full h-auto object-cover "
-            src={`http://localhost:3333/files/${conteudo.banner}`}
+            src={`${baseUrl}/files/${conteudo.banner}`}
             alt={conteudo.titulo}
             style={{ minHeight: '250px', maxHeight: '200px' }}
           />

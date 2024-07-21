@@ -11,6 +11,7 @@ interface Liturgia {
     titulo: string;
     evangelho: string;
     corLiturgica: string;
+    dia : Date;
 }
 
 const GerenciarLiturgia: React.FC = () => {
@@ -19,6 +20,7 @@ const GerenciarLiturgia: React.FC = () => {
     const [segundaLeitura, setSegundaLeitura] = useState('');
     const [salmoResponsorial, setSalmoResponsorial] = useState('');
     const [evangelho, setEvangelho] = useState('');
+    const [dia, setDia] = useState<Date | null>(null);
     const [corLiturgica, setCorLiturgica] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -41,6 +43,7 @@ const GerenciarLiturgia: React.FC = () => {
                 salmoResponsorial,
                 evangelho,
                 corLiturgica,
+                dia: dia || new Date()
             };
 
             console.log('Enviando dados da liturgia:', liturgia);
@@ -69,28 +72,26 @@ const GerenciarLiturgia: React.FC = () => {
 
     return (
         <div className="flex items-center justify-center w-full h-full bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
-                <h2 className="text-2xl font-bold mb-6 text-center">Publicar Leitura Litúrgica</h2>
+            <div className="bg-white p-12 rounded shadow-md w-full max-w-3xl">
+                <h2 className="text-3xl font-bold mb-8 text-center">Publicar Leitura Litúrgica</h2>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="titulo" className="block mb-2">
+                    <div className="mb-6 ">
+                        <label htmlFor="titulo" className="block mb-2 text-lg font-medium">
                             Título
                         </label>
-                        <input
+                        <ReactQuill
                             id="titulo"
                             value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            onChange={setTitulo}
                             className="block w-full p-2 border rounded"
                             placeholder="Digite o título"
-                            type="text"
-                            required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="primeiraLeitura" className="block mb-2">
+                    <div className="mb-6">
+                        <label htmlFor="primeiraLeitura" className="block mb-2 text-lg font-medium">
                             Primeira Leitura
                         </label>
                         <ReactQuill
@@ -102,64 +103,74 @@ const GerenciarLiturgia: React.FC = () => {
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="segundaLeitura" className="block mb-2">
+                    <div className="mb-6">
+                        <label htmlFor="segundaLeitura" className="block mb-2 text-lg font-medium">
                             Segunda Leitura
                         </label>
-                        <textarea
+                        <ReactQuill
                             id="segundaLeitura"
                             value={segundaLeitura}
-                            onChange={(e) => setSegundaLeitura(e.target.value)}
+                            onChange={setSegundaLeitura}
                             className="block w-full p-2 border rounded"
                             placeholder="Digite a segunda leitura"
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="salmoResponsorial" className="block mb-2">
+                    <div className="mb-6">
+                        <label htmlFor="salmoResponsorial" className="block mb-2 text-lg font-medium">
                             Salmo Responsorial
                         </label>
-                        <textarea
+                        <ReactQuill
                             id="salmoResponsorial"
                             value={salmoResponsorial}
-                            onChange={(e) => setSalmoResponsorial(e.target.value)}
+                            onChange={setSalmoResponsorial}
                             className="block w-full p-2 border rounded"
                             placeholder="Digite o salmo responsorial"
-                            required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="evangelho" className="block mb-2">
+                    <div className="mb-6">
+                        <label htmlFor="evangelho" className="block mb-2 text-lg font-medium">
                             Evangelho
                         </label>
-                        <textarea
+                        <ReactQuill
                             id="evangelho"
                             value={evangelho}
-                            onChange={(e) => setEvangelho(e.target.value)}
+                            onChange={setEvangelho}
                             className="block w-full p-2 border rounded"
                             placeholder="Digite o evangelho"
-                            required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="corLiturgica" className="block mb-2">
+                    <div className="mb-6">
+                        <label htmlFor="corLiturgica" className="block mb-2 text-lg font-medium">
                             Cor Litúrgica
                         </label>
-                        <input
+                        <ReactQuill
                             id="corLiturgica"
                             value={corLiturgica}
-                            onChange={(e) => setCorLiturgica(e.target.value)}
+                            onChange={setCorLiturgica}
                             className="block w-full p-2 border rounded"
                             placeholder="Digite a cor litúrgica"
-                            type="text"
-                            required
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label htmlFor="dia" className="block mb-2 text-lg font-medium">
+                            Dia
+                        </label>
+                        <input
+                            id="dia"
+                            type="date" // Pode usar type="date" se for uma data simples
+                            value={dia ? dia.toISOString().substr(0, 10) : ''} // Formatar para ISO 8601
+                            onChange={(e) => setDia(new Date(e.target.value))}
+                            className="block w-full p-2 border rounded"
+                            placeholder="Selecione o dia"
                         />
                     </div>
 
                     <button
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex justify-center items-center"
+                        className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex justify-center items-center"
                         type="submit"
                         disabled={isLoading}
                     >

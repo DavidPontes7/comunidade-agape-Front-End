@@ -65,7 +65,7 @@ export default function Historia() {
         {/* Seção de missões */}
         <div className="mb-12 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 md:order-2 md:pl-8">
-            <img src='https://scontent.faju14-1.fna.fbcdn.net/v/t31.18172-8/28701056_2039056656333876_4376172300632538390_o.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ofkY5GGirskQ7kNvgGR2qKR&_nc_ht=scontent.faju14-1.fna&oh=00_AYDwAG56GXevprGVrS3uVEMUsn91Ps6w8py0l6NRkuydCA&oe=668FE711' alt="Missões" className="rounded-lg shadow-md w-full" />
+            <img src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/sinal.jpg?raw=true' alt="Missões" className="rounded-lg shadow-md w-full" />
           </div>
           <div className="md:w-1/2 mt-4 md:mt-0 md:order-1 md:pr-8">
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Sinal</h3>
@@ -115,7 +115,7 @@ export default function Historia() {
             <Link to="/terezinha">
               <img src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/teresa.jpg?raw=true' alt="Terezinha do Menino Jesus" className="rounded-full w-36 h-36 mb-4 object-cover" />
             </Link>
-            <h3 className="text-2xl font-semibold mb-2">Terezinha do Menino Jesus</h3>
+            <h3 className="text-2xl font-semibold mb-2 text-center">Terezinha do Menino Jesus</h3>
             <p className="text-gray-700 text-center">Clique aqui e conheça mais sobre nossa Baluarte</p>
           </div>
           {/* São Francisco */}

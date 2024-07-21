@@ -110,7 +110,7 @@ const Home = () => {
                                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2"></h2>
                                 <span className="relative flex justify-center">
                                     <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                                    <span className="relative lg:text-lg z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
+                                    <span className="relative lg:text-lg z-10 my-4 text-lg bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
                                         Artigos e Notícias
                                     </span>
 
@@ -215,7 +215,7 @@ const Home = () => {
                     </div>
 
                     {/* Lateral */}
-                    <aside className="lg:w-1/3 lg:mt-24">
+                    <aside className="lg:w-1/3 lg:mt-36">
                         <LateralCards />
 
                         <div className="mt-8">

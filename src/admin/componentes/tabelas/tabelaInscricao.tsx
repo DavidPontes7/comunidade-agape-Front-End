@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { api } from "../../../services/api";
 
 const ListarInscricao: React.FC = () => {
     
@@ -23,7 +23,7 @@ const ListarInscricao: React.FC = () => {
                 throw new Error('Token não encontrado');
             }
 
-            const response = await axios.get('http://localhost:3333/inscricao', {
+            const response = await api.get('/inscricao', {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                 },
