@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { api } from '../../../services/api';
 import ReactQuill from 'react-quill';
 
-
 interface Category {
   id: string;
   name: string;
@@ -24,6 +23,8 @@ const EditarConteudo = () => {
     banner: '',
     categoriaId: '',
   });
+
+  const [file, setFile] = useState<File | null>(null);
 
   //Categoria
   useEffect(() => {
@@ -72,6 +73,11 @@ const EditarConteudo = () => {
     fetchConteudo();
   }, [id]);
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    setFile(selectedFile || null);
+  };
+
   const updateConteudo = async () => {
     try {
       const token = sessionStorage.getItem('@AuthUser:token');
@@ -79,14 +85,26 @@ const EditarConteudo = () => {
         throw new Error('Token não encontrado');
       }
 
-      await api.put(`/conteudo/${editContent.id}`, editContent, {
+      const formData = new FormData();
+      formData.append('id', editContent.id);
+      formData.append('titulo', editContent.titulo);
+      formData.append('corpo', editContent.corpo);
+      formData.append('autor', editContent.autor);
+      formData.append('categoriaId', editContent.categoriaId);
+
+      if (file) {
+        formData.append('banner', file);
+      }
+
+      await api.put(`/conteudo/${editContent.id}`, formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
+          'Content-Type': 'multipart/form-data',
         },
       });
 
       toast.success('Conteúdo atualizado com sucesso');
-      navigate('/GerenciarConteudo'); // Redireciona de volta para a página de gerenciamento
+      navigate('/GerenciarConteudo');
     } catch (error) {
       console.error(`Houve um erro ao atualizar o conteúdo ${editContent.id}:`, error);
       toast.error(`Erro ao atualizar o conteúdo ${editContent.id}`);
@@ -129,13 +147,14 @@ const EditarConteudo = () => {
         placeholder="Autor"
       />
       <input
-              id="banner"
-              className="block w-full p-3 border rounded-lg text-lg"
-              type="file"
-              accept="image/*,video/*"
-              required
-            />
-            
+        id="banner"
+        className="block w-full p-3 border rounded-lg text-lg"
+        type="file"
+        accept="image/*,video/*"
+        onChange={handleFileChange}
+        required
+      />
+
       <div className="mb-6">
         <label htmlFor="categoria" className="block mb-2 text-lg font-medium text-gray-700">
           Categoria

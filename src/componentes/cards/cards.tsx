@@ -32,7 +32,6 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
         return 'text-yellow-500'; // Amarelo para categorias 'oracao' e 'agape'
 
       case 'martires':
-      case 'agape':
         return 'text-sky-400';
 
       case 'acampamento':
@@ -67,7 +66,7 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
         <div className="md:w-2/3 bg-white p-2 lg:ml-3">
           <div className="flex items-center mb-2">
             <span className={`bg-white ${categoryColor} text-xs uppercase font-bold`}>
-              #{conteudo.categoria.name}
+              {conteudo.categoria.name}
             </span>
             <span className="text-gray-600 text-xs ml-2">
               {new Date(conteudo.publicadoEm).toLocaleString()}

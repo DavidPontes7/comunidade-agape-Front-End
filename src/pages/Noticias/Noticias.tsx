@@ -196,7 +196,7 @@ const Noticias: React.FC = () => {
                       className={`cursor-pointer hover:text-red-600 font-serif ${selectedCategory === category.id ? 'font-semibold text-indigo-600' : ''}`}
                       onClick={() => handleCategorySelect(category.id)}
                     >
-                      #{category.name}
+                      {category.name}
                     </li>
                   ))
                 }

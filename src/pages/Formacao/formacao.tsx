@@ -29,20 +29,6 @@ const Formacoes: React.FC = () => {
         };
     }
 
-    const NewsCard = ({ date, title, imageUrl, link }: any) => (
-        <div className="col items-start lg:mb-6 lg:pb-6 border-b border-gray-200">
-            <Link to={link} className="inline-block mr-">
-                <div className="w-15 h-15 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }}></div>
-            </Link>
-            <div className="text-base">
-                <p className="text-gray-600 text-sm mb-2">{date}</p>
-                <a href={link} className="text-gray-900 font-semibold hover:text-red-600 leading-tight" target="_blank" rel="noopener noreferrer">
-                    {title}
-                </a>
-            </div>
-        </div>
-    );
-
     // Fetch categories from API
     useEffect(() => {
         const fetchCategories = async () => {
@@ -98,7 +84,7 @@ const Formacoes: React.FC = () => {
             ["formacao", "espiritualidade", "martires", "santos", "oracao"].includes(conteudo.categoria.name)
         );
 
-        const baseUrl = import.meta.env.VITE_BASE_URL;
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     return (
         <div className="bg-white mx-auto py-4 lg:px-4">
@@ -123,8 +109,8 @@ const Formacoes: React.FC = () => {
                                         <div className="relative mb-4">
                                             <Link to={`/conteudo/${singleConteudo.id}`}>
                                                 <img className="w-full"
-                                                 src={`${baseUrl}/files/${singleConteudo.banner}`}  
-                                                 alt={singleConteudo.titulo} />
+                                                    src={`${baseUrl}/files/${singleConteudo.banner}`}
+                                                    alt={singleConteudo.titulo} />
                                             </Link>
                                         </div>
                                         <div className="line-clamp-3 overflow-hidden text-ellipsis mb-4" dangerouslySetInnerHTML={{ __html: singleConteudo.corpo }} />
@@ -193,24 +179,13 @@ const Formacoes: React.FC = () => {
                                             className={`cursor-pointer hover:text-red-600 font-serif ${selectedCategory === category.id ? 'font-semibold text-indigo-600' : ''}`}
                                             onClick={() => handleCategorySelect(category.id)}
                                         >
-                                            #{category.name}
+                                            {category.name}
                                         </li>
                                     ))}
                             </ul>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-2 lg:mt-72">
-                            <h2 className=" text-xl text lg:mt-44 font-bold text-gray-700 mt-5" style={{ fontFamily: 'aktiv-grotesk' }}>Mais Lidas</h2>
-                            {conteudos.slice(-4).map(news => (
-                                <NewsCard
-                                    key={news.id}
-                                    date={news.publicadoEm}
-                                    title={news.titulo}
-                                    imageUrl={`${baseUrl}/files/${news.banner}`}
-                                    link={`/conteudo/${news.id}`}
-                                />
-                            ))}
-                        </div>
+
                     </div>
                 </div>
             </div>
