@@ -41,7 +41,7 @@ const ConteudoGridAgape: React.FC = () => {
                 }));
                 const filteredConteudos = conteudos.filter(conteudo => conteudo.categoria.name == 'agape'
                     || conteudo.categoria.name == 'santos'
-                    || conteudo.categoria.name == 'opinião'
+                    || conteudo.categoria.name == 'formacao'
                     || conteudo.categoria.name == 'martires'
                 );
                 setData(filteredConteudos);

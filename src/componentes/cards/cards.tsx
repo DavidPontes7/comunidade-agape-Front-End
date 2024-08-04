@@ -91,10 +91,6 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
         </div>
       </div>
 
-      {/* Linha separadora */}
-      <div className="border-b border-gray-300 mt-4"></div>
-
-
       {/* dispositivos moveis */}
       <div className="sm:hidden">
         <a href="#">
@@ -107,10 +103,10 @@ const Card: React.FC<{ conteudo: Conteudo }> = ({ conteudo }) => {
         </a>
         <div className="relative rounded-md grid grid-cols-1 -mt-14 px-10 pt-5 bg-white m-3 my-1">
           <span className={`bg-white ${categoryColor} text-xs uppercase font-bold`}>
-            #{conteudo.categoria.name}
+            {conteudo.categoria.name}
           </span>
           <Link to={`/conteudo/${conteudo.id}`} className="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-2" style={{ fontFamily: 'aktiv-grotesk, sans-serif' }}>
-            {conteudo.titulo}
+            {conteudo.titulo.charAt(0).toUpperCase()}{conteudo.titulo.slice(1)}
           </Link>
           <div
             className="line-clamp-3 overflow-hidden text-ellipsis"

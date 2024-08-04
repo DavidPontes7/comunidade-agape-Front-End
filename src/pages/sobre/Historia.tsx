@@ -6,16 +6,6 @@ export default function Historia() {
 
     <div className="">
       {/* Seção de destaque */}
-      {/* Seção de destaque */}
-
-      <span className="relative w-full flex justify-center">
-        <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-        <span className="relative lg:text-lg my-5 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-          Nossa História
-        </span>
-      </span>
-
-
 
       {/* Seção de informações */}
       <section id="infoSection" className="font-serif  container mx-auto py-8 px-4 md:px-8">
@@ -101,22 +91,27 @@ export default function Historia() {
         </div>
 
         {/* Seção sobre Baluartes */}
-        <span className="relative w-full flex justify-center">
-        <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-        <span className="relative lg:text-lg z-10 my-5 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-          Baluartes
+        <span className="relative flex justify-center mb-8">
+          <h2 className="text-3xl font-bold text-stone-900 relative z-10 px-4">
+            Baluartes
+            <span className="absolute inset-x-0 bottom-0 h-1 bg-amber-500 w-full"></span>
+          </h2>
         </span>
-      </span>
+
+
 
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {/* Terezinha */}
+
           <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center transition duration-300 hover:shadow-lg">
             <Link to="/terezinha">
               <img src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/teresa.jpg?raw=true' alt="Terezinha do Menino Jesus" className="rounded-full w-36 h-36 mb-4 object-cover" />
             </Link>
             <h3 className="text-2xl font-semibold mb-2 text-center">Terezinha do Menino Jesus</h3>
-            <p className="text-gray-700 text-center">Clique aqui e conheça mais sobre nossa Baluarte</p>
+            <Link to="/terezinha">
+              <p className="text-gray-700 text-center">Clique aqui e conheça mais sobre nossa Baluarte</p>
+            </Link>
           </div>
           {/* São Francisco */}
           <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center transition duration-300 hover:shadow-lg">
@@ -124,7 +119,9 @@ export default function Historia() {
               <img src='https://github.com/AdsonVicente/ImagensUrlDados/blob/main/sao-francisco-de-assis-.jpg?raw=true' alt="São Francisco de Assis" className="rounded-full w-36 h-36 mb-4 object-cover" />
             </Link>
             <h3 className="text-2xl font-semibold mb-2">São Francisco de Assis</h3>
-            <p className="text-gray-700 text-center">Clique aqui e conheça mais sobre nosso Baluarte</p>
+            <Link to="/francisco">
+              <p className="text-gray-700 text-center">Clique aqui e conheça mais sobre nosso Baluarte</p>
+            </Link>
           </div>
         </div>
 
@@ -133,7 +130,7 @@ export default function Historia() {
         <div className="text-center mt-12">
           <h2 className="text-3xl text-gray-800 font-semibold mb-4">Junte-se à nossa missão</h2>
           <p className="text-lg text-gray-700 mb-8">Descubra como você pode fazer parte da nossa comunidade e contribuir para transformar vidas.</p>
-          <Link to="/contato" className="bg-blue-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
+          <Link to="/contato" className="bg-stone-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
             Entre em Contato
           </Link>
         </div>

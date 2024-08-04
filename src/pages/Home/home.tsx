@@ -107,14 +107,8 @@ const Home = () => {
 
 
                             <div className="py-8">
-                                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2"></h2>
-                                <span className="relative flex justify-center">
-                                    <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                                    <span className="relative lg:text-lg z-10 my-4 text-lg bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-                                        Artigos e Notícias
-                                    </span>
-
-                                </span>
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Artigos e Notícias</h2>
+                               
 
                                 <div className="gap-4">
                                     {filteredConteudos.slice(0, showMore ? filteredConteudos.length : newsLimit)
@@ -175,13 +169,7 @@ const Home = () => {
                         <div className="container mx-auto lg:px-4 lg:py-8">
 
                             <div className="mb-8">
-                                <span className="relative flex justify-center">
-                                    <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                                    <span className="relative lg:text-lg z-10 my-2 bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-                                        Explore
-                                    </span>
-
-                                </span>
+                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Explore</h2>
                                 <iframe
                                     width="100%"
                                     height="400"

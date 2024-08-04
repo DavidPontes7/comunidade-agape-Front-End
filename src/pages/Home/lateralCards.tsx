@@ -22,11 +22,10 @@ const NewsCard = ({ date, title, imageUrl, link }: any) => {
 const LateralCards = () => {
   return (
     <div className="sm:col-span-6 md:hidden lg:block sm:block lg:col-span-4">
-      <div className="items-center mb-6">
-        <h2 className="text-2xl font-bold text-stone-700" style={{ fontFamily: 'aktiv-grotesk, sans-serif', fontWeight: 500 }}>
+       <div className="items-center mb-6">
+        <h2 className="text-2xl font-bold text-stone-700 mb-4 relative">
           Formações Especiais do Fundador
         </h2>
-        <hr className="border-t-2 border-amber-500 my-4 w-28 ml-1" />
       </div>
       <NewsCard
         date="Formação"

@@ -9,10 +9,10 @@ interface PersonSectionProps {
 const PersonSection: React.FC<PersonSectionProps> = ({ imgSrc, name, description }) => (
   <div className="grid md:grid-cols-2 md:gap-8 items-center mb-12">
     <div>
-      <img 
-        src={imgSrc} 
-        alt={name} 
-        className="rounded-lg shadow-xl mb-4 md:mb-0 md:w-full transform transition duration-300 hover:scale-105" 
+      <img
+        src={imgSrc}
+        alt={name}
+        className="rounded-lg shadow-xl mb-4 md:mb-0 md:w-full transform transition duration-300 hover:scale-105"
       />
     </div>
     <div className="md:ml-8">
@@ -29,8 +29,8 @@ interface QuoteSectionProps {
 
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote, author }) => (
   <div className=" container bg-blue-100 py-8 px-4 md:px-8 rounded-lg shadow-md text-center my-12">
-    <p className="text-xl italic text-gray-700 mb-4">"{quote}"</p>
-    <p className="text-lg font-semibold text-gray-800">- {author}</p>
+     <p className="text-2xl italic text-gray-700 mb-4">"{quote}"</p>
+     <p className="text-xl font-semibold text-gray-800">- {author}</p>
   </div>
 );
 
@@ -42,18 +42,28 @@ export const Fundadores: React.FC = () => (
         name="Cleverson Silva Santos"
         description={
           <>
-            <p>Cleverson Silva Santos nasceu no pequeno interior de Sergipe, na cidade de Tobias Barreto. Desejando obter uma graduação, ainda na adolescência mudou-se para a cidade de Aracaju para se preparar para o vestibular. Nessa mudança, frequentou a Comunidade Católica Shalom, onde teve um encontro pessoal com Nosso Senhor Jesus Cristo.</p>
-            <p>Na Comunidade Shalom, nosso fundador foi missionário e passou pela cidade de Itapipoca, no Ceará.</p>
-            <br />
-            <p>Precisando retornar à sua cidade natal, nosso fundador ficou sentido com a ausência de jovens na paróquia, pois os adolescentes vagavam e tinham como principal atração a Avenida 7 de Junho.</p>
-            <p>Na época, o fundador procurou o então pároco, Monsenhor, e se prontificou a ajudar no trabalho com a juventude.</p>
-            <br />
-            <p>Com a abertura do pároco, o fundador foi designado para reabrir o extinto grupo Água Viva, que havia sido fechado há pouco tempo. Com este grupo, alguns encontros ocorreram, mas o mesmo precisou ser fechado novamente.</p>
-            <p>Diante disso, ardendo o coração do nosso fundador pela juventude, houve, <strong>no dia 10/04/2004,</strong> o primeiro encontro do Projeto Nova Juventude, em uma tarde, junto ao colégio Educandário Nossa Senhora do Carmo.</p>
-            <p>Assim, passaram-se 20 anos de transformação da vida de inúmeros jovens.</p>
+            <p>
+              Cleverson Silva Santos nasceu em Tobias Barreto, uma pequena cidade no interior de Sergipe. Durante sua adolescência, mudou-se para Aracaju com o objetivo de se preparar para o vestibular. Em Aracaju, frequentou a Comunidade Católica Shalom, onde teve um encontro pessoal com Nosso Senhor Jesus Cristo.
+            </p>
+            <p>
+              Durante seu tempo na Comunidade Shalom, Cleverson atuou como missionário e passou pela cidade de Itapipoca, no Ceará.
+            </p>
+            <p>
+              Ao retornar à sua cidade natal, percebeu a ausência de jovens na paróquia e a falta de opções atrativas para eles, além da Avenida 7 de Junho, que atraía muitos adolescentes. Preocupado com essa situação, Cleverson procurou o pároco da época, Monsenhor, e ofereceu sua ajuda para trabalhar com a juventude.
+            </p>
+            <p>
+              Com o apoio do pároco, Cleverson foi encarregado de reabrir o grupo Água Viva, que havia sido fechado recentemente. Apesar de alguns encontros iniciais, o grupo teve que ser fechado novamente.
+            </p>
+            <p>
+              Movido pelo desejo de transformar a vida dos jovens, Cleverson iniciou, no dia 10 de abril de 2004, o Projeto Nova Juventude, com um primeiro encontro realizado no Educandário Nossa Senhora do Carmo.
+            </p>
+            <p>
+              Desde então, passaram-se 20 anos de trabalho e transformação na vida de inúmeros jovens.
+            </p>
           </>
         }
       />
+
       <PersonSection
         imgSrc="https://github.com/AdsonVicente/ImagensUrlDados/blob/3eda69f28672dc55a1f3334322b4c116f27e04ad/CoFundadora.jpg?raw=true"
         name="Maria Ivone Paiva Soares"
@@ -73,9 +83,9 @@ export const Fundadores: React.FC = () => (
       <div className="text-center mt-16">
         <h2 className="text-3xl text-gray-800 font-semibold mb-4">Faça Parte da Nossa Missão</h2>
         <p className="text-lg text-gray-700 mb-8">Descubra como você pode se envolver e contribuir com a nossa comunidade.</p>
-        <Link 
-          to="/contato" 
-          className="bg-blue-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300"
+        <Link
+          to="/contato"
+          className="bg-stone-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300"
         >
           Entre em Contato
         </Link>
