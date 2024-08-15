@@ -11,7 +11,7 @@ interface Liturgia {
     titulo: string;
     evangelho: string;
     corLiturgica: string;
-    dia : Date;
+    dia: Date;
 }
 
 const GerenciarLiturgia: React.FC = () => {
@@ -29,6 +29,13 @@ const GerenciarLiturgia: React.FC = () => {
         e.preventDefault();
         setIsLoading(true);
         setError(null);
+
+        // Validar campos obrigatórios
+        if (!titulo || !primeiraLeitura || !salmoResponsorial || !evangelho || !corLiturgica || !dia) {
+            setIsLoading(false);
+            setError('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
 
         try {
             const token = sessionStorage.getItem('@AuthUser:token');
@@ -61,6 +68,7 @@ const GerenciarLiturgia: React.FC = () => {
             setSalmoResponsorial('');
             setEvangelho('');
             setCorLiturgica('');
+            setDia(null);
             setIsLoading(false);
             toast.success('Leitura litúrgica publicada com sucesso!');
         } catch (error) {
@@ -71,112 +79,112 @@ const GerenciarLiturgia: React.FC = () => {
     };
 
     return (
-        <div className="flex items-center justify-center w-full h-full bg-gray-100">
-            <div className="bg-white p-12 rounded shadow-md w-full max-w-3xl">
-                <h2 className="text-3xl font-bold mb-8 text-center">Publicar Leitura Litúrgica</h2>
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+        <div className="flex items-center justify-center w-full h-full bg-gray-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+                <h2 className="text-4xl font-bold mb-6 text-center text-blue-600">Publicar Leitura Litúrgica</h2>
+                {error && <p className="text-red-600 mb-4 text-center">{error}</p>}
 
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-6 ">
-                        <label htmlFor="titulo" className="block mb-2 text-lg font-medium">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
+                    <div>
+                        <label htmlFor="titulo" className="block text-lg font-semibold text-gray-800 mb-2">
                             Título
                         </label>
                         <ReactQuill
                             id="titulo"
                             value={titulo}
                             onChange={setTitulo}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite o título"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="primeiraLeitura" className="block mb-2 text-lg font-medium">
+                    <div>
+                        <label htmlFor="primeiraLeitura" className="block text-lg font-semibold text-gray-800 mb-2">
                             Primeira Leitura
                         </label>
                         <ReactQuill
                             id="primeiraLeitura"
                             value={primeiraLeitura}
                             onChange={setPrimeiraLeitura}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite a primeira leitura"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="segundaLeitura" className="block mb-2 text-lg font-medium">
-                            Segunda Leitura
+                    <div>
+                        <label htmlFor="segundaLeitura" className="block text-lg font-semibold text-gray-800 mb-2">
+                            Segunda Leitura (opcional)
                         </label>
                         <ReactQuill
                             id="segundaLeitura"
                             value={segundaLeitura}
                             onChange={setSegundaLeitura}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite a segunda leitura"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="salmoResponsorial" className="block mb-2 text-lg font-medium">
+                    <div>
+                        <label htmlFor="salmoResponsorial" className="block text-lg font-semibold text-gray-800 mb-2">
                             Salmo Responsorial
                         </label>
                         <ReactQuill
                             id="salmoResponsorial"
                             value={salmoResponsorial}
                             onChange={setSalmoResponsorial}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite o salmo responsorial"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="evangelho" className="block mb-2 text-lg font-medium">
+                    <div>
+                        <label htmlFor="evangelho" className="block text-lg font-semibold text-gray-800 mb-2">
                             Evangelho
                         </label>
                         <ReactQuill
                             id="evangelho"
                             value={evangelho}
                             onChange={setEvangelho}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite o evangelho"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="corLiturgica" className="block mb-2 text-lg font-medium">
+                    <div>
+                        <label htmlFor="corLiturgica" className="block text-lg font-semibold text-gray-800 mb-2">
                             Cor Litúrgica
                         </label>
                         <ReactQuill
                             id="corLiturgica"
                             value={corLiturgica}
                             onChange={setCorLiturgica}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Digite a cor litúrgica"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="dia" className="block mb-2 text-lg font-medium">
+                    <div>
+                        <label htmlFor="dia" className="block text-lg font-semibold text-gray-800 mb-2">
                             Dia
                         </label>
                         <input
                             id="dia"
-                            type="date" // Pode usar type="date" se for uma data simples
-                            value={dia ? dia.toISOString().substr(0, 10) : ''} // Formatar para ISO 8601
+                            type="date"
+                            value={dia ? dia.toISOString().substr(0, 10) : ''}
                             onChange={(e) => setDia(new Date(e.target.value))}
-                            className="block w-full p-2 border rounded"
+                            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Selecione o dia"
                         />
                     </div>
 
                     <button
-                        className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex justify-center items-center"
+                        className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-center items-center"
                         type="submit"
                         disabled={isLoading}
                     >
                         {isLoading ? (
                             <svg
-                                className="animate-spin h-5 w-5 text-white"
+                                className="animate-spin h-6 w-6 text-white"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"

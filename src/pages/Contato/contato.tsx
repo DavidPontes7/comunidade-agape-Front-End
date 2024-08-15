@@ -27,7 +27,12 @@ const ContactPage = () => {
         {
             question: "Qual é o principal evento realizado pela nossa comunidade católica?",
             answer: "O principal evento anual de nossa comunidade católica é o nosso acampamento espiritual, um momento de profunda conexão, aprendizado e diversão para todas as idades. Durante o acampamento, oferecemos uma variedade de atividades que incluem momentos de oração, reflexão, dinâmicas em grupo e momentos de convivência fraternal. É uma oportunidade única para fortalecer nossa fé, criar laços e renovar nosso compromisso com os valores do evangelho. O acampamento é aberto a todos os membros da comunidade e suas famílias, e buscamos torná-lo um momento de enriquecimento espiritual e alegria para todos os participantes."
+        },
+        {
+            question: "Quais são as atividades oferecidas para as crianças e jovens?",
+            answer: "A Comunidade Católica Àgape oferece catequese para crianças, grupos de jovens, e atividades recreativas e educativas. Essas atividades visam ajudar na formação espiritual e moral dos nossos jovens, preparando-os para uma vida baseada nos valores cristãos."
         }
+        
     ];
 
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -38,7 +43,7 @@ const ContactPage = () => {
 
     return (
         <div className=" min-h-screen">
-            <section className="relative text-black h-96 flex items-center justify-center">
+            <section className="relative bg-amber-500 text-black h-96 flex items-center justify-center">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
                     <h1 className="text-5xl lg:text-7xl font-extrabold uppercase tracking-wide">Entre em Contato</h1>
                     <p className="text-lg mt-4">Estamos aqui para ouvir você</p>

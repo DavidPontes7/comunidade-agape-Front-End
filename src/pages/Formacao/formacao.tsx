@@ -88,14 +88,7 @@ const Formacoes: React.FC = () => {
 
     return (
         <div className="bg-white mx-auto py-4 lg:px-4">
-            <section className="relative text-black h-20 flex items-center justify-center">
-                <span className="relative w-full flex justify-center">
-                    <div className="absolute w-full inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-                    <span className="relative  my-1 lg:text-lg bg-stone-600 text-white font-bold px-6 py-2 rounded-full shadow-lg">
-                        Formações e Ensinamentos
-                    </span>
-                </span>
-            </section>
+          
             <div className="max-w-screen-lg mx-auto">
                 <div className="flex flex-col lg:flex-row">
                     <div className="w-full lg:w-3/4 lg:pr-8">
@@ -160,7 +153,7 @@ const Formacoes: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="w-full lg:w-1/4 lg:mt-20">
+                    <div className="w-full lg:w-1/4 lg:mt-8">
                         <div className="flex flex-col items-center lg:items-start">
                             <h2 className="text-xl font-bold text-gray-700 mb-4" style={{ fontFamily: 'Arial' }}>Categorias</h2>
                             <ul className="space-y-2 text-center lg:text-left">

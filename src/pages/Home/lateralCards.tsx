@@ -22,7 +22,7 @@ const NewsCard = ({ date, title, imageUrl, link }: any) => {
 const LateralCards = () => {
   return (
     <div className="sm:col-span-6 md:hidden lg:block sm:block lg:col-span-4">
-       <div className="items-center mb-6">
+      <div className="items-center mb-6">
         <h2 className="text-2xl font-bold text-stone-700 mb-4 relative">
           Formações Especiais do Fundador
         </h2>

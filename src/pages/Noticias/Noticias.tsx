@@ -105,7 +105,16 @@ const Noticias: React.FC = () => {
                       <Link to={`/conteudo/${singleConteudo.id}`}>
                         <img className="w-full"
                           src={`${baseUrl}/files/${singleConteudo.banner}`}
-                          style={{ maxHeight: '500px', maxWidth: '1200px', backgroundSize: 'cover' }} alt={singleConteudo.titulo} />
+                          style={{
+                            maxHeight: '500px',
+                            minHeight: '500px',
+                            minWidth: '600px',
+                            maxWidth: '1200px',
+                            objectFit: 'cover', // Ajusta a imagem para cobrir o contêiner mantendo o aspecto
+                            objectPosition: 'center', // Centraliza a imagem dentro do contêiner
+                            borderRadius: '8px', // Adiciona bordas arredondadas para um visual mais elegante
+                            backgroundSize: 'cover', // Garante que o fundo da imagem cubra completamente o contêiner
+                          }} />
 
                       </Link>
                     </div>
@@ -162,7 +171,7 @@ const Noticias: React.FC = () => {
             </div>
           </div>
 
-          {/* Sidebar with categories */}
+          
           <div className="w-full lg:w-1/4 lg:mt-8">
             <div className="flex flex-col items-center lg:items-start">
               <h2 className="text-xl font-bold text-gray-700 mb-4" style={{ fontFamily: 'Arial' }}>Categorias</h2>

@@ -1,5 +1,5 @@
-import React from 'react';  
-import { FaEnvelope, FaFacebookSquare, FaInstagram,FaYoutube } from 'react-icons/fa';
+import React from 'react';
+import { FaEnvelope, FaFacebookSquare, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           </div>
           <div className="text-center md:w-2/3 text-xs sm:text-sm">
             <p>&copy; {new Date().getFullYear()} Comunidade Católica Ágape. Todos os direitos reservados.</p>
-            
+
           </div>
           <div className="md:w-1/3 text-center md:text-right mt-4 md:mt-0">
             <h3 className="text-lg font-semibold mb-2">Redes Sociais</h3>

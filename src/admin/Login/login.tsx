@@ -9,15 +9,23 @@ export default function Login() {
   const { setUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Para indicar o carregamento do submit
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    if (!email || !password) {
+      toast.warning('Preencha os campos de email e senha.');
+      return false;
+    }
+    return true;
+  };
 
   const signIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      toast.warning('Preencha os campos de email e senha.');
-      return;
-    }
+    if (!validateForm()) return;
+
+    setLoading(true); // Inicia o carregamento
 
     try {
       const response = await api.post('/session', { email, password });
@@ -38,45 +46,68 @@ export default function Login() {
         console.error('Erro durante o login:', error);
         toast.error('Erro ao tentar fazer login. Por favor, tente novamente.');
       }
+    } finally {
+      setLoading(false); // Finaliza o carregamento
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <div className="flex justify-center mb-6">
-          <img src={'https://github.com/AdsonVicente/ImagensUrlDados/blob/main/logo.png?raw=true'} alt="Logo Comunidade Católica Ágape" className="w-24 h-24" />
+          <img
+            src="https://github.com/AdsonVicente/ImagensUrlDados/blob/main/logo.png?raw=true"
+            alt="Logo Comunidade Católica Ágape"
+            className="w-24 h-24"
+          />
         </div>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login - Comunidade Católica Ágape</h2>
 
         <form onSubmit={signIn}>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mb-4 p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            placeholder="Digite seu email"
-            autoComplete="email"
-            type="email"
-            required
-          />
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700">Email</label>
+            <input
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder="Digite seu email"
+              autoComplete="email"
+              type="email"
+              required
+              aria-label="Email"
+            />
+          </div>
 
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mb-4 p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            placeholder="Digite sua senha"
-            autoComplete="current-password"
-            type="password"
-            required
-          />
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-gray-700">Senha</label>
+            <input
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder="Digite sua senha"
+              autoComplete="current-password"
+              type="password"
+              required
+              aria-label="Senha"
+            />
+          </div>
 
           <button
-            className="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600"
+            className={`w-full p-2 rounded ${loading ? 'bg-yellow-400 cursor-not-allowed' : 'bg-yellow-500 hover:bg-yellow-600'} text-white transition duration-300 ease-in-out focus:outline-none`}
             type="submit"
+            disabled={loading}
           >
-            Acessar
+            {loading ? 'Carregando...' : 'Acessar'}
           </button>
         </form>
+
+        <div className="mt-6 text-center text-gray-600">
+          <p className="text-sm">
+            Esqueceu sua senha? Entre em contato com o administrador para recuperação de conta.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ import GerenciarConteudos from './admin/Gerenciamento/GerenciarConteudos/Gerenci
 import CriarAdmin from './admin/Gerenciamento/CadastrarAdministrador/CadastrarAdministrador';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectLayout } from './services/ProtectLayout';
-import Login from './admin/Login/login';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
@@ -29,6 +28,8 @@ import PublicarConteudo from './admin/Gerenciamento/GerenciarConteudos/PublicarC
 import GerenciarLiturgia from './admin/Gerenciamento/GerenciarLiturgia/GerenciarLiturgia';
 import PublicarEvento from './admin/Gerenciamento/GerenciamentoEventos/PublicarEvento';
 import EditarConteudo from './admin/Gerenciamento/GerenciarConteudos/EditarConteudos';
+import AdministradorLayout from './admin/layout/AdministradorLayout';
+import Login from './admin/Login/login';
 
 
 const App = () => {
@@ -54,17 +55,17 @@ const App = () => {
             <Route path='/inscricao' element={<Layout> <Formulario /> </Layout>} />
 
             <Route path="/radio" element={<Layout> <RadioPlayer /></Layout>} />
+            {/* Administrativas */}
+            <Route path="/editar-conteudo/:id" element={<AdministradorLayout><ProtectLayout><EditarConteudo /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/conteudo" element={<AdministradorLayout><ProtectLayout><PublicarConteudo /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/publicarEvento" element={<AdministradorLayout><ProtectLayout><PublicarEvento /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/Dashboard" element={<AdministradorLayout><ProtectLayout><AdminDashboard /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/CriarAdministrador" element={<AdministradorLayout><ProtectLayout><CriarAdmin /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/GerenciarConteudo" element={<AdministradorLayout><ProtectLayout><GerenciarConteudos /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/admin/Criar" element={<AdministradorLayout><ProtectLayout><AdminForm /></ProtectLayout></AdministradorLayout>} />
+            <Route path="/gerenciarLiturgia" element={<AdministradorLayout><ProtectLayout><GerenciarLiturgia /></ProtectLayout></AdministradorLayout>} />
 
-            {/* administrativas */}
-            <Route path="/editar-conteudo/:id" element={<ProtectLayout><EditarConteudo /></ProtectLayout>} />
             <Route path="/login" element={<Login />} />
-            <Route path="/conteudo" element={<ProtectLayout><PublicarConteudo /></ProtectLayout>} />
-            <Route path="/publicarEvento" element={<ProtectLayout><PublicarEvento /></ProtectLayout>} />
-            <Route path="/Dashboard" element={<ProtectLayout><AdminDashboard /></ProtectLayout>} />
-            <Route path="/CriarAdministrador" element={<ProtectLayout><CriarAdmin /></ProtectLayout>} />
-            <Route path="/GerenciarConteudo" element={<ProtectLayout><GerenciarConteudos /></ProtectLayout>} />
-            <Route path="/admin/Criar" element={<ProtectLayout><AdminForm /></ProtectLayout>} />
-            <Route path="/gerenciarLiturgia" element={<ProtectLayout><GerenciarLiturgia /></ProtectLayout>} />
 
           </Routes>
         </AuthProvider>

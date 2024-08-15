@@ -108,7 +108,7 @@ const Home = () => {
 
                             <div className="py-8">
                                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Artigos e Notícias</h2>
-                               
+
 
                                 <div className="gap-4">
                                     {filteredConteudos.slice(0, showMore ? filteredConteudos.length : newsLimit)
@@ -166,10 +166,10 @@ const Home = () => {
 
                         {/* explore */}
 
-                        <div className="container mx-auto lg:px-4 lg:py-8">
+                        <div className="container mx-auto  lg:py-8">
 
                             <div className="mb-8">
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Explore</h2>
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Explore</h2>
                                 <iframe
                                     width="100%"
                                     height="400"

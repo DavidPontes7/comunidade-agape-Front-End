@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
 
 interface Noticia {
   id: string;
@@ -27,7 +27,7 @@ const DetalheConteudo: React.FC = () => {
   useEffect(() => {
     const fetchConteudo = async () => {
       try {
-        const response = await axios.get(`http://localhost:3333/conteudo/${id}`);
+        const response = await api.get(`conteudo/${id}`);
         setConteudo(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
